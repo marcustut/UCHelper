@@ -20,6 +20,7 @@ public class Main {
                 System.out.print("Hello, Dennis is here");
                 System.out.println("Cecelia ");
                 System.out.println("asd");
+                System.out.println("This is demo trial");
 
 	}
 	
