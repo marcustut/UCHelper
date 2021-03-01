@@ -5,6 +5,8 @@
  */
 package UCHelper.client;
 
+import UCHelper.adt.*;
+
 /**
  *
  * @author Marcus Lee, marcustutorial@hotmail.com
@@ -17,11 +19,14 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO code application logic here
 
-		System.out.print("Hello, Dennis is here");
-		System.out.println("Cecelia ");
-		System.out.println("asd");
-		System.out.println("This is demo trial");
+		BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
 
+		bst.add(2);
+		bst.add(1);
+		bst.add(3);
+		bst.add(5);
+
+		bst.print(BinarySearchTree.TreeTraversalOrder.PreOrderTraversal);
 	}
 
 }
