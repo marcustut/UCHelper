@@ -5,6 +5,10 @@
  */
 package UCHelper.client;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import UCHelper.adt.*;
 
 /**
@@ -26,7 +30,17 @@ public class Main {
 		bst.add(3);
 		bst.add(5);
 
-		bst.print(BinarySearchTree.TreeTraversalOrder.PreOrderTraversal);
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+			Date firstDate = sdf.parse("06/24/2017");
+			Date secondDate = sdf.parse("06/30/2017");
+
+			Range<Date> range = new Range<>(firstDate, secondDate);
+			System.out.println("Start: " + range.start());
+			System.out.println("End: " + range.end());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
