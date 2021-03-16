@@ -3,37 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package client;
+package UCHelper.client;
 
-import adt.FlexibleQueue;
-import entity.Student;
-import java.io.Serializable;
 import java.util.Scanner;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import adt.FlexibleQueueInterface;
+import UCHelper.adt.*;
+import UCHelper.entity.*;
 
 /**
  *
  * @author Cecelia Lim Jie Shi RSFY2S2
  */
-public class StudentQueue implements Serializable {
+public class StudentQueue {
     static FlexibleQueueInterface<Student> student = new FlexibleQueue<>();
     static Scanner input = new Scanner(System.in); //create a scanner input object
-   
-   
-    public static void main(String[] args) {
-        StudentQueue s = new StudentQueue();
-        s.studentMainPage();
-      
-    }
-    
-    
 
-   
+//    public static void main(String[] args) {
+//        StudentQueue s = new StudentQueue();
+//        s.studentMainPage();
+//    }
+
     public void studentMainPage() {
-         StudentQueue sq = new StudentQueue();
         char quit = 'Y';
         System.out.println("----- Student Queue For Enter Event -----");
         while(quit == 'Y'){
@@ -56,32 +48,32 @@ public class StudentQueue implements Serializable {
             switch(choice)
             {
                 case 1:
-                    sq.checkInStudent();
+                    checkInStudent();
                     break;
                 case 2:
-                    sq.displayStudent();
+                    displayStudent();
                     //getting current date and time using Date class
                     DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
                     Date dateobj = new Date();
                     System.out.println(df.format(dateobj));
                     break;
                 case 3:
-                    sq.findFirstStudent();
+                    findFirstStudent();
                     break;
                 case 4:
-                    sq.findLastStudent();
+                    findLastStudent();
                     break;
                 case 5:
-                    sq.removeStudent();
+                    removeStudent();
                     break;
                 case 6:
-                    sq.checkEmpty();
+                    checkEmpty();
                     break;
                 case 7:
-                    sq.turnFirstToLast();
+                    turnFirstToLast();
                     break;
                 case 8:
-                    sq.clearAll();
+                    clearAll();
                     break;
                 default:
                     System.out.println("Wrong Entry \n");
