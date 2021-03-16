@@ -11,7 +11,6 @@ public class ClubManager {
 
   /**
    * Find the club with most members
-   * 
    * @return the club with most members
    */
   public Club clubWithMostMembers() {
@@ -20,7 +19,6 @@ public class ClubManager {
 
   /**
    * Find the club with least members
-   * 
    * @return the club with least members
    */
   public Club clubWithLeastMembers() {
@@ -29,7 +27,6 @@ public class ClubManager {
 
   /**
    * Register a new club.
-   * 
    * @param club - the club to be registered to the manager.
    * @return true if successfully register, false otherwise.
    */
@@ -39,7 +36,6 @@ public class ClubManager {
 
   /**
    * Remove an existing club.
-   * 
    * @param club - the club to be removed from the manager.
    * @return true if successfully removed, false otherwise.
    */

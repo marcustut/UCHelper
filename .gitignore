@@ -3,5 +3,6 @@
 /.settings/
 /.gradle/
 /.vscode/
+/.idea/
 .project
 .classpath

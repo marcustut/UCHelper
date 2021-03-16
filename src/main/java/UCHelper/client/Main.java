@@ -5,11 +5,13 @@
  */
 package UCHelper.client;
 
+import java.sql.SQLOutput;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 import UCHelper.adt.*;
+import UCHelper.entity.*;
 
 /**
  *
@@ -22,13 +24,13 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		// TODO code application logic here
+		BinarySearchTree<Club> clubs = new BinarySearchTree<>();
+		ClubManager clubManager = new ClubManager(clubs);
 
-		BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
-
-		bst.add(2);
-		bst.add(1);
-		bst.add(3);
-		bst.add(5);
+//		clubs.add(2);
+//		clubs.add(1);
+//		clubs.add(3);
+//		clubs.add(5);
 
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);

@@ -86,7 +86,7 @@ class BinarySearchTreeTest {
     bst.add(2);
     assertEquals(bst.size(), 2);
     assertTrue(bst.remove(2));
-    assertEquals(bst.size(), 2);
+    assertEquals(bst.size(), 1);
 
     // Try removing the root
     assertTrue(bst.remove(1));
