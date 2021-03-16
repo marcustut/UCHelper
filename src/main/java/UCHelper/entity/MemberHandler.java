@@ -58,8 +58,8 @@ public class MemberHandler {
      * @param studentId - ID of the student
      * @return the removed student
      */
-    public Student removeMember(String studentId) {
-        int found = members.findIndex(new Student(studentId));
+    public Student removeMember(int studentId) {
+        int found = members.findIndex(new Student("Marcus", studentId));
 
         // Student not found
         if (found == -1) return null;
