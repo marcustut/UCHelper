@@ -1,18 +1,36 @@
 package UCHelper.entity;
 
 public class Student implements Comparable<Student> {
-    private String studentId;
 
-    public Student(String studentId) {
-        this.studentId = studentId;
+    String name;
+    int studID;
+
+    public Student() {
     }
 
-    public String getStudentId() {
-        return studentId;
+    public Student(String name, int studID) {
+        this.name = name;
+        this.studID = studID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getStudID() {
+        return studID;
+    }
+
+    public void setStudID(int studID) {
+        this.studID = studID;
     }
 
     @Override
-    public int compareTo(Student anotherStudent) {
-        return studentId.compareTo(anotherStudent.getStudentId());
+    public String toString() {
+        return name + "\t|\t" + studID;
     }
 }
