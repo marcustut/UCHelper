@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public interface EventManager<E>{
-    List<Event> eventList = new ArrayList<>();
+    List<Event> eventList = new ArrayList<Event>();
     //ListInterface<Event> eventList = new ArrayList<>();
     
     String eventHeading();

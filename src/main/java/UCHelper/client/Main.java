@@ -33,7 +33,7 @@ public class Main {
 //		testEvent();
 
 		StudentQueue squ = new StudentQueue();
-		squ.studentMainPage();
+                squ.studentMainPage();
 	}
 
 }

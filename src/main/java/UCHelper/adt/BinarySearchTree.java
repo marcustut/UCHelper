@@ -190,7 +190,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
   // Private method to perform in-order traversal
   private Iterator<T> inOrderTraversal() {
     // A stack to keep track of node traversed
-    final Stack<Node> stack = new Stack<>(); // TODO: Use self-implemented Stack in production
+    final Stack<Node> stack = new Stack<Node>(); // TODO: Use self-implemented Stack in production
     stack.push(root);
 
     return new Iterator<T>() {
@@ -229,7 +229,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
   // Private method to perform pre-order traversal
   private Iterator<T> preOrderTraversal() {
     // A stack to keep track of node traversed
-    final Stack<Node> stack = new Stack<>(); // TODO: Use self-implemented Stack in production
+    final Stack<Node> stack = new Stack<Node>(); // TODO: Use self-implemented Stack in production
 
     // The root is the starting point (first node to traverse)
     stack.push(root);

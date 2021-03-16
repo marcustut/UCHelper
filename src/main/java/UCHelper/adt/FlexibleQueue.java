@@ -83,10 +83,10 @@ public class FlexibleQueue<E> implements FlexibleQueueInterface <E>,Serializable
     
     public void  addFirst(E e){  //adds element e to the front of the list
         if (size ==0){
-            tail = new Node<>(e, null);  //bcz first in nothing so my tail will become null
+            tail = new Node<E>(e, null);  //bcz first in nothing so my tail will become null
             tail.setNext(tail);   //link to itself circularly
         } else {
-            Node<E> newest = new Node<>(e, tail.getNext());    
+            Node<E> newest = new Node<E>(e, tail.getNext());    
             tail.setNext(newest); //set after tail mean (first item)
         }
         size++;  //once add item size increase

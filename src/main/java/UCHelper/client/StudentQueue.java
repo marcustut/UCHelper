@@ -17,13 +17,17 @@ import UCHelper.entity.*;
  * @author Cecelia Lim Jie Shi RSFY2S2
  */
 public class StudentQueue {
-    static FlexibleQueueInterface<Student> student = new FlexibleQueue<>();
+    static FlexibleQueueInterface<Student> student = new FlexibleQueue<Student>();
     static Scanner input = new Scanner(System.in); //create a scanner input object
 
-//    public static void main(String[] args) {
-//        StudentQueue s = new StudentQueue();
-//        s.studentMainPage();
-//    }
+ 
+
+    public void StudentQueue() {
+        StudentQueue s = new StudentQueue();
+        s.studentMainPage();
+    }
+        
+    
 
     public void studentMainPage() {
         char quit = 'Y';
@@ -38,12 +42,11 @@ public class StudentQueue {
             System.out.println("[7] Shift First to Last");
             System.out.println("[8] Clear All");
             System.out.println("Choose your selection");
-          
+           
             while (!input.hasNextInt()) {
             input.next();
             System.out.print("\nChoose your selection: ");
             }
-            
             int choice = input.nextInt();
             switch(choice)
             {
@@ -86,6 +89,7 @@ public class StudentQueue {
              input.next();
              System.out.print("\nDo you want to continue ? (Y/N) ");
             }
+
             String word = input.next();
            
             word = word.toUpperCase();

@@ -4,8 +4,8 @@ import UCHelper.adt.*;
 
 public class MemberHandler {
     // TODO: Change to own implementation of List
-    private final LinkedList<Student> members = new LinkedList<>();
-    private final LinkedList<Student> committees = new LinkedList<>();
+    private final LinkedList<Student> members = new LinkedList<Student>();
+    private final LinkedList<Student> committees = new LinkedList<Student>();
     private Student clubLead;
 
     public MemberHandler(Student clubLead) {
