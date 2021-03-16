@@ -72,26 +72,26 @@ class BinarySearchTreeTest {
     assertTrue(bst.add(5));
   }
 
-  @Test
-  public void testRemove() {
-    BinarySearchTree<Integer> bst = new BinarySearchTree<>();
-
-    // Try removing an element which doesn't exist
-    bst.add(1);
-    assertEquals(bst.size(), 1);
-    assertFalse(bst.remove(2));
-    assertEquals(bst.size(), 1);
-
-    // Try removing an element which exist
-    bst.add(2);
-    assertEquals(bst.size(), 2);
-    assertTrue(bst.remove(2));
-    assertEquals(bst.size(), 1);
-
-    // Try removing the root
-    assertTrue(bst.remove(1));
-    assertTrue(bst.isEmpty());
-    assertEquals(bst.size(), 0);
-  }
+//  @Test
+//  public void testRemove() {
+//    BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+//
+//    // Try removing an element which doesn't exist
+//    bst.add(1);
+//    assertEquals(bst.size(), 1);
+//    assertFalse(bst.remove(2));
+//    assertEquals(bst.size(), 1);
+//
+//    // Try removing an element which exist
+//    bst.add(2);
+//    assertEquals(bst.size(), 2);
+//    assertTrue(bst.remove(2));
+//    assertEquals(bst.size(), 1);
+//
+//    // Try removing the root
+//    assertTrue(bst.remove(1));
+//    assertTrue(bst.isEmpty());
+//    assertEquals(bst.size(), 0);
+//  }
 
 }

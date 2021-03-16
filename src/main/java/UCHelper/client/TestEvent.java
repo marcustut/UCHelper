@@ -1,17 +1,28 @@
-package UCHelper;
+package UCHelper.client;
 
-import Entity.Event;
-import static UCHelper.EventManager.eventList;
+import UCHelper.entity.*;
 import java.util.Iterator;
-import java.util.Scanner;
+
+import static UCHelper.entity.EventManager.eventList;
+
 /**
  * TestEvent.java An test class that test event class, interface and ADT.
  * @author Dennis
  * @version 1.0
  */
 public class TestEvent {
+    public static String repeat(String str, int times) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < times; i++) {
+            sb.append(str);
+        }
+
+        return sb.toString();
+    }
+
     public static void testEvent(){
-        System.out.println("\n".repeat(2));
+        System.out.println(repeat("\n", 2));
         System.out.println("========================");
         System.out.println("|| Event Test Session ||");
         System.out.println("========================");
@@ -19,9 +30,9 @@ public class TestEvent {
         int spacing = 1;
         
         //---addEvent(...)
-        System.out.println("\n".repeat(spacing));
-        EventManager e1 = new Event();
-        EventManager e2 = new Event();
+        repeat("\n", spacing);
+        EventManager e1 = (EventManager) new Event();
+        EventManager e2 = (EventManager) new Event();
         e1.addEvent(eventSeqNum++, "event1", "Setapak", "a fund raising event", "11/03/2021", 3);
         e2.addEvent(eventSeqNum++, "event2",  "Sunway", "a fund raising event", "13/03/2021", 4);
         Event e3 = new Event(eventSeqNum++, "event3", "Wangsa", "a fund raising event", "08/02/2021", 4); 
@@ -41,44 +52,39 @@ public class TestEvent {
         }
         
         //---displayEvent(...)
-        System.out.println("\n".repeat(spacing));
+        repeat("\n", spacing);
         System.out.println("\n" + e1.eventHeading());
         System.out.println(e1.displayEvent("event1"));
         
         //---deleteEvent(...)
-        System.out.println("\n".repeat(spacing));
+        repeat("\n", spacing);
         System.out.println("\n" + e1.eventHeading());
         System.out.println(e1.deleteEvent("event1"));
         
         //---changeEventDate(...)
-        System.out.println("\n".repeat(spacing));
+        repeat("\n", spacing);
         e1.changeEventDate("event2", "02/01/2021");
         System.out.println("\n" + e1.eventHeading());
         System.out.println(e1.displayEvent("event2"));
         
         //---identifyPastEvent(...)
-        System.out.println("\n".repeat(spacing));
+        repeat("\n", spacing);
         System.out.println(e1.identifyPastEvent("event2"));
         
         //---editEvent(...)
-        System.out.println("\n".repeat(spacing));
+        repeat("\n", spacing);
         e1.editEvent("E-103", "event6", "venue", "details", "11/03/2021", 2);
         System.out.println(e1.displayEvent("E-103"));
         
         
         //---displayParticipantList(...)
-        //System.out.println("\n".repeat(spacing));
+        //repeat("\n", spacing);
         
         
         //---displayOrganisor(...)
-        //System.out.println("\n".repeat(spacing));
+        //repeat("\n", spacing);
         
         //---publishToDiscord(...)
-        //System.out.println("\n".repeat(spacing));
-    }
-    
-    public static void main(String[] args)throws InterruptedException {
-        Scanner in = new Scanner(System.in);
-        testEvent();
+        //repeat("\n", spacing);
     }
 }

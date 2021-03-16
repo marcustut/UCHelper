@@ -1,6 +1,6 @@
-package Entity;
+package UCHelper.entity;
 
-import UCHelper.EventManager;
+import UCHelper.client.TestEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -98,7 +98,7 @@ public class Event implements EventManager {
 	return String.format("%-8s %-10s %-10s %-15s %-8s %-35s", 
                 "ID", "Title", "Venue", "Date", "Days", "Remark") 
                 + String.format("\n%-86s", 
-                        "-".repeat(86));
+                        TestEvent.repeat("-", 86));
     }
 
     @Override
