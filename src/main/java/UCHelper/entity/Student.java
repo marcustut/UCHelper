@@ -1,7 +1,6 @@
 package UCHelper.entity;
 
 public class Student implements Comparable<Student> {
-
     String name;
     int studID;
 
@@ -32,5 +31,10 @@ public class Student implements Comparable<Student> {
     @Override
     public String toString() {
         return name + "\t|\t" + studID;
+    }
+
+    @Override
+    public int compareTo(Student anotherStudent) {
+        return studID - anotherStudent.getStudID();
     }
 }
