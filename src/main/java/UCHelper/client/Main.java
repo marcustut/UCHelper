@@ -9,10 +9,14 @@ import UCHelper.adt.*;
 import UCHelper.entity.*;
 
 import static UCHelper.client.TestEvent.testEvent;
+import java.util.Scanner;
 
 /**
  *
  * @author Marcus Lee, marcustutorial@hotmail.com
+ * @author Cecelia Lim Jie Shi RSFY2S2
+ * @author 
+ * @author 
  */
 public class Main {
 
@@ -29,11 +33,37 @@ public class Main {
 //		clubs.add(3);
 //		clubs.add(5);
 
-//		Scanner in = new Scanner(System.in);
+           Scanner in = new Scanner(System.in);
 //		testEvent();
-
-		StudentQueue squ = new StudentQueue();
+            int select = 0; 
+            do{
+            System.out.println("------- UC Helper -------");
+            System.out.println("[1] Admin");
+            System.out.println("[2] Club");
+            System.out.println("[3] Event");
+            System.out.println("[4] Student Queue");
+            System.out.println("[5] Exit");
+            System.out.println("Select [1/2/3/4]");
+            while (!in.hasNextInt()) {
+            in.next();
+            System.out.print("\nSelect [1/2/3/4]");
+            }
+            select = in.nextInt();
+            switch(select){
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                StudentQueue squ = new StudentQueue();
                 squ.studentMainPage();
+                    break;
+                default:
+                    break;
+            }
+            }while(select >= 1 && select <=4);
 	}
 
 }

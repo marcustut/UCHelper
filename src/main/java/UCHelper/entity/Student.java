@@ -1,5 +1,9 @@
 package UCHelper.entity;
 
+/**
+ *
+ * @author Cecelia Lim Jie Shi RSFY2S2
+ */
 public class Student implements Comparable<Student> {
     String name;
     int studID;
