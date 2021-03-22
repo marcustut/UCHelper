@@ -8,8 +8,9 @@ package UCHelper.adt;
 /**
  *
  * @author Cecelia Lim Jie Shi RSFY2S2
+ * @param <E>
  */
-public interface FlexibleQueueInterface <E>{
+public interface FlexibleQueueInterface <E extends Comparable<E>>{
     int size();
     boolean isEmpty();
     E first();
@@ -20,5 +21,5 @@ public interface FlexibleQueueInterface <E>{
     E removeFirst();
     void display();
     void clear();
-   
+    public boolean contains(E anEntry);
 }

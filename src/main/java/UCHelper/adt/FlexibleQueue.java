@@ -5,7 +5,7 @@
  */
 package UCHelper.adt;
 
-import java.io.Serializable;
+
 
 
 /**
@@ -13,7 +13,7 @@ import java.io.Serializable;
  * @author Cecelia Lim Jie Shi RSFY2S2
  * @param <E>
  */
-public class FlexibleQueue<E> implements FlexibleQueueInterface <E>,Serializable{
+public class FlexibleQueue <E extends Comparable<E>> implements FlexibleQueueInterface <E>{
 
     
     
@@ -125,7 +125,22 @@ public class FlexibleQueue<E> implements FlexibleQueueInterface <E>,Serializable
        }
     }
 
-   
+    @Override
+    public boolean contains(E anEntry) {
+       boolean found = false;
+       Node lastNode = tail;
+       Node currentNode = lastNode;
+        
+
+        while (!found && (currentNode != null)) {
+            if(anEntry.equals(currentNode.element)) {
+                found = true;
+            } else {
+                currentNode = currentNode.next;
+            }
+        }
+        return found;
+    }
     
     
     

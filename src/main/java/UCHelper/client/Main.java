@@ -43,10 +43,10 @@ public class Main {
             System.out.println("[3] Event");
             System.out.println("[4] Student Queue");
             System.out.println("[5] Exit");
-            System.out.println("Select [1/2/3/4]");
+            System.out.println("Select [1/2/3/4/5]");
             while (!in.hasNextInt()) {
             in.next();
-            System.out.print("\nSelect [1/2/3/4]");
+            System.out.print("\nSelect [1/2/3/4/5]");
             }
             select = in.nextInt();
             switch(select){
