@@ -2,9 +2,16 @@ package UCHelper.adt;
 
 import java.util.*;
 
-// BinarySearchTree helps preserve any comparable data in a sorted manner.
-// Note that the tree has distinct keys therefore duplicates are not allowed.
-// This is helpful for an efficient search.
+// TODO: Add the time complexity and space complexity to each operation
+// TODO: Refactor some code to not use data structure from java standard library.
+
+/**
+ * BinarySearchTree helps preserve any comparable data in a sorted manner.
+ * Note that the tree has distinct keys therefore duplicates are not allowed.
+ * This is helpful for an efficient search.
+ * @author Lee Kai Yang RSFY2S2
+ * @param <T> - Generic Type (can be any object types but not primitive types)
+ */
 public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
   // to keep track of number of nodes in the tree
   private int nodeCount = 0;

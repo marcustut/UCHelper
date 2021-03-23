@@ -2,9 +2,18 @@ package UCHelper.adt;
 
 import java.util.Iterator;
 
+// TODO: Add the time complexity and space complexity to each operation
+
+/**
+ * LinkedList is a helpful data structure for storing a collection of data.
+ * It's dynamically allocated, where it grows and shrink at runtime, preventing memory waste.
+ * @author Lee Kai Yang RSFY2S2
+ * @param <T> - Generic Type (can be any object types but not primitive types)
+ */
 public class LinkedList<T> implements Iterable<T> {
     private int size = 0;
     private Node<T> head = null;
+    // TODO: Add a 'tail' variable for better time complexity on add.
 
     private static class Node<T> {
         private T data;
