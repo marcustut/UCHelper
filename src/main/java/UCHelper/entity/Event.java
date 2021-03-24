@@ -1,6 +1,7 @@
 package UCHelper.entity;
 
-import UCHelper.client.TestEvent;
+import UCHelper.client.EventManager;
+import UCHelper.client.Main;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -98,7 +99,7 @@ public class Event implements EventManager {
 	return String.format("%-8s %-10s %-10s %-15s %-8s %-35s", 
                 "ID", "Title", "Venue", "Date", "Days", "Remark") 
                 + String.format("\n%-86s", 
-                        TestEvent.repeat("-", 86));
+                        Main.repeat("-", 86));
     }
 
     @Override
@@ -131,7 +132,6 @@ public class Event implements EventManager {
     
     @Override
     public boolean identifyPastEvent(String title) {
-        Event resultEvent;
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         for(Event eve : eventList){
             try {

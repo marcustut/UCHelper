@@ -1,9 +1,10 @@
-package UCHelper.entity;
+package UCHelper.client;
 
 //import ADT.ListInterface;
 //import ADT.ArrayList;
 import UCHelper.entity.*;
 import UCHelper.client.UCHelper;
+import UCHelper.entity.Event;
 
 import java.util.List;
 import java.util.ArrayList;
