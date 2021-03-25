@@ -8,12 +8,18 @@ public class MemberHandler {
     private final LinkedList<Student> committees = new LinkedList<Student>();
     private Student clubLead;
 
+    public MemberHandler() {
+        // TODO: Probably remove this
+        this.clubLead = new Student();
+    }
+
     public MemberHandler(Student clubLead) {
         this.clubLead = clubLead;
     }
 
     /**
      * Get the list of members of a Club
+     * 
      * @return list of members
      */
     public LinkedList<Student> getMembers() {
@@ -22,6 +28,7 @@ public class MemberHandler {
 
     /**
      * Get the list of committees of a Club
+     * 
      * @return list of committees
      */
     public LinkedList<Student> getCommittees() {
@@ -30,6 +37,7 @@ public class MemberHandler {
 
     /**
      * Get the leader of a Club
+     * 
      * @return Student object of the club lead
      */
     public Student getClubLead() {
@@ -38,6 +46,7 @@ public class MemberHandler {
 
     /**
      * Change the club leader of the club
+     * 
      * @param newClubLead - the new club leader
      */
     public void changeClubLead(Student newClubLead) {
@@ -46,6 +55,7 @@ public class MemberHandler {
 
     /**
      * Add a student to the list of members
+     * 
      * @param member - the student to add
      * @return true if student is added, false otherwise
      */
@@ -55,15 +65,26 @@ public class MemberHandler {
 
     /**
      * Remove a student from the list of members by its Student ID
+     * 
      * @param studentId - ID of the student
      * @return the removed student
      */
     public Student removeMember(int studentId) {
-        int found = members.findIndex(new Student("Marcus", studentId));
+        int found = members.findIndex(new Student("", studentId));
 
         // Student not found
-        if (found == -1) return null;
+        if (found == -1)
+            return null;
 
         return members.remove(found);
+    }
+
+    public Student findMember(int studentId) {
+        int found = members.findIndex(new Student("", studentId));
+
+        if (found == -1)
+            return null;
+
+        return members.get(found);
     }
 }

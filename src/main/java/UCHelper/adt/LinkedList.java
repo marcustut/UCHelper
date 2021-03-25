@@ -5,8 +5,10 @@ import java.util.Iterator;
 // TODO: Add the time complexity and space complexity to each operation
 
 /**
- * LinkedList is a helpful data structure for storing a collection of data.
- * It's dynamically allocated, where it grows and shrink at runtime, preventing memory waste.
+ * LinkedList is a helpful data structure for storing a collection of data. It's
+ * dynamically allocated, where it grows and shrink at runtime, preventing
+ * memory waste.
+ * 
  * @author Lee Kai Yang RSFY2S2
  * @param <T> - Generic Type (can be any object types but not primitive types)
  */
@@ -27,6 +29,7 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Get the size of the list
+     * 
      * @return size of the list
      */
     public int size() {
@@ -35,6 +38,7 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Check if list is empty
+     * 
      * @return true if list is empty, false otherwise
      */
     public boolean isEmpty() {
@@ -43,6 +47,7 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Add an element to the back of the list
+     * 
      * @param elem - element to be added
      * @return true if element is added, false otherwise
      */
@@ -56,7 +61,7 @@ public class LinkedList<T> implements Iterable<T> {
 
         Node<T> trav = head;
 
-        while(trav.next != null) {
+        while (trav.next != null) {
             trav = trav.next;
         }
 
@@ -68,6 +73,7 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Remove an element from the list based on its position
+     * 
      * @param index - position of the element
      * @return the removed element
      */
@@ -95,7 +101,8 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Replace an element in the list with a new value based on its position
-     * @param index - position of the element
+     * 
+     * @param index   - position of the element
      * @param newData - new value to replace with
      * @return original value of the element before getting replaced
      */
@@ -114,13 +121,14 @@ public class LinkedList<T> implements Iterable<T> {
         }
 
         T data = trav.next.data;
-        trav.next = new Node(newData, trav.next.next);
+        trav.next = new Node<T>(newData, trav.next.next);
 
         return data;
     }
 
     /**
      * Get the element based on its position in the list
+     * 
      * @param index - position of the element
      * @return data of the element
      */
@@ -136,6 +144,7 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Check if the list contains an element
+     * 
      * @param elem - element to check
      * @return true if element exists, false otherwise
      */
@@ -143,7 +152,8 @@ public class LinkedList<T> implements Iterable<T> {
         Node<T> trav = head;
 
         while (trav != null) {
-            if (trav.data == elem) return true;
+            if (trav.data == elem)
+                return true;
             trav = trav.next;
         }
 
@@ -152,6 +162,7 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Find an element in the list and return its index
+     * 
      * @param elem - element to find
      * @return index of found element, or -1 if not found
      */
@@ -160,7 +171,8 @@ public class LinkedList<T> implements Iterable<T> {
         int index = 0;
 
         while (trav != null) {
-            if (trav.data == elem) return index;
+            if (trav.data == elem)
+                return index;
             trav = trav.next;
             index++;
         }
@@ -170,11 +182,13 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Represent the list in string
+     * 
      * @return string representation of the list
      */
     @Override
     public String toString() {
-        if (head == null && size == 0) return "";
+        if (head == null && size == 0)
+            return "";
 
         StringBuilder sb = new StringBuilder();
 
@@ -190,6 +204,7 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Returns an iterator object for the list
+     * 
      * @return an iterator
      */
     @Override

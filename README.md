@@ -1,4 +1,5 @@
 # University Club Helper
+
 This is a project for BACS2063 Data Structures and Algorithm.
 
 ## Getting started
@@ -12,6 +13,9 @@ This is a project for BACS2063 Data Structures and Algorithm.
 
 # run the project
 ./gradlew run
+
+# run the project with input using `System.in`
+./gradlew --console plain run
 ```
 
 ⚠ Use `gradlew.bat` if you're on Windows.
