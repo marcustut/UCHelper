@@ -32,7 +32,7 @@ public class Main {
         int selection = 0;
         do {
             System.out.println("------- UC Helper -------");
-            System.out.println("[1] Admin");
+            System.out.println("[1] Lecturer");
             System.out.println("[2] Club");
             System.out.println("[3] Event");
             System.out.println("[4] Student Queue");
