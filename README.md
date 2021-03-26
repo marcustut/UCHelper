@@ -29,3 +29,10 @@ The entry point of the project should be defined in `build.gradle`. Gradle will 
 mainClassName = 'UCHelper.client.Main'
 ...
 ```
+## Lecturer
+
+## Event
+
+## Club
+
+## Student
