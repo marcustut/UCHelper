@@ -1,13 +1,6 @@
 package UCHelper.entity;
 
-import UCHelper.adt.ArrayList;
-import UCHelper.client.EventManager;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import UCHelper.adt.ComparableArrayList;
 /**
  * Event.java An entity class that stored a proposed event of a club.
  * @author Dennis
@@ -22,9 +15,8 @@ public class Event{
     private String eventVenue;
     private String eventDate;
     private int durationInDay;
-    private Club organisor;
-    private ArrayList<Student> attendeeList = new ArrayList<Student>();
-    private ArrayList<Student> crewList = new ArrayList<>();
+    private String organisor;
+    private ComparableArrayList<String> attendeeList = new ComparableArrayList<String>();
 
     // constructor
     public Event() {
@@ -87,6 +79,22 @@ public class Event{
 
     public void setDurationInDay(int durationInDay) {
         this.durationInDay = durationInDay;
+    }
+
+    public String getOrganisor() {
+        return organisor;
+    }
+
+    public void setOrganisor(String ClubID) {
+        this.organisor = ClubID;
+    }
+    
+    public ComparableArrayList<String> getAttendeeList() {
+        return attendeeList;
+    }
+    
+    public void setAttendeeList(String StudentID) {
+        this.attendeeList.add(StudentID);
     }
     
     @Override

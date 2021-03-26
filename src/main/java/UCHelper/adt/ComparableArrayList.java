@@ -4,14 +4,14 @@ import UCHelper.entity.Event;
 import java.io.Serializable;
 import java.util.Iterator;
 
-public class ArrayList<T> implements ListInterface<T>, Serializable {
+public class ComparableArrayList<T> implements ComparableArrayListInterface<T> {
 
   private T[] array;
   private int length;
   private static final int DEFAULT_CAPACITY = 5;
     private Node<T> head = null;
 
-  public ArrayList() {
+  public ComparableArrayList() {
     array = (T[]) new Object[DEFAULT_CAPACITY];
     length = 0;
   }

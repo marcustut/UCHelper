@@ -4,13 +4,16 @@ import java.util.Scanner;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import UCHelper.entity.*;
-//import UCHelper.adt.ArrayList;
+import java.text.ParseException;
+//import UCHelper.adt.ComparableArrayList;
 import java.util.Iterator;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  * EventManager.java is an client class that contain all the needed methods of an event interface.
  * @author Dennis
- * @version 1.0
+ * @version 3.0
  */
 public class EventManager{
     static ArrayList<Event> eventList = new ArrayList<Event>();
@@ -28,8 +31,8 @@ public class EventManager{
                 System.out.println("[4] Delete an existing event");
                 System.out.println("[5] Display current event list");
                 System.out.println("[6] Delete all event in the list");
-                System.out.println("[7] Display all the past event according to their date");
-                System.out.println("[8] Register student to an event");
+                System.out.println("[7] Display all the past event before today");
+                System.out.println("[8] Display event list with their number of attendees");
                 System.out.println("[9] Back to main menu");
                 System.out.println("What you wish to do? ");
             while (!in.hasNextInt()) {
@@ -60,7 +63,7 @@ public class EventManager{
                     displayPastEvent();
                     break;
                 case 8:
-                    addToParticipantList();
+                    displayEventListWithAttendeeList(); 
                     break;
                 default:
                     break;
@@ -69,7 +72,6 @@ public class EventManager{
     }
     
     public static void browseEvent(){
-        
         int identifier = 0;
         String compare = "";
         boolean status = false;
@@ -85,7 +87,7 @@ public class EventManager{
                     System.out.println("");
                     System.out.println("Target Event ID:");
                     compare = inputString();
-                    eventHeading();
+                    System.out.println(eventHeading());
                     for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
                         Event e = it.next();
                         if (e.getEventID().equals(compare)) {
@@ -98,7 +100,7 @@ public class EventManager{
                     System.out.println("");
                     System.out.println("Target Event Title:");
                     compare = inputString();
-                    eventHeading();
+                    System.out.println(eventHeading());
                     for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
                         Event e = it.next();
                         if (e.getEventTitle().equals(compare)) {
@@ -108,6 +110,8 @@ public class EventManager{
                     status = true;
                     break;
                 default:
+                    System.out.println("No such event found");
+                    status = true;
                     break;
             }
         }
@@ -131,8 +135,8 @@ public class EventManager{
             details = inputString();
             System.out.println("Venue is");
             venue = inputString();
-            System.out.println("Date is (13/02/2021)");
-            date = inputString();
+            System.out.println("Date (13/02/2021) is ");
+            date = inputDate();
             System.out.println("Duration (days) is"); 
             durationInDay = inputInt(); 
             System.out.println("Proceed?[Y]");
@@ -175,8 +179,8 @@ public class EventManager{
                     details = inputString();
                     System.out.println("Venue is");
                     venue = inputString();
-                    System.out.println("Date is");
-                    date = inputString();
+                    System.out.println("Date (13/02/2021) is ");
+                    date = inputDate();
                     System.out.println("Duration (days) is");
                     durationInDay = inputInt();
                     for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
@@ -202,8 +206,8 @@ public class EventManager{
                     details = inputString();
                     System.out.println("Venue is");
                     venue = inputString();
-                    System.out.println("Date is");
-                    date = inputString();
+                    System.out.println("Date (13/02/2021) is ");
+                    date = inputDate();
                     System.out.println("Duration (days) is");
                     durationInDay = inputInt();
                     for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
@@ -229,6 +233,7 @@ public class EventManager{
     public static void deleteEvent(){
         int identifier = 0;
         String compare = "";
+        ArrayList<Event> tem = new ArrayList<Event>();
         boolean status = false;
         while (status != true) {
             System.out.println("");
@@ -244,10 +249,11 @@ public class EventManager{
                     compare = inputString();
                     for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
                         Event e = it.next();
-                        if (e.getEventID().equals(compare)) {
-                            eventList.remove(e);
+                        if (!e.getEventID().equals(compare)) {
+                            tem.add(e);
                         }
                     }
+                    eventList = tem;
                     status = true;
                     break;
                 case 2:
@@ -256,10 +262,11 @@ public class EventManager{
                     compare = inputString();
                     for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
                         Event e = it.next();
-                        if (e.getEventTitle().equals(compare)) {
-                            eventList.remove(e);
+                        if (!e.getEventTitle().equals(compare)) {
+                            tem.add(e);
                         }
                     }
+                    eventList = tem;
                     status = true;
                     break;
                 default:
@@ -271,7 +278,6 @@ public class EventManager{
     }
         
     public static void displayEventList(){
-        eventHeading();
         System.out.println(eventHeading());
         for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
             Event e = it.next();
@@ -286,63 +292,54 @@ public class EventManager{
     }
         
     public static void displayPastEvent(){
-        //---
+        System.out.println(eventHeading());
+        for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
+            Event e = it.next();
+            if (identifyPastEvent(e.getEventTitle()) == true) {
+                System.out.println(e);
+            }
+        }
+        System.out.println("");
     }
         
-    public static void addToParticipantList(){
-        
-        String studentID = "";
-        String proceed = "";
+    public static void displayEventListWithAttendeeList(){
+        System.out.println("");
+        for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
+            Event e = it.next();
+            String toDisplay = String.format("%-15s%-15s \n%-15s%-15s \n%-15s%-15s \n%-40s\n%-40s",
+                                             "ID            :",e.getEventID(), 
+                                             "Title         :",e.getEventTitle(), 
+                                             "Organisor     :",e.getOrganisor(),
+                                             "Attendee List :",e.getAttendeeList());
+            System.out.println(toDisplay);
+        }
+        System.out.println("");
+    }
+    
+    public static void addToAttendeeList(String identifier){
+        String ID = "";
         String compare = "";
         boolean status = false;
-        int identifier = 0;
-
-        while (!"Y".equals(proceed)) {
-            while (status != true) {
-                System.out.println("");
-                System.out.println("Select event by...");
-                System.out.println("[1] Event ID");
-                System.out.println("[2] Event Title");
-                System.out.println("Please pick one:");
-                identifier = inputInt();
-                System.out.println("");
-                System.out.println("Enter student Info: ");
-                System.out.println("StudentID is ");
-                studentID = inputString();
-                switch (identifier) {
-                    case 1:
-                        System.out.println("");
-                        System.out.println("Target Event ID:");
-                        compare = inputString();
-                        for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
-                            Event e = it.next();
-                            if (e.getEventID().equals(compare)) {
-                                //---
-                            }
-                        }
-                        status = true;
-                        break;
-                    case 2:
-                        System.out.println("");
-                        System.out.println("Target Event Title:");
-                        compare = inputString();
-                        for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
-                            Event e = it.next();
-                            if (e.getEventTitle().equals(compare)) {
-                                //---
-                            }
-                        }
-                        status = true;
-                        break;
-                    default:
-                        break;
+        while (status != true) {
+            System.out.println("");
+            System.out.println("Student ID:");
+            ID = inputString();
+            for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
+                Event e = it.next();
+                if (e.getEventID().equals(identifier)||e.getEventTitle().equals(identifier)) {
+                    e.setAttendeeList(ID);
                 }
             }
-            System.out.println("Proceed?[Y]");
-            proceed = inputString();
-            proceed = proceed.toUpperCase();
+            System.out.println("Add more?[Y/N]");
+            compare = inputString();
+            if(compare.toUpperCase() == "N"){
+                status = true;
+            }
+            else{
+                status = false;
+            }
         }
-        System.out.println("Added to attendee list");
+        System.out.println("Added to attendee list of this event");
         System.out.println("");
     }
         
@@ -370,10 +367,33 @@ public class EventManager{
         return result;
     }
     
-    public static Double inputDouble(){
-        Scanner in = new Scanner(System.in);
-        double result = in.nextDouble();
+    public static String inputDate(){
+        boolean status = false;
+        String result = "";
+        while (status != true) {
+            result = inputString();
+            if(isDateValid(result) != true){
+                System.out.println("invalid input");
+                System.out.println("Date is (13/02/2021)");
+            }
+            status = isDateValid(result);
+        }
         return result;
+    }
+    
+    public static boolean isDateValid(String date) {
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date testDate = null;
+        try {
+            testDate = df.parse(date);
+        } catch (ParseException e) {
+            return false;
+        }
+        if (!df.format(testDate).equals(date)) {
+            return false;
+        } else {
+            return true;
+        }
     }
     
     public static String repeat(String str, int times) {
@@ -384,77 +404,40 @@ public class EventManager{
         return sb.toString();
     }
     
-//    public Event displayEvent(String title) {
-//        Event result = subset(title);
-//        return result;
-//    }
-//    
-//    public Event displayEventFromID(String id) {
-//        Event result = subset(id);
-//        return result;
-//    }
-//    
-//    public boolean identifyPastEvent(String title) {
-//        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-//        for(Event eve : eventList){
-//            try {
-//                if (eve.eventTitle.equals(title) && (df.parse(eve.eventDate)).before(new Date())){
-//                    
-//                    return true;
-//                }
-//            } catch (ParseException ex) {
-//                Logger.getLogger(Event.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-//        return false;
-//    }
-
-//    
-//    public boolean isDateValid(String date){
-//        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-//        Date testDate = null;
-//        try {
-//            testDate = df.parse(date);
-//        } catch (ParseException e) {
-//            return false;
-//        }
-//        if (!df.format(testDate).equals(date)) {
-//            return false;
-//        } else {
-//            return true;
-//        }
-//    }
-//    
-//    private boolean contain(String title) {
-//        for(Event eve : eventList){
-//            if (eve.eventTitle.equals(title)){
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    private Event subset(String title) {
-//        Event resultEvent = null;
-//        for(Event eve : eventList){
-//            if (eve.eventTitle.equals(title)||eve.eventID.equals(title)){
-//                resultEvent = eve;
-//                return eve;
-//            }
-//        }
-//        return resultEvent;
-//    }
+    public static boolean identifyPastEvent(String title) {
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
+            Event e = it.next();
+            try {
+                if (e.getEventTitle().equals(title) && (df.parse(e.getEventDate())).before(new Date())){
+                    
+                    return true;
+                }
+            } catch (ParseException ex) {
+                Logger.getLogger(Event.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return false;
+    }
         
     public static boolean testData(){
         //---addEvent(...)
-        Event e1 = new Event(eventSeqNum++, "event1", "Wangsa", "a fund raising event", "08/02/2021", 4); 
-        Event e2 = new Event(eventSeqNum++, "event2", "Aeon", "a fund raising event", "07/03/2021", 5); 
+        Event e1 = new Event(eventSeqNum++, "event1", "Wangsa", "a fund raising event", "08/02/2020", 4); 
+        Event e2 = new Event(eventSeqNum++, "event2", "Aeon", "a fund raising event", "07/05/2021", 5); 
         Event e3 = new Event(eventSeqNum++, "event3", "TAR UC", "a fund raising event", "05/03/2021", 5); 
+        e1.setOrganisor("C-100");
+        e2.setOrganisor("C-121");
+        e3.setOrganisor("C-154");
+        
+        e1.setAttendeeList("19WMR11944");
+        e1.setAttendeeList("19WMR11933");
+        e1.setAttendeeList("19WMR11924");
+        e2.setAttendeeList("18WMR11934");
+        e2.setAttendeeList("18WMR11925");
         eventList.add((Event) e1);
         eventList.add((Event) e2);
         eventList.add((Event) e3);
         System.out.println(eventHeading());
-        //---or
         for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
             Event e = it.next();
             System.out.println(e);

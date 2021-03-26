@@ -2,7 +2,7 @@ package UCHelper.adt;
 
 import java.util.Iterator;
 
-public interface ListInterface<T> {
+public interface ComparableArrayListInterface<T> {
     public void clear();
     public boolean add(T element);
     public boolean add(int newPosition, T element); 
