@@ -6,9 +6,10 @@ import java.util.*;
 // TODO: Refactor some code to not use data structure from java standard library.
 
 /**
- * BinarySearchTree helps preserve any comparable data in a sorted manner.
- * Note that the tree has distinct keys therefore duplicates are not allowed.
- * This is helpful for an efficient search.
+ * BinarySearchTree helps preserve any comparable data in a sorted manner. Note
+ * that the tree has distinct keys therefore duplicates are not allowed. This is
+ * helpful for an efficient search.
+ * 
  * @author Lee Kai Yang RSFY2S2
  * @param <T> - Generic Type (can be any object types but not primitive types)
  */
@@ -182,15 +183,15 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
   @Override
   public Iterator<T> traverse(TreeTraversalOrder order) {
     switch (order) {
-      case InOrderTraversal:
-        return inOrderTraversal();
-      case PreOrderTraversal:
-        return preOrderTraversal();
-      // TODO: Implement post-order traversal
-      // case PostOrderTraversal:
-      // break;
-      default:
-        return null;
+    case InOrderTraversal:
+      return inOrderTraversal();
+    case PreOrderTraversal:
+      return preOrderTraversal();
+    // TODO: Implement post-order traversal
+    // case PostOrderTraversal:
+    // break;
+    default:
+      return null;
     }
   }
 
