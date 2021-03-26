@@ -48,7 +48,6 @@ Created a eventHandler UI and event entity for event module, successfully implem
 
 ## Club
 
-<<<<<<< HEAD
 ### Responsibilities 📝
 
 #### 1. To manage a collection of clubs
@@ -208,7 +207,6 @@ The unit tests for ADT used are specified in `src/test/UCHelper/adt`. The purpos
 
 `ClubHandler.java` handles the application's state and registering respective handlers for each states. Therefore, redirection is handled here.
 
->>>>>>> 53888b9487dbf605fcac03888f97ae1660badf40
 Below are some code snippets to explain how it works.
 
 #### Declaring states in the app
