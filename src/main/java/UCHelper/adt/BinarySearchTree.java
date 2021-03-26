@@ -1,14 +1,11 @@
 package UCHelper.adt;
 
-import java.util.*;
-
-// TODO: Add the time complexity and space complexity to each operation
-// TODO: Refactor some code to not use data structure from java standard library.
+import java.util.Iterator;
 
 /**
  * BinarySearchTree helps preserve any comparable data in a sorted manner. Note
  * that the tree has distinct keys therefore duplicates are not allowed. This is
- * helpful for an efficient search.
+ * helpful for organizing unique data.
  * 
  * @author Lee Kai Yang RSFY2S2
  * @param <T> - Generic Type (can be any object types but not primitive types)
@@ -20,15 +17,18 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
   // BST is a rooted tree, so we need to keep track of its root node
   private Node root = null;
 
-  // An enum to classify different traversal methods
+  /**
+   * An enum to classify different traversal methods
+   */
   public enum TreeTraversalOrder {
     InOrderTraversal, // (left, root, right)
     PreOrderTraversal, // (root, left, right)
-    PostOrderTraversal // (left, right, root)
   }
 
-  // an internal class for constructing node in the tree
-  private class Node {
+  /**
+   * An internal class for constructing node in the tree
+   */
+  private class Node implements Comparable<Node> {
     T data;
     Node left, right;
 
@@ -37,21 +37,44 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
       this.left = left;
       this.right = right;
     }
+
+    @Override
+    public int compareTo(Node anotherNode) {
+      // Since BST cannot have duplicate, so every node is unique
+      // therefore the data within is unique as well.
+      return data.compareTo(anotherNode.data);
+    }
   }
 
-  // Check if the tree is empty
+  /**
+   * Check if the tree is empty
+   * <p>
+   * Since we're storing the node count, checking it is in constant time, so 0(1)
+   * </p>
+   * 
+   * @return true if nodeCount is 0, false otherwise
+   */
   @Override
   public boolean isEmpty() {
     return nodeCount == 0;
   }
 
-  // Returns the total nodes in the tree
+  /**
+   * Returns the total nodes in the tree
+   * <p>
+   * Since we're storing the node count, accesing it is in constant time, so 0(1)
+   * </p>
+   */
   @Override
   public int size() {
     return nodeCount;
   }
 
-  // Return the smallest node in the tree (leftmost node)
+  /**
+   * Return the smallest node in the tree (leftmost node)
+   * 
+   * @return - the data of the smallest node (leftmost node) in the tree
+   */
   @Override
   public T min() {
     // Start from the root node
@@ -65,7 +88,12 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
     return node.data;
   }
 
-  // Return the smallest node in from the root given
+  /**
+   * Return the smallest node counting from the root given
+   * 
+   * @param root - the root (a node in the tree)
+   * @return the data of the smallest node (leftmost node) from the given node
+   */
   private T min(Node root) {
     // Start from the root given
     Node node = root;
@@ -78,7 +106,12 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
     return node.data;
   }
 
-  // Return the greatest node in the tree (rightmost node)
+  //
+  /**
+   * Return the greatest node in the tree (rightmost node)
+   * 
+   * @return the data of the greatest node (rightmost node) in the tree
+   */
   @Override
   public T max() {
     // Start from the root node
@@ -157,7 +190,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
   }
 
   /**
-   * A private helper method for inserting node into the tree.
+   * A private helper method for inserting node into the tree
    *
    * @param element - The element to add into the tree
    * @param node    - The node to traverse
@@ -200,6 +233,13 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
     return false;
   }
 
+  /**
+   * A private helper method for removing a node from the tree
+   * 
+   * @param node    - a node to keep track of traversal
+   * @param element - the element to remove
+   * @return the removed node, null if not exists
+   */
   private Node remove(Node node, T element) {
     // Base case: if the tree is empty
     if (node == null)
@@ -231,7 +271,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
   }
 
   /**
-   * Get an iterator to different traversals of the tree.
+   * Get an iterator to different traversals of the tree
    * 
    * @param order - the order that the tree should be traversed
    * @return an iterator to the tree
@@ -243,19 +283,20 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
       return inOrderTraversal();
     case PreOrderTraversal:
       return preOrderTraversal();
-    // TODO: Implement post-order traversal
-    // case PostOrderTraversal:
-    // break;
     default:
       return null;
     }
   }
 
-  // Private method to perform in-order traversal
+  /**
+   * Private method to perform in-order traversal
+   * 
+   * @return an Iterator to the tree
+   */
   private Iterator<T> inOrderTraversal() {
     // A stack to keep track of node traversed
-    final Stack<Node> stack = new Stack<Node>(); // TODO: Use self-implemented Stack in production
-    stack.push(root);
+    final LinkedListStack<Node> stack = new LinkedListStack<>();
+    stack.add(root);
 
     return new Iterator<T>() {
       Node trav = root;
@@ -271,7 +312,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
       public T next() {
         // Start at the leftmost node
         while (trav != null && trav.left != null) {
-          stack.push(trav);
+          stack.add(trav.left);
           trav = trav.left;
         }
 
@@ -280,23 +321,26 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
 
         // Look one level down at the right
         if (node.right != null) {
-          stack.push(node.right);
+          stack.add(node.right);
           trav = node.right;
         }
 
         return node.data;
       }
-
     };
   }
 
-  // Private method to perform pre-order traversal
+  /**
+   * Private method to perform pre-order traversal
+   * 
+   * @return an Iterator to the tree
+   */
   private Iterator<T> preOrderTraversal() {
     // A stack to keep track of node traversed
-    final Stack<Node> stack = new Stack<Node>(); // TODO: Use self-implemented Stack in production
+    final LinkedListStack<Node> stack = new LinkedListStack<Node>();
 
     // The root is the starting point (first node to traverse)
-    stack.push(root);
+    stack.add(root);
 
     return new Iterator<T>() {
 
@@ -313,14 +357,13 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
         Node node = stack.pop();
         // Left (Push the right first because left will get popped first from the stack)
         if (node.right != null)
-          stack.push(node.right);
+          stack.add(node.right);
         // Right (Push the left last because it will get popped first from the stack)
         if (node.left != null)
-          stack.push(node.left);
+          stack.add(node.left);
 
         return node.data;
       }
-
     };
   }
 }

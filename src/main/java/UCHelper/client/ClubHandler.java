@@ -63,6 +63,14 @@ public class ClubHandler {
     // Get the clubId from user
     int clubId = clubClient.removeScreen();
 
+    // If club with clubId given is not found
+    if (!clubManager.getClubs().contains(new Club(clubId))) {
+      System.out.println("\n❌ Club with ID [" + clubId + "] not found");
+      clubClient.goBack(sleepTime);
+      state = ScreenState.Main;
+      return;
+    }
+
     // Remove a club
     clubManager.removeClub(clubId);
 
@@ -91,7 +99,13 @@ public class ClubHandler {
   private static void clubHandler() {
     clubId = clubClient.clubScreen();
 
-    // TODO: Verify whether a Club with `clubId` given exists
+    // If club with clubId given is not found
+    if (!clubManager.getClubs().contains(new Club(clubId))) {
+      System.out.println("\n❌ Club with ID [" + clubId + "] not found");
+      clubClient.goBack(sleepTime);
+      state = ScreenState.Main;
+      return;
+    }
 
     // Go to Manage page if clubId is valid
     state = ScreenState.ManageClub;
@@ -193,12 +207,16 @@ public class ClubHandler {
   private static void organizeEventHandler() {
     Event newEvent = clubClient.organizeEventScreen();
 
-    clubManager.getClub(clubId).registerEvent(newEvent);
+    boolean successful = clubManager.getClub(clubId).registerEvent(newEvent);
 
-    System.out.println("\n✅ A new event is registered with [eventId: " + newEvent.getEventID() + "] [eventTitle: "
-        + newEvent.getEventTitle() + "] [eventVenue: " + newEvent.getEventVenue() + "] [eventDetails: "
-        + newEvent.getEventDetails() + "] [eventDate: " + newEvent.getEventDate() + "] [eventDurationInDay: "
-        + newEvent.getDurationInDay() + "]");
+    if (successful) {
+      System.out.println("\n✅ A new event is registered with [eventId: " + newEvent.getEventID() + "] [eventTitle: "
+          + newEvent.getEventTitle() + "] [eventVenue: " + newEvent.getEventVenue() + "] [eventDetails: "
+          + newEvent.getEventDetails() + "] [eventDate: " + newEvent.getEventDate() + "] [eventDurationInDay: "
+          + newEvent.getDurationInDay() + "]");
+    } else {
+      System.out.println("\n❌ Event with ID [" + newEvent.getEventID() + "] can't be created");
+    }
 
     clubClient.goBack(sleepTime);
 

@@ -10,7 +10,6 @@ public class Club implements Comparable<Club> {
     private String name;
     private EventHandler eventHandler = new EventHandler();
     private MemberHandler memberHandler = new MemberHandler();
-    private Range<Date> weeklyActivityTime; // TODO: Consider deleting this field
     public static int index = 1;
 
     // REMARK: This is just for finding club with same id
@@ -22,13 +21,6 @@ public class Club implements Comparable<Club> {
     public Club(String name) {
         this.id = index;
         this.name = name;
-        index++;
-    }
-
-    public Club(String name, Range<Date> weeklyActivityTime) {
-        this.id = index;
-        this.name = name;
-        this.weeklyActivityTime = weeklyActivityTime;
         index++;
     }
 
@@ -103,7 +95,7 @@ public class Club implements Comparable<Club> {
      * 
      * @return list of members
      */
-    public LinkedList<Student> getMembers() {
+    public LinkedListStack<Student> getMembers() {
         return memberHandler.getMembers();
     }
 
