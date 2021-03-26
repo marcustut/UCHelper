@@ -48,6 +48,7 @@ Created a eventHandler UI and event entity for event module, successfully implem
 
 ## Club
 
+<<<<<<< HEAD
 ### Responsibilities 📝
 
 #### 1. To manage a collection of clubs
@@ -86,6 +87,128 @@ The unit tests for ADT used are specified in `src/test/UCHelper/adt`. The purpos
 
 `ClubHandler.java` handles the application's state and registering respective handlers for each states. Therefore, redirection is handled here.
 
+=======
+### How-to's 📝
+
+#### 1. To manage a collection of clubs
+
+##### a. Registering a new club
+
+![image](https://user-images.githubusercontent.com/59773847/112701422-91c45300-8ecb-11eb-9fdc-c4e4f732f916.png)
+
+Simply enter `1` at this screen and you will be prompted to enter the club name
+
+![image](https://user-images.githubusercontent.com/59773847/112701473-b3bdd580-8ecb-11eb-9313-18fe23ed9811.png)
+
+Don't panic if you see this, this means the club is created and it will redirect you back to the previous screen.
+
+##### b. View the list of active clubs
+
+![image](https://user-images.githubusercontent.com/59773847/112701608-0b5c4100-8ecc-11eb-94d2-c96e2d49427f.png)
+
+Enter `3` and you will see that the club is registered
+
+![image](https://user-images.githubusercontent.com/59773847/112701631-20d16b00-8ecc-11eb-9261-135347ebd06f.png)
+
+##### c. Removing an existing club
+
+![image](https://user-images.githubusercontent.com/59773847/112701666-3b0b4900-8ecc-11eb-9f91-eb06f64295fe.png)
+
+To remove an existing club, enter `2`and insert the club's id
+
+![image](https://user-images.githubusercontent.com/59773847/112701802-8faec400-8ecc-11eb-86d0-0600a950e886.png)
+
+After that, it will redirect you back to the previous screen.
+
+#### 2. To manage students in a Club
+
+![image](https://user-images.githubusercontent.com/59773847/112701941-f03e0100-8ecc-11eb-8013-e77b68cf1f55.png)
+
+Firstly, enter `4` at this screen and enter the club's id
+
+##### a. Adding a new student to a club
+
+![image](https://user-images.githubusercontent.com/59773847/112701988-0f3c9300-8ecd-11eb-9aee-56f80af01187.png)
+
+Enter `1` at this screen and you will be brought to the club members' management screen
+
+![image](https://user-images.githubusercontent.com/59773847/112702039-33986f80-8ecd-11eb-8c28-721fd4e3b497.png)
+
+Enter `1` again to add a new member to the club
+
+![image](https://user-images.githubusercontent.com/59773847/112702101-5cb90000-8ecd-11eb-86f5-c6ba2c1f27f9.png)
+
+Enter the student's details accordingly and he/she will be added to the club
+
+##### b. Display all the students in a club
+
+![image](https://user-images.githubusercontent.com/59773847/112702151-8114dc80-8ecd-11eb-898b-71ba8c647e58.png)
+
+Enter `3` here to see all members in the club 
+
+![image](https://user-images.githubusercontent.com/59773847/112702320-0f895e00-8ece-11eb-9d0c-50c7b75ccb7c.png)
+
+##### c. Removing an existing student from a club
+
+![image](https://user-images.githubusercontent.com/59773847/112702338-1f08a700-8ece-11eb-9283-2011918fab7a.png)
+
+Enter `2` and enter the student's id as following
+
+![image](https://user-images.githubusercontent.com/59773847/112702369-38a9ee80-8ece-11eb-8190-0a7dbefa18db.png)
+
+This shows that the student is successfully removed
+
+#### 3. To manage events of a Club
+
+![image](https://user-images.githubusercontent.com/59773847/112702459-8161a780-8ece-11eb-96a2-70ad790d8687.png)
+
+First, enter `2` here to enter event's management screen
+
+##### a. Schedule a new event for a club
+
+![image](https://user-images.githubusercontent.com/59773847/112702484-950d0e00-8ece-11eb-95c0-9cc9b7adc689.png)
+
+Enter `2` here and enter the required details as following
+
+![image](https://user-images.githubusercontent.com/59773847/112702527-ca196080-8ece-11eb-9c7d-e64da3dd068e.png)
+
+This shows that the new event is successfully created
+
+##### b. Deleting a scheduled event for a club
+
+![image](https://user-images.githubusercontent.com/59773847/112702570-e9b08900-8ece-11eb-92c7-3503740bee93.png)
+
+Enter `3` and enter the sequence number of the event, in this case it's 1
+
+![image](https://user-images.githubusercontent.com/59773847/112702599-05b42a80-8ecf-11eb-8349-14692df2872f.png)
+
+This shows that the event is canceled and is redirecting you back to the previous screen
+
+##### c. Display all the scheduled events of a club
+
+![image](https://user-images.githubusercontent.com/59773847/112702665-3d22d700-8ecf-11eb-84ab-1874a106f64a.png)
+
+Enter `1` and the list of registred events will be shown
+
+### ADT (Abstract Data Type) 🧩
+
+1. BinarySearchTree (BinarySearchTree.java, Tree.java)
+2. LinkedListStack (LinkedListStack.java)
+
+A special use case here for **LinkedListStack** here is that it is used for constructing an iterator of the traversal of BST (BinarySearchTree)
+
+### Unit Tests 🧰
+
+The unit tests for ADT used are specified in `src/test/UCHelper/adt`. The purpose of writing unit tests is to make sure ADTs are working correctly before using them in the entity class. Else, it might cause unobvious errors which are hard to debug.
+
+### Clients 💻
+
+1. ClubHandler.java
+2. ClubClient.java
+
+`ClubHandler.java` handles the application's state and registering respective handlers for each states. Therefore, redirection is handled here.
+
+>>>>>>> 53888b9487dbf605fcac03888f97ae1660badf40
 Below are some code snippets to explain how it works.
 
 #### Declaring states in the app
