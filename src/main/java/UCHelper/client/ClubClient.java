@@ -4,8 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import javax.crypto.SealedObject;
-
 import UCHelper.entity.Student;
 
 public class ClubClient {
@@ -16,7 +14,7 @@ public class ClubClient {
   private SimpleDateFormat dateFormat;
 
   public enum MainScreenSelection {
-    RegisterClub, RemoveClub, ManageClub
+    RegisterClub, RemoveClub, DisplayAllClubs, ManageClub
   }
 
   public enum ManageScreenSelection {
@@ -24,7 +22,7 @@ public class ClubClient {
   }
 
   public enum MemberScreenSelection {
-    RegisterNewMember, RemoveExistingMember, GoBack
+    RegisterNewMember, RemoveExistingMember, DisplayAllMembers, GoBack
   }
 
   public enum EventScreenSelection {
@@ -60,7 +58,8 @@ public class ClubClient {
 
   public int mainScreen() {
     String instruction = "\nWhat do you want to do?\n";
-    String selection = "1. Register a new club\n" + "2. Remove an existing club\n" + "3. Manage a club\n";
+    String selection = "1. Register a new club\n" + "2. Remove an existing club\n" + "3. Display all clubs\n"
+        + "4. Manage a club\n";
     String mainScreen = instruction + selection + SEPARATOR + inputPrefix;
     int userSelection = 0;
     boolean continuePrompt = true;
@@ -72,10 +71,10 @@ public class ClubClient {
 
         userSelection = scanner.nextInt();
 
-        while (userSelection < 1 || userSelection > 3) {
+        while (userSelection < 1 || userSelection > 4) {
           // Prompt the user for selection
           Main.clearScreen();
-          System.out.println("\nYou can only enter selection from '1 - 3', try again.\n");
+          System.out.println("\nYou can only enter selection from '1 - 4', try again.\n");
           System.out.print(mainScreen);
 
           // Take input from user
@@ -94,24 +93,26 @@ public class ClubClient {
 
   public String registerScreen() {
     String instruction = "\nEnter the club name that you want to register\n";
-    String removeScreen = instruction + inputPrefix;
+    String registerScreen = instruction + inputPrefix;
     String input = "";
     boolean continuePrompt = true;
 
     do {
-      System.out.print(removeScreen);
+      System.out.print(registerScreen);
 
-      input = scanner.next();
+      // Just to clean the stream
+      scanner.nextLine();
+      input = scanner.nextLine();
 
       // If empty input
       while (input.equals("")) {
         // Prompt the user for club name
         Main.clearScreen();
         System.out.println("\nPlease enter a name, try again.\n");
-        System.out.print(removeScreen);
+        System.out.print(registerScreen);
 
         // Take input from user
-        input = scanner.next();
+        input = scanner.nextLine();
       }
 
       continuePrompt = false;
@@ -225,7 +226,8 @@ public class ClubClient {
 
   public int memberScreen() {
     String instruction = "\nWhat actions do you want to perform?\n";
-    String selection = "1. Register a new member 👦\n" + "2. Remove an existing member ❌\n" + "3. Go back ⏪\n";
+    String selection = "1. Register a new member 👦\n" + "2. Remove an existing member ❌\n"
+        + "3. Display all members \n" + "4. Go back ⏪\n";
     String memberScreen = instruction + selection + SEPARATOR + inputPrefix;
 
     int userSelection = 0;
@@ -239,10 +241,10 @@ public class ClubClient {
 
         userSelection = scanner.nextInt();
 
-        while (userSelection < 1 || userSelection > 3) {
+        while (userSelection < 1 || userSelection > 4) {
           // Prompt the user for selection
           Main.clearScreen();
-          System.out.println("\nYou can only enter selection from '1 - 3', try again.\n");
+          System.out.println("\nYou can only enter selection from '1 - 4', try again.\n");
           System.out.print(memberScreen);
 
           // Take input from user
@@ -271,7 +273,8 @@ public class ClubClient {
       try {
         System.out.print(instruction + studentNamePrompt);
 
-        studentName = scanner.next();
+        scanner.nextLine(); // Just to clean the stream
+        studentName = scanner.nextLine();
 
         while (studentName.equals("")) {
           // Prompt the user for student name
@@ -280,7 +283,7 @@ public class ClubClient {
           System.out.print(instruction + studentNamePrompt);
 
           // Take input from user
-          studentName = scanner.next();
+          studentName = scanner.nextLine();
         }
 
         System.out.print(studentIdPrompt);
@@ -293,10 +296,10 @@ public class ClubClient {
             scanner.next(); // Discard other values in the stream
         }
 
-        while (studentId < 1 || studentId > 99) {
+        while (!verifyStudentId(studentId)) {
           // Prompt the user for student id
           Main.clearScreen();
-          System.out.println("\nPlease enter a valid student id, try again.\n");
+          System.out.println("\nPlease enter a valid student id (must be a positive integer), try again.\n");
           System.out.print(studentIdPrompt);
 
           // Take input from user
@@ -325,10 +328,10 @@ public class ClubClient {
 
         studentId = scanner.nextInt();
 
-        while (studentId < 1 || studentId > 99) {
+        while (!verifyStudentId(studentId)) {
           // Prompt the user for student id
           Main.clearScreen();
-          System.out.println("\nPlease enter a valid student id, try again.\n");
+          System.out.println("\nPlease enter a valid student id (must be a positive integer), try again.\n");
           System.out.print(removeExistingMemberScreen);
 
           // Take input from user
@@ -397,14 +400,9 @@ public class ClubClient {
     Main.clearScreen();
   }
 
-  // public boolean promptGoBack() {
-  // System.out.println("\nGo back to main menu?\n" + ClubClient.SEPARATOR +
-  // ClubClient.inputPrefix);
-
-  // String goBack = scanner.next();
-
-  // return goBack.toLowerCase().contains("y");
-  // }
+  private boolean verifyStudentId(int studentId) {
+    return studentId > 0;
+  }
 
   public String errorMessage(Exception ex) {
     String errorMsg = null;

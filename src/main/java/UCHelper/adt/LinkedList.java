@@ -12,7 +12,7 @@ import java.util.Iterator;
  * @author Lee Kai Yang RSFY2S2
  * @param <T> - Generic Type (can be any object types but not primitive types)
  */
-public class LinkedList<T> implements Iterable<T> {
+public class LinkedList<T extends Comparable<T>> implements Iterable<T> {
     private int size = 0;
     private Node<T> head = null;
     // TODO: Add a 'tail' variable for better time complexity on add.
@@ -152,7 +152,7 @@ public class LinkedList<T> implements Iterable<T> {
         Node<T> trav = head;
 
         while (trav != null) {
-            if (trav.data == elem)
+            if (trav.data.compareTo(elem) == 0)
                 return true;
             trav = trav.next;
         }
@@ -171,7 +171,7 @@ public class LinkedList<T> implements Iterable<T> {
         int index = 0;
 
         while (trav != null) {
-            if (trav.data == elem)
+            if (trav.data.compareTo(elem) == 0)
                 return index;
             trav = trav.next;
             index++;

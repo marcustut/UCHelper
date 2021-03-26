@@ -1,6 +1,8 @@
 package UCHelper.client;
 
+import java.util.Iterator;
 import java.util.Scanner;
+
 import UCHelper.entity.*;
 import UCHelper.adt.*;
 
@@ -13,8 +15,8 @@ public class ClubHandler {
   private static ScreenState state;
 
   private enum ScreenState {
-    Welcome, Main, RegisterClub, RemoveClub, ManageClub, Club, Member, Event, RegisterNewMember, RemoveExistingMember,
-    DisplayEvents, OrganizeEvent, CancelEvent, EditEvent
+    Welcome, Main, RegisterClub, RemoveClub, DisplayAllClubs, ManageClub, Club, Member, Event, RegisterNewMember,
+    RemoveExistingMember, DisplayAllMembers, DisplayEvents, OrganizeEvent, CancelEvent, EditEvent
   }
 
   private static void welcomeHandler() {
@@ -31,7 +33,9 @@ public class ClubHandler {
     // Assign the state based on userSelection
     state = (userSelection - 1) == ClubClient.MainScreenSelection.RegisterClub.ordinal() ? ScreenState.RegisterClub
         : (userSelection - 1) == ClubClient.MainScreenSelection.RemoveClub.ordinal() ? ScreenState.RemoveClub
-            : ScreenState.Club;
+            : (userSelection - 1) == ClubClient.MainScreenSelection.DisplayAllClubs.ordinal()
+                ? ScreenState.DisplayAllClubs
+                : ScreenState.Club;
   }
 
   private static void registerClubHandler() {
@@ -67,6 +71,22 @@ public class ClubHandler {
     state = ScreenState.Main;
   }
 
+  private static void displayAllClubsHandler() {
+    Iterator<Club> itr = clubManager.getClubs().traverse(BinarySearchTree.TreeTraversalOrder.InOrderTraversal);
+
+    int index = 1;
+
+    Main.clearScreen();
+    System.out.print("\nList of Clubs 📋\n" + ClubClient.SEPARATOR);
+
+    while (itr.hasNext()) {
+      System.out.println(index + ". [" + itr.next() + "]");
+      index++;
+    }
+
+    state = ScreenState.Main;
+  }
+
   private static void clubHandler() {
     clubId = clubClient.clubScreen();
 
@@ -93,7 +113,9 @@ public class ClubHandler {
         ? ScreenState.RegisterNewMember
         : (userSelection - 1) == ClubClient.MemberScreenSelection.RemoveExistingMember.ordinal()
             ? ScreenState.RemoveExistingMember
-            : ScreenState.ManageClub;
+            : (userSelection - 1) == ClubClient.MemberScreenSelection.DisplayAllMembers.ordinal()
+                ? ScreenState.DisplayAllMembers
+                : ScreenState.ManageClub;
   }
 
   private static void registerNewMemberHandler() {
@@ -114,14 +136,30 @@ public class ClubHandler {
     int studentId = clubClient.removeExistingMemberScreen();
     Student studentRemoved = clubManager.getClub(clubId).findMember(studentId);
 
-    clubManager.getClub(clubId).removeMember(studentId);
-
-    System.out.println("\n✅ A student with [studId: " + studentRemoved.getStudID() + "] [name: "
-        + studentRemoved.getName() + "] is removed");
+    if (studentRemoved == null)
+      System.out.println("\n❌ Student with studentId [" + studentId + "] is not found");
+    else {
+      clubManager.getClub(clubId).removeMember(studentId);
+      System.out.println("\n✅ A student with [studId: " + studentRemoved.getStudID() + "] [name: "
+          + studentRemoved.getName() + "] is removed");
+    }
 
     clubClient.goBack(sleepTime);
 
     // Redirect back to Member screen
+    state = ScreenState.Member;
+  }
+
+  private static void displayAllMembersHandler() {
+    Club club = clubManager.getClub(clubId);
+    Iterator<Student> itr = club.getMembers().iterator();
+    int index = 1;
+
+    while (itr.hasNext()) {
+      System.out.println(index + ". [" + itr.next() + "]");
+      index++;
+    }
+
     state = ScreenState.Member;
   }
 
@@ -136,6 +174,24 @@ public class ClubHandler {
                     : ScreenState.ManageClub;
   }
 
+  private static void displayEventsHandler() {
+  }
+
+  private static void organizeEventHandler() {
+  }
+
+  private static void cancelEventHandler() {
+  }
+
+  private static void editEventHandler() {
+  }
+
+  /**
+   * Run the ClubManager program(module) of UCHelper System
+   * 
+   * @param scanner - A scanner object for taking input from
+   * @return true when execution is complete
+   */
   public static boolean runClubManager(Scanner scanner) {
     clubClient = new ClubClient(scanner);
     state = ScreenState.Welcome;
@@ -156,6 +212,9 @@ public class ClubHandler {
       case RemoveClub:
         ClubHandler.removeClubHandler();
         break;
+      case DisplayAllClubs:
+        ClubHandler.displayAllClubsHandler();
+        break;
       case Club:
         ClubHandler.clubHandler();
         break;
@@ -171,8 +230,23 @@ public class ClubHandler {
       case RemoveExistingMember:
         ClubHandler.removeExistingMemberHandler();
         break;
+      case DisplayAllMembers:
+        ClubHandler.displayAllMembersHandler();
+        break;
       case Event:
         ClubHandler.eventHandler();
+        break;
+      case DisplayEvents:
+        ClubHandler.displayEventsHandler();
+        break;
+      case OrganizeEvent:
+        ClubHandler.organizeEventHandler();
+        break;
+      case CancelEvent:
+        ClubHandler.cancelEventHandler();
+        break;
+      case EditEvent:
+        ClubHandler.editEventHandler();
         break;
       default:
         System.err.println("\nInvalid State [" + state + "]");

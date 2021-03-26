@@ -34,7 +34,7 @@ public class Student implements Comparable<Student> {
 
     @Override
     public String toString() {
-        return name + "\t|\t" + studID;
+        return String.format("Student ID: %d, Student Name: %s", this.studID, this.name);
     }
 
     @Override

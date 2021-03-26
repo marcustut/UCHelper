@@ -50,6 +50,11 @@ public class Club implements Comparable<Club> {
         return getId() - anotherClub.getId();
     }
 
+    @Override
+    public String toString() {
+        return String.format("Club ID: %d, Club Name: %s", this.id, this.name);
+    }
+
     /**
      * Add a student to the list of members
      * 

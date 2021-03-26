@@ -14,6 +14,10 @@ public class ClubManager {
     this.clubs = clubs;
   }
 
+  public BinarySearchTree<Club> getClubs() {
+    return clubs;
+  }
+
   /**
    * Find the latest registered club
    * 
