@@ -5,11 +5,13 @@
  */
 package entity;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 
 public class Lecturer {
-   private String name;
+    private String firstName;
+    private String lastName;
     private String userName;
     private String password;
     private String emailId;
@@ -18,27 +20,30 @@ public class Lecturer {
     public Lecturer() {
     }
 
-    public Lecturer(String name) {
-        this.name = name;
-    }
-    
-    
-    public String name() {
-        return name;
-    }
-    public void setname(String name) {
-        this.name = name;
-    }
-
-    public Lecturer(String name, String userName, String password, String emailId, String phoneNo) {
-        this.name = name;
+    public Lecturer(String firstName,String lastName, String userName, String password, String emailId, String phoneNo) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.userName = userName;
         this.password = password;
         this.emailId = emailId;
         this.phoneNo = phoneNo;
     }
     
-   
+    public String firstName() {
+        return firstName;
+    }
+    public String getfirstName() {
+        return firstName;
+    }
+    public void setfirstName(String firstName) {
+        this.firstName = firstName;
+    }
+   public String getlastName() {
+        return lastName;
+    }
+    public void setlastName(String lastName) {
+        this.lastName = lastName;
+    }
     public String getUserName() {
         return userName;
     }
@@ -63,9 +68,56 @@ public class Lecturer {
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
     }
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 17 * hash + Objects.hashCode(this.firstName);
+        hash = 17 * hash + Objects.hashCode(this.lastName);
+        hash = 17 * hash + Objects.hashCode(this.userName);
+        hash = 17 * hash + Objects.hashCode(this.password);
+        hash = 17 * hash + Objects.hashCode(this.emailId);
+        hash = 17 * hash + Objects.hashCode(this.phoneNo);
+        return hash;
+    }
+
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Lecturer other = (Lecturer) obj;
+        if (!Objects.equals(this.firstName, other.firstName)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastName, other.lastName)) {
+            return false;
+        }
+        if (!Objects.equals(this.userName, other.userName)) {
+            return false;
+        }
+        if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        if (!Objects.equals(this.emailId, other.emailId)) {
+            return false;
+        }
+        if (!Objects.equals(this.phoneNo, other.phoneNo)) {
+            return false;
+        }
+        return true;
+    }
+
    @Override
     public String toString() {
-        return "Register [firstName=" + name + ", userName=" + userName + ", password=" +
+        return "Register [firstName=" + firstName + ", lastName=" + lastName +", userName=" + userName + ", password=" +
             password + ", emailId=" + emailId + ", phoneNo=" + phoneNo + "]";
     }
+  
 }   
