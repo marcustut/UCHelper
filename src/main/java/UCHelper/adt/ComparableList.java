@@ -1,23 +1,24 @@
 package UCHelper.adt;
 
-import UCHelper.entity.Event;
-import java.io.Serializable;
 import java.util.Iterator;
+/**
+ * ComparableList.java is an ADT collection that contain all the needed methods of an list to have.
+ * @author Dennis Lau Yik Ann RSFY2S2, dennislauyikann@gmail.com
+ * @version 4.0
+ */
+public class ComparableList<L> implements ComparableListInterface<L> {
 
-public class ComparableArrayList<T> implements ComparableArrayListInterface<T> {
-
-  private T[] array;
+  private L[] array;
   private int length;
   private static final int DEFAULT_CAPACITY = 5;
-    private Node<T> head = null;
 
-  public ComparableArrayList() {
-    array = (T[]) new Object[DEFAULT_CAPACITY];
+  public ComparableList() {
+    array = (L[]) new Object[DEFAULT_CAPACITY];
     length = 0;
   }
 
   @Override
-  public boolean contains(T anElement) {
+  public boolean contains(L anElement) {
         boolean exist = false;
         for(int i = 0; i < length && !exist; i++){
             if(array[i].equals(anElement))
@@ -27,7 +28,7 @@ public class ComparableArrayList<T> implements ComparableArrayListInterface<T> {
   }
   
   @Override
-  public boolean add(T newElement) {
+  public boolean add(L newElement) {
         boolean exist = contains(newElement);
         if(!exist){
             array[length++] = newElement;
@@ -37,7 +38,7 @@ public class ComparableArrayList<T> implements ComparableArrayListInterface<T> {
   }
 
   @Override
-  public boolean add(int newPosition, T newEntry) {
+  public boolean add(int newPosition, L newEntry) {
     boolean isSuccessful = true;
 
     if ((newPosition >= 1) && (newPosition <= length + 1)) {
@@ -52,7 +53,7 @@ public class ComparableArrayList<T> implements ComparableArrayListInterface<T> {
   }
 
   @Override
-  public boolean remove(T anElement) {
+  public boolean remove(L anElement) {
         int i = 0;
         boolean found = false;
         while(i < length && !found){
@@ -76,7 +77,7 @@ public class ComparableArrayList<T> implements ComparableArrayListInterface<T> {
   }
 
   @Override
-  public boolean replace(int givenPosition, T newEntry) {
+  public boolean replace(int givenPosition, L newEntry) {
     boolean isSuccessful = true;
 
     if ((givenPosition >= 1) && (givenPosition <= length)) {
@@ -89,8 +90,8 @@ public class ComparableArrayList<T> implements ComparableArrayListInterface<T> {
   }
 
   @Override
-  public T getEntry(int givenPosition) {
-    T result = null;
+  public L getEntry(int givenPosition) {
+    L result = null;
 
     if ((givenPosition >= 1) && (givenPosition <= length)) {
       result = array[givenPosition - 1];
@@ -156,27 +157,31 @@ public class ComparableArrayList<T> implements ComparableArrayListInterface<T> {
   }
 
     @Override
-    public void forEach(T element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void forEach(L element) {
+        throw new UnsupportedOperationException("Not supported yet."); //Lo change body of generated methods, choose Lools | Lemplates.
     }
 
     @Override
-    public Iterator<T> getIterator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    private static class Node<T> {
-        private T data;
-        private Node<T> next;
-
-        public Node(T data, Node<T> next) {
-            this.data = data;
-            this.next = next;
-        }
+    public Iterator<L> iterator() {
+        return new SetIterator();
     }
     
-    public Iterator<Event> iterator() {
-      return null;
+    private class SetIterator implements Iterator<L> {
 
+        private int iteratorIndex = 0;
+
+        @Override
+        public boolean hasNext() {
+            return iteratorIndex < length;
+        }
+
+        @Override
+        public L next() {
+            if (hasNext()) {
+                return array[iteratorIndex++];
+            } else {
+                return null;
+            }
+        }
     }
-
 }

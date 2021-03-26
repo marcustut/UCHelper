@@ -1,22 +1,23 @@
 package UCHelper.client;
 
+import java.text.SimpleDateFormat;
+import java.util.logging.Logger;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Date;
-import java.text.SimpleDateFormat;
+
+import UCHelper.adt.ComparableList;
 import UCHelper.entity.*;
-import java.text.ParseException;
-//import UCHelper.adt.ComparableArrayList;
-import java.util.Iterator;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 /**
  * EventManager.java is an client class that contain all the needed methods of an event interface.
- * @author Dennis
+ * @author Dennis Lau Yik Ann RSFY2S2, dennislauyikann@gmail.com
  * @version 3.0
  */
 public class EventManager{
-    static ArrayList<Event> eventList = new ArrayList<Event>();
+    //static ArrayList<Event> eventList = new ArrayList<Event>();
+    static ComparableList<Event> eventList = new ComparableList<Event>();
     static Scanner in = new Scanner(System.in);
     static int eventSeqNum = 100;
     
@@ -233,7 +234,8 @@ public class EventManager{
     public static void deleteEvent(){
         int identifier = 0;
         String compare = "";
-        ArrayList<Event> tem = new ArrayList<Event>();
+        //ArrayList<Event> tem = new ArrayList<Event>();
+        ComparableList<Event> tem = new ComparableList<Event>();
         boolean status = false;
         while (status != true) {
             System.out.println("");
@@ -304,6 +306,8 @@ public class EventManager{
         
     public static void displayEventListWithAttendeeList(){
         System.out.println("");
+        System.out.println("Event List with Their Attendee List");
+        System.out.println("-".repeat(35));
         for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
             Event e = it.next();
             String toDisplay = String.format("%-15s%-15s \n%-15s%-15s \n%-15s%-15s \n%-40s\n%-40s",

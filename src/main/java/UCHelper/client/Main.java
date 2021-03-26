@@ -14,6 +14,7 @@ public class Main {
             Scanner in = new Scanner(System.in);
             int selection = 0; 
             do{
+                    
                 System.out.println("------- UC Helper -------");
                 System.out.println("[1] Admin");
                 System.out.println("[2] Club");

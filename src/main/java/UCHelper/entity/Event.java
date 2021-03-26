@@ -1,10 +1,10 @@
 package UCHelper.entity;
 
-import UCHelper.adt.ComparableArrayList;
+import UCHelper.adt.ComparableList;
 /**
  * Event.java An entity class that stored a proposed event of a club.
- * @author Dennis
- * @version 2.0
+ * @author Dennis Lau Yik Ann RSFY2S2, dennislauyikann@gmail.com
+ * @version 3.0
  */
 public class Event{
 
@@ -16,7 +16,7 @@ public class Event{
     private String eventDate;
     private int durationInDay;
     private String organisor;
-    private ComparableArrayList<String> attendeeList = new ComparableArrayList<String>();
+    private ComparableList<String> attendeeList = new ComparableList<String>();
 
     // constructor
     public Event() {
@@ -89,7 +89,7 @@ public class Event{
         this.organisor = ClubID;
     }
     
-    public ComparableArrayList<String> getAttendeeList() {
+    public ComparableList<String> getAttendeeList() {
         return attendeeList;
     }
     
