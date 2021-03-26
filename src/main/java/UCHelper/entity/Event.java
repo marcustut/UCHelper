@@ -6,7 +6,7 @@ import UCHelper.adt.ComparableList;
  * @author Dennis Lau Yik Ann RSFY2S2, dennislauyikann@gmail.com
  * @version 3.0
  */
-public class Event{
+public class Event implements Comparable<Event> {
 
     // data declaration
     private String eventID;
@@ -22,23 +22,27 @@ public class Event{
     public Event() {
     }
 
-    public Event(int eventSeqNum, String eventTitle, String eventVenue, String eventDetails, 
-            String eventDate, int durationInDay) {
+    public Event(int eventSeqNum) {
         this.eventID = "E-" + eventSeqNum;
-	this.eventTitle = eventTitle;
-	this.eventVenue = eventVenue;
-	this.eventDetails = eventDetails;
-	this.eventDate = eventDate;
-	this.durationInDay = durationInDay;
-    }
-    
-    // getter and setter
-    public String getEventID() {
-	return eventID;
     }
 
-    public void setEventID() {
-	this.eventID = eventID;
+    public Event(int eventSeqNum, String eventTitle, String eventVenue, String eventDetails, String eventDate,
+            int durationInDay) {
+        this.eventID = "E-" + eventSeqNum;
+        this.eventTitle = eventTitle;
+        this.eventVenue = eventVenue;
+        this.eventDetails = eventDetails;
+        this.eventDate = eventDate;
+        this.durationInDay = durationInDay;
+    }
+
+    // getter and setter
+    public String getEventID() {
+        return eventID;
+    }
+
+    public void setEventID(String eventID) {
+        this.eventID = eventID;
     }
 
     public String getEventTitle() {
@@ -99,6 +103,12 @@ public class Event{
     
     @Override
     public String toString() {
-	return String.format("%-8s %-10s %-10s %-15s %-8d %-35s", eventID, eventTitle, eventVenue, eventDate, durationInDay, eventDetails);
-    }          
+        return String.format("%-8s %-10s %-10s %-15s %-8d %-35s", eventID, eventTitle, eventVenue, eventDate,
+                durationInDay, eventDetails);
+    }
+
+    @Override
+    public int compareTo(Event anotherEvent) {
+        return getEventID().compareTo(anotherEvent.getEventID());
+    }
 }

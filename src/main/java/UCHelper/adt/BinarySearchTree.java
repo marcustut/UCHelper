@@ -6,9 +6,10 @@ import java.util.*;
 // TODO: Refactor some code to not use data structure from java standard library.
 
 /**
- * BinarySearchTree helps preserve any comparable data in a sorted manner.
- * Note that the tree has distinct keys therefore duplicates are not allowed.
- * This is helpful for an efficient search.
+ * BinarySearchTree helps preserve any comparable data in a sorted manner. Note
+ * that the tree has distinct keys therefore duplicates are not allowed. This is
+ * helpful for an efficient search.
+ * 
  * @author Lee Kai Yang RSFY2S2
  * @param <T> - Generic Type (can be any object types but not primitive types)
  */
@@ -54,6 +55,19 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
   @Override
   public T min() {
     // Start from the root node
+    Node node = root;
+
+    // Keep looking for the left node until there's none
+    while (node.left != null)
+      node = node.left;
+
+    // Return the leftmost node
+    return node.data;
+  }
+
+  // Return the smallest node in from the root given
+  private T min(Node root) {
+    // Start from the root given
     Node node = root;
 
     // Keep looking for the left node until there's none
@@ -167,10 +181,53 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
     return node;
   }
 
-  // TODO: Implement 'remove'
+  /**
+   * Remove an element from the tree
+   * 
+   * @param element - the element to remove
+   * @return true if removed successfully, false otherwise
+   */
   @Override
   public boolean remove(T element) {
+    // If element is in tree
+    if (contains(element)) {
+      // remove it
+      root = remove(root, element);
+      nodeCount--;
+      return true;
+    }
+    // unable to remove
     return false;
+  }
+
+  private Node remove(Node node, T element) {
+    // Base case: if the tree is empty
+    if (node == null)
+      return node;
+
+    // Traverse down the tree
+    // If smaller then go to left subtree
+    if (element.compareTo(node.data) < 0)
+      node.left = remove(node.left, element);
+    // If larger then go to right subtree
+    else if (element.compareTo(node.data) > 0)
+      node.right = remove(node.right, element);
+    // If is same, we found the one to remove
+    else if (element.compareTo(node.data) == 0) {
+      // Node with only one child or no child
+      if (node.left == null)
+        return node.right;
+      else if (node.right == null)
+        return node.left;
+
+      // Node with two child
+      node.data = min(node.right);
+
+      // Delete the inorder successor
+      node.right = remove(node.right, root.data);
+    }
+
+    return node;
   }
 
   /**
@@ -182,15 +239,15 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
   @Override
   public Iterator<T> traverse(TreeTraversalOrder order) {
     switch (order) {
-      case InOrderTraversal:
-        return inOrderTraversal();
-      case PreOrderTraversal:
-        return preOrderTraversal();
-      // TODO: Implement post-order traversal
-      // case PostOrderTraversal:
-      // break;
-      default:
-        return null;
+    case InOrderTraversal:
+      return inOrderTraversal();
+    case PreOrderTraversal:
+      return preOrderTraversal();
+    // TODO: Implement post-order traversal
+    // case PostOrderTraversal:
+    // break;
+    default:
+      return null;
     }
   }
 
