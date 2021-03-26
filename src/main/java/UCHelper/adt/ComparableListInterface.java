@@ -7,18 +7,21 @@ import java.util.Iterator;
  * @version 2.0
  */
 public interface ComparableListInterface<L> {
-    
     public void clear();
-    public boolean add(L element);
-    public boolean add(int newPosition, L element); 
-    public boolean remove(L element);
-    public boolean replace(int givenPosition, L element);
-    public L getEntry(int givenPosition);
-    public boolean contains(L element);
-    public int getLength();
+    public boolean contains(L toCheck);
+    public boolean compare(L firstElement, L secondElement);
+    public boolean compareList(L[] toCompare);
+    public boolean isListFull();
+    public void add(L newElement);
+    public boolean addWithin(int position, L newElement);
+    public boolean remove(L toRemove);
+    public int indexOf(L element);
+    public boolean replace(L toReplace, L newElement);
+    public boolean replaceAt(int position, L newElement);
+    public boolean swap(L firstElement, L secondElement);
     public boolean isEmpty();
-    public boolean isFull();
+    public int getSize();
+    public L getElement(int position);
     public String toString();
-    public void forEach(L element);
-    Iterator<L> iterator();
+    public Iterator<L> iterator();
 }

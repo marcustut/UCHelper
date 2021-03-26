@@ -2,163 +2,194 @@ package UCHelper.adt;
 
 import java.util.Iterator;
 /**
- * ComparableList.java is an ADT collection that contain all the needed methods of an list to have.
+ * ComparableList.java is an ADT collection that contain almost all the needed methods of an list to have.
  * @author Dennis Lau Yik Ann RSFY2S2, dennislauyikann@gmail.com
  * @version 4.0
  */
 public class ComparableList<L> implements ComparableListInterface<L> {
+    private L[] list;
+    private int size;
+    private final static int DEFAULT_SIZE = 4;
 
-  private L[] array;
-  private int length;
-  private static final int DEFAULT_CAPACITY = 5;
-
-  public ComparableList() {
-    array = (L[]) new Object[DEFAULT_CAPACITY];
-    length = 0;
-  }
-
-  @Override
-  public boolean contains(L anElement) {
+    public ComparableList() {
+        list = (L[]) new Object[DEFAULT_SIZE];
+        size = 0;
+    }
+  
+    @Override
+    public void clear() {
+        size = 0;
+    }
+    
+    @Override
+    public boolean contains(L toCheck) {
         boolean exist = false;
-        for(int i = 0; i < length && !exist; i++){
-            if(array[i].equals(anElement))
+        for (int i = 0; i < size && !exist; i++) {
+            if (list[i].equals(toCheck)) {
                 exist = true;
+            }
         }
         return exist;
-  }
-  
-  @Override
-  public boolean add(L newElement) {
-        boolean exist = contains(newElement);
-        if(!exist){
-            array[length++] = newElement;
-            return true;
+    }
+    
+    @Override
+    public boolean compare(L firstElement, L secondElement) {
+        boolean similar = false;
+        if (firstElement.equals(secondElement)) {
+            similar = true;
         }
-        return false;
-  }
-
-  @Override
-  public boolean add(int newPosition, L newEntry) {
-    boolean isSuccessful = true;
-
-    if ((newPosition >= 1) && (newPosition <= length + 1)) {
-        makeRoom(newPosition);
-        array[newPosition - 1] = newEntry;
-        length++;
-    } else {
-      isSuccessful = false;
+        else{
+            similar = false;
+        }  
+        return similar;
     }
-
-    return isSuccessful;
-  }
-
-  @Override
-  public boolean remove(L anElement) {
-        int i = 0;
-        boolean found = false;
-        while(i < length && !found){
-            if(array[i].equals(anElement))
-                found = true;
-            else
-                i++;
+    
+    @Override
+    public boolean compareList(L[] toCompare) {
+        boolean similar = false;
+        if (list.equals(toCompare)) {
+            similar = true;
+        } else {
+            similar = false;
         }
-        if (found){
-            for(int j = i; j < length-1; j++){
-                array[j] = array[j+1];
-            }
-            length--;
-        }
-        return found;
-  }
-
-  @Override
-  public void clear() {
-    length = 0;
-  }
-
-  @Override
-  public boolean replace(int givenPosition, L newEntry) {
-    boolean isSuccessful = true;
-
-    if ((givenPosition >= 1) && (givenPosition <= length)) {
-      array[givenPosition - 1] = newEntry;
-    } else {
-      isSuccessful = false;
+        return similar;
     }
-
-    return isSuccessful;
-  }
-
-  @Override
-  public L getEntry(int givenPosition) {
-    L result = null;
-
-    if ((givenPosition >= 1) && (givenPosition <= length)) {
-      result = array[givenPosition - 1];
-    }
-
-    return result;
-  }
-
-  @Override
-  public int getLength() {
-    return length;
-  }
-
-  @Override
-  public boolean isEmpty() {
-    return length == 0;
-  }
-
-  @Override
-  public boolean isFull() {
-    return false;
-  }
-
-  @Override
-  public String toString() {
-    String outputStr = "";
-    for (int index = 0; index < length; ++index) {
-      outputStr += array[index] + "\n";
-    }
-    return outputStr;
-  }
-
-  /**
-   * Task: Makes room for a new entry at newPosition. Precondition: 1 <=
-   * newPosition <= length + 1; length is array's
- length before addition.
-   */
-  private void makeRoom(int newPosition) {
-    int newIndex = newPosition - 1;
-    int lastIndex = length - 1;
-
-    // move each entry to next higher index, starting at end of
-    // array and continuing until the entry at newIndex is moved
-    for (int index = lastIndex; index >= newIndex; index--) {
-      array[index + 1] = array[index];
-    }
-  }
-
-  /**
-   * Task: Shifts entries that are beyond the entry to be removed to the next
-   * lower position. Precondition: array is not empty; 1 <= givenPosition <
- length; length is array's length before removal.
-   */
-  private void removeGap(int givenPosition) {
-    // move each entry to next lower position starting at entry after the
-    // one removed and continuing until end of array
-    int removedIndex = givenPosition - 1;
-    int lastIndex = length - 1;
-
-    for (int index = removedIndex; index < lastIndex; index++) {
-      array[index] = array[index + 1];
-    }
-  }
 
     @Override
-    public void forEach(L element) {
-        throw new UnsupportedOperationException("Not supported yet."); //Lo change body of generated methods, choose Lools | Lemplates.
+    public boolean isListFull() {
+        return DEFAULT_SIZE == list.length;
+    }
+
+    public void tripleList() {
+        L[] oldList = list;
+        int oldLength = oldList.length;
+        list = (L[]) new Object[3 * oldLength];
+        for (int index = 0; index < size; index++) {
+            list[index] = oldList[index];
+        }
+    }
+    
+    @Override
+    public void add(L newElement) {
+        if (isListFull()) {
+            tripleList();
+        }
+        list[size] = newElement;
+        size++;
+    }
+    
+    private void makeRoom(int position) {
+        int indexToMove = position - 1;
+        int lastIndex = size - 1;
+        for (int index = lastIndex; index >= indexToMove; index--) {
+            list[index + 1] = list[index];
+        }
+    }
+    
+    @Override
+    public boolean addWithin(int position, L newElement) {
+        boolean canAdd = true;
+        if ((position >= 1) && (position <= size + 1)) {
+            makeRoom(position);
+            list[position - 1] = newElement;
+            size++;
+        } else {
+            canAdd = false;
+        }
+        return canAdd;
+    }
+    
+    @Override
+    public boolean remove(L toRemove) {
+        int i = 0;
+        boolean found = false;
+        while (i < size && !found) {
+            if (list[i].equals(toRemove)) {
+                found = true;
+            } else {
+                i++;
+            }
+        }
+        if (found) {
+            for (int j = i; j < size - 1; j++) {
+                list[j] = list[j + 1];
+            }
+            size--;
+        }
+        return found;
+    }
+    
+    @Override
+    public int indexOf(L element) {
+        int index = 0;
+        if (contains(element)){
+            for (int i = 0; i < size; i++) {
+                if (list[i].equals(element)) {
+                    index = i;
+                }
+            }
+        }
+        return index;
+    }
+    
+    @Override
+    public boolean replace(L toReplace, L newElement) {
+        boolean canReplace = true;
+        if (contains(toReplace)) {
+            list[indexOf(toReplace)] = newElement;
+        } else {
+            canReplace = false;
+        }
+        return canReplace;
+    }
+    
+    @Override
+    public boolean replaceAt(int position, L newElement) {
+        boolean canReplace = true;
+        if ((position >= 1) && (position <= size)) {
+            list[position - 1] = newElement;
+        } else {
+            canReplace = false;
+        }
+        return canReplace;
+    }
+    
+    @Override
+    public boolean swap(L firstElement, L secondElement) {
+        boolean canSwap = true;
+        int index1 = indexOf(firstElement);
+        int index2 = indexOf(secondElement);
+        list[index1] = secondElement;
+        list[index2] = firstElement;
+        return canSwap;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+    
+    @Override
+    public int getSize() {
+        return size;
+    }
+    
+    @Override
+    public L getElement(int position) {
+        L result = null;
+        if ((position >= 1) && (position <= size)) {
+            result = list[position - 1];
+        }
+        return result;
+    }
+    
+    @Override
+    public String toString() {
+        String outputStr = "";
+        for (int index = 0; index < size; ++index) {
+            outputStr += list[index] + "\n";
+        }
+        return outputStr;
     }
 
     @Override
@@ -167,18 +198,17 @@ public class ComparableList<L> implements ComparableListInterface<L> {
     }
     
     private class SetIterator implements Iterator<L> {
-
-        private int iteratorIndex = 0;
-
+        private int index = 0;
+        
         @Override
         public boolean hasNext() {
-            return iteratorIndex < length;
+            return index < size;
         }
 
         @Override
         public L next() {
             if (hasNext()) {
-                return array[iteratorIndex++];
+                return list[index++];
             } else {
                 return null;
             }
