@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * EventManager.java is an client class that contain all the needed methods of an event interface.
  * @author Dennis Lau Yik Ann RSFY2S2, dennislauyikann@gmail.com
- * @version 3.0
+ * @version 4.0
  */
 public class EventHandler{
     static ComparableList<Event> eventList = new ComparableList<Event>();
@@ -25,6 +25,82 @@ public class EventHandler{
     private static final int DEFAULT_COCU_MARK_FOR_COMMITTEE = 90;
     private static final int DEFAULT_COCU_MARK_FOR_PRESIDENT = 95;
     private static final int DEFAULT_PROCESSING_TIME = 1;
+    
+    //For others to use, public/accessible by others
+    public static boolean dummyData() {
+        //---addEvent(...)
+        Event e1 = new Event(eventSeqNum++, "event1", "Wangsa", "a fund raising event", "08/02/2020", 4);
+        Event e2 = new Event(eventSeqNum++, "event2", "Aeon", "a fund raising event", "07/05/2021", 5);
+        Event e3 = new Event(eventSeqNum++, "event3", "TAR UC", "a fund raising event", "05/03/2021", 5);
+        e1.setOrganisor("C-100");
+        e2.setOrganisor("C-121");
+        e3.setOrganisor("C-154");
+
+        e1.setAttendeeList("19WMR11944");
+        e1.setAttendeePosition("Committee");
+        e1.setAttendeeCocuMarks(90);
+        e1.setAttendeeList("19WMR11933");
+        e1.setAttendeePosition("President");
+        e1.setAttendeeCocuMarks(95);
+        e1.setAttendeeList("19WMR11924");
+        e1.setAttendeePosition(DEFAULT_POSITION);
+        e1.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_MEMBER);
+        e1.setAttendeeList("19WMR11925");
+        e1.setAttendeePosition(DEFAULT_POSITION);
+        e1.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_MEMBER);
+        e1.setAttendeeList("19WMR11926");
+        e1.setAttendeePosition(DEFAULT_POSITION);
+        e1.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_MEMBER);
+
+        e2.setAttendeeList("18WMR11934");
+        e2.setAttendeePosition(DEFAULT_POSITION);
+        e2.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_MEMBER);
+        e2.setAttendeeList("18WMR11925");
+        e2.setAttendeePosition(DEFAULT_POSITION);
+        e2.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_MEMBER);
+
+        eventList.add((Event) e1);
+        eventList.add((Event) e2);
+        eventList.add((Event) e3);
+        return false;
+    }
+    
+    public boolean registerEvent(Event event) {
+        eventList.add(event);
+        return true;
+    }
+
+    public Event removeEvent(int eventSeqNum) {
+        String ID = "E-" + eventSeqNum;
+        Event removedEvent = new Event();
+        ComparableList<Event> tem = new ComparableList<Event>();
+        for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
+            Event e = it.next();
+            if (!e.getEventID().equals(ID)) {
+                tem.add(e);
+            }
+        }
+        eventList = tem;
+        System.out.println("");
+        return removedEvent;
+    }
+
+    public ComparableList<Event> getEvents() {
+        return eventList;
+    }
+
+    public Event getEvent(int eventSeqNum) {
+        String ID = "E-" + eventSeqNum;
+        Event event = new Event();
+        for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
+            Event e = it.next();
+            if (!e.getEventID().equals(ID)) {
+                event = e;
+            }
+        }
+        System.out.println("");
+        return event;
+    }
     
     public static void EventUI(){
         int userChoice = 0;
@@ -92,7 +168,8 @@ public class EventHandler{
         } while (userChoice >= 0 && userChoice <= 8);
     }
     
-    public static void adtShowcase() {
+    //For internal usage, contain main method logics and program flows
+    private static void adtShowcase() {
         int userChoice = 0;
         do {
             System.out.println("------- ADT Show House -------");
@@ -118,8 +195,7 @@ public class EventHandler{
         } while (userChoice >= 1 && userChoice <= 2);
     }
     
-    @SuppressWarnings("empty-statement")
-    public static void comparableList() {
+    private static void comparableList() {
         int userChoice = 0;
         ComparableList<String> a = new ComparableList<String>();
         a.add("a");
@@ -149,6 +225,7 @@ public class EventHandler{
             System.out.println("[13] getSize");
             System.out.println("[14] getElement");
             System.out.println("[15] toString");
+            System.out.println("[16] Back to previous page");
             System.out.println("Please pick one... ");
             while (!in.hasNextInt()) {
                 in.next();
@@ -215,7 +292,7 @@ public class EventHandler{
         } while (userChoice >= 1 && userChoice <= 15);
     }
     
-    public static void countableNumList() {
+    private static void countableNumList() {
         int userChoice = 0;
         CountableNumList<String> a = new CountableNumList<String>();
         a.add(5);
@@ -243,6 +320,7 @@ public class EventHandler{
             System.out.println("[11] getSum");
             System.out.println("[12] getMean");
             System.out.println("[13] getMode");
+            System.out.println("[14] Back to previous page");
             System.out.println("Please pick one... ");
             while (!in.hasNextInt()) {
                 in.next();
@@ -300,7 +378,7 @@ public class EventHandler{
         } while (userChoice >= 1 && userChoice <= 13);
     }
     
-    public static void browseEvent(){
+    private static void browseEvent(){
         int identifier = 0;
         String compare = "";
         boolean status = false;
@@ -362,7 +440,7 @@ public class EventHandler{
         System.out.println("");
     }
         
-    public static void addToAttendeeList(String identifier) {
+    private static void addToAttendeeList(String identifier) {
         String ID = "";
         String Position = "";
         String compare = "";
@@ -397,7 +475,7 @@ public class EventHandler{
         System.out.println("");
     }
     
-    public static void registration(String identifier) {
+    private static void registration(String identifier) {
         System.out.println("");
         System.out.println("Do you wish to register to this event?[Y/N]");
         String choice = inputString();
@@ -406,7 +484,7 @@ public class EventHandler{
         }
     }
         
-    public static void createEvent(){
+    private static void createEvent(){
         String title = "";
         String details = "";
         String venue = "";
@@ -444,7 +522,7 @@ public class EventHandler{
         System.out.println("");
     }
         
-    public static void editEvent(){
+    private static void editEvent(){
         int identifier = 0;
         String ID = "";
         String title = "";
@@ -532,7 +610,7 @@ public class EventHandler{
         System.out.println("");
     }
         
-    public static void deleteEvent(){
+    private static void deleteEvent(){
         int identifier = 0;
         String compare = "";
         ComparableList<Event> tem = new ComparableList<Event>();
@@ -586,7 +664,7 @@ public class EventHandler{
         System.out.println("");
     }
         
-    public static void displayEventList(){
+    private static void displayEventList(){
         System.out.println(eventHeading());
         for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
             Event e = it.next();
@@ -595,12 +673,12 @@ public class EventHandler{
         System.out.println("");
     }
         
-    public static void deleteEventList(){
+    private static void deleteEventList(){
         eventList.clear();
         System.out.println("");
     }
         
-    public static void displayPastEvent(){
+    private static void displayPastEvent(){
         System.out.println(eventHeading());
         for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
             Event e = it.next();
@@ -611,7 +689,7 @@ public class EventHandler{
         System.out.println("");
     }
     
-    public static String getAttendeeList(Event e){
+    private static String getAttendeeList(Event e){
         String result = "";
         for (int index = 1; index <= e.getAttendeeListSize(); ++index) {
             result += String.format("%-5d %-15s %-15s %-15d"
@@ -624,7 +702,7 @@ public class EventHandler{
         return result;
     }
     
-    public static void displayEventListWithAttendeeList(){
+    private static void displayEventListWithAttendeeList(){
         System.out.println("");
         System.out.println("Event List with Their Attendee List");
         System.out.println("-".repeat(35));
@@ -641,7 +719,7 @@ public class EventHandler{
         System.out.println("");
     }
         
-    public static String eventHeading() {
+    private static String eventHeading() {
         System.out.println("");
 	return String.format("%-8s %-10s %-10s %-15s %-8s %-35s", 
                 "ID", "Title", "Venue", "Date", "Days", "Remark") 
@@ -649,20 +727,20 @@ public class EventHandler{
                         repeat("-", 86));
     }
     
-    public static String attendeeHeading() {
+    private static String attendeeHeading() {
         return String.format("%-51s\n", repeat("=", 51)) + 
                String.format("%-5s %-15s %-15s %-15s\n",
                              "No.", "ID", "Position", "Cocu Mark") + 
                String.format("%-51s",repeat("=", 51));
     }
     
-    public static String inputString(){
+    private static String inputString(){
         Scanner in = new Scanner(System.in);
         String result = in.nextLine();
         return result;
     }
         
-    public static int inputInt(){
+    private static int inputInt(){
         Scanner in = new Scanner(System.in);
         while (!in.hasNextInt()) {
             in.next();
@@ -672,7 +750,7 @@ public class EventHandler{
         return result;
     }
     
-    public static String inputDate(){
+    private static String inputDate(){
         boolean status = false;
         String result = "";
         while (status != true) {
@@ -686,7 +764,7 @@ public class EventHandler{
         return result;
     }
     
-    public static boolean isDateValid(String date) {
+    private static boolean isDateValid(String date) {
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         Date testDate = null;
         try {
@@ -701,7 +779,7 @@ public class EventHandler{
         }
     }
     
-    public static String repeat(String str, int times) {
+    private static String repeat(String str, int times) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < times; i++) {
             sb.append(str);
@@ -709,7 +787,7 @@ public class EventHandler{
         return sb.toString();
     }
     
-    public static boolean identifyPastEvent(String title) {
+    private static boolean identifyPastEvent(String title) {
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
             Event e = it.next();
@@ -723,80 +801,5 @@ public class EventHandler{
             }
         }
         return false;
-    }
-        
-    public static boolean dummyData(){
-        //---addEvent(...)
-        Event e1 = new Event(eventSeqNum++, "event1", "Wangsa", "a fund raising event", "08/02/2020", 4); 
-        Event e2 = new Event(eventSeqNum++, "event2", "Aeon", "a fund raising event", "07/05/2021", 5); 
-        Event e3 = new Event(eventSeqNum++, "event3", "TAR UC", "a fund raising event", "05/03/2021", 5); 
-        e1.setOrganisor("C-100");
-        e2.setOrganisor("C-121");
-        e3.setOrganisor("C-154");
-        
-        e1.setAttendeeList("19WMR11944");
-        e1.setAttendeePosition("Committee");
-        e1.setAttendeeCocuMarks(90);
-        e1.setAttendeeList("19WMR11933");
-        e1.setAttendeePosition("President");
-        e1.setAttendeeCocuMarks(95);
-        e1.setAttendeeList("19WMR11924");
-        e1.setAttendeePosition(DEFAULT_POSITION);
-        e1.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_MEMBER);
-        e1.setAttendeeList("19WMR11925");
-        e1.setAttendeePosition(DEFAULT_POSITION);
-        e1.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_MEMBER);
-        e1.setAttendeeList("19WMR11926");
-        e1.setAttendeePosition(DEFAULT_POSITION);
-        e1.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_MEMBER);
-        
-        e2.setAttendeeList("18WMR11934");
-        e2.setAttendeePosition(DEFAULT_POSITION);
-        e2.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_MEMBER);
-        e2.setAttendeeList("18WMR11925");
-        e2.setAttendeePosition(DEFAULT_POSITION);
-        e2.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_MEMBER);
-        
-        eventList.add((Event) e1);
-        eventList.add((Event) e2);
-        eventList.add((Event) e3);
-        return false;
-    }
-
-    public boolean registerEvent(Event event) {
-        eventList.add(event);
-        return true;
-    }
-
-    public Event removeEvent(int eventSeqNum) {
-        String ID = "E-" + eventSeqNum;
-        Event removedEvent = new Event();
-        ComparableList<Event> tem = new ComparableList<Event>();
-        for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
-            Event e = it.next();
-            if (!e.getEventID().equals(ID)) {
-                tem.add(e);
-            }
-        }
-        eventList = tem;
-        System.out.println("");
-        return removedEvent;
-    }
-
-    public ComparableList<Event> getEvents() {
-        return eventList;
-    }
-
-    public Event getEvent(int eventSeqNum) {
-        String ID = "E-" + eventSeqNum;
-        Event event = new Event();
-        for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
-            Event e = it.next();
-            if (!e.getEventID().equals(ID)) {
-                event = e;
-            }
-        }
-        System.out.println("");
-        return event;
     }
 }
