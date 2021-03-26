@@ -29,10 +29,23 @@ The entry point of the project should be defined in `build.gradle`. Gradle will 
 mainClassName = 'UCHelper.client.Main'
 ...
 ```
+
+## Usage
+
+To help a club to manage their community
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
 ## Lecturer
 
 ## Event
+Created a eventHandler UI and event entity for event module, successfully implement comparableList.java, countableNumList.java and their interface for storing numerous events and events'attendees.
 
 ## Club
 
 ## Student
+
+
