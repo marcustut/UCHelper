@@ -26,6 +26,8 @@ public class StudentQueue {
     }
 
     public void studentMainPage() {
+        Main.clearScreen(); // clear the previous console screen
+
         char quit = 'Y';
         System.out.println("----- Student Queue For Enter Event -----");
         while (quit == 'Y') {
@@ -37,6 +39,7 @@ public class StudentQueue {
             System.out.println("[6] Check Student Queue Empty");
             System.out.println("[7] Shift First to Last");
             System.out.println("[8] Clear All");
+            System.out.println("[9] Go back to Main Menu");
             System.out.println("Choose your selection");
 
             while (!input.hasNextInt()) {
@@ -73,6 +76,10 @@ public class StudentQueue {
             case 8:
                 clearAll();
                 break;
+            case 9:
+                Main.clearScreen(); // Clear the screen before going back
+                quit = 'n';
+                continue;
             default:
                 System.out.println("Wrong Entry \n");
                 break;
@@ -89,7 +96,7 @@ public class StudentQueue {
 
             word = word.toUpperCase();
             quit = word.charAt(0);
-
+            Main.clearScreen();
         }
     }
 

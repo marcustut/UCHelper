@@ -65,6 +65,19 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
     return node.data;
   }
 
+  // Return the smallest node in from the root given
+  private T min(Node root) {
+    // Start from the root given
+    Node node = root;
+
+    // Keep looking for the left node until there's none
+    while (node.left != null)
+      node = node.left;
+
+    // Return the leftmost node
+    return node.data;
+  }
+
   // Return the greatest node in the tree (rightmost node)
   @Override
   public T max() {
@@ -168,10 +181,53 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
     return node;
   }
 
-  // TODO: Implement 'remove'
+  /**
+   * Remove an element from the tree
+   * 
+   * @param element - the element to remove
+   * @return true if removed successfully, false otherwise
+   */
   @Override
   public boolean remove(T element) {
+    // If element is in tree
+    if (contains(element)) {
+      // remove it
+      root = remove(root, element);
+      nodeCount--;
+      return true;
+    }
+    // unable to remove
     return false;
+  }
+
+  private Node remove(Node node, T element) {
+    // Base case: if the tree is empty
+    if (node == null)
+      return node;
+
+    // Traverse down the tree
+    // If smaller then go to left subtree
+    if (element.compareTo(node.data) < 0)
+      node.left = remove(node.left, element);
+    // If larger then go to right subtree
+    else if (element.compareTo(node.data) > 0)
+      node.right = remove(node.right, element);
+    // If is same, we found the one to remove
+    else if (element.compareTo(node.data) == 0) {
+      // Node with only one child or no child
+      if (node.left == null)
+        return node.right;
+      else if (node.right == null)
+        return node.left;
+
+      // Node with two child
+      node.data = min(node.right);
+
+      // Delete the inorder successor
+      node.right = remove(node.right, root.data);
+    }
+
+    return node;
   }
 
   /**

@@ -7,7 +7,7 @@ import UCHelper.adt.*;
 public class Club implements Comparable<Club> {
     private int id;
     private String name;
-    // private EventManager eventManager;
+    private EventManager eventManager = new EventManager();
     private MemberHandler memberHandler = new MemberHandler();
     private Range<Date> weeklyActivityTime; // TODO: Consider deleting this field
     public static int index = 1;
@@ -77,6 +77,27 @@ public class Club implements Comparable<Club> {
     }
 
     /**
+     * Add an event to the list of events
+     * 
+     * @param event - the event to add
+     * @return true if event is added, false otherwise
+     */
+    public boolean registerEvent(Event event) {
+        return eventManager.registerEvent(event);
+    }
+
+    /**
+     * Remove an event from the list of events
+     * 
+     * @param eventSeqNum - the sequence number of the event
+     * @return true if event is removed, false otherwise
+     */
+    public boolean removeEvent(int eventSeqNum) {
+        Event result = eventManager.removeEvent(eventSeqNum);
+        return result != null;
+    }
+
+    /**
      * Get the list of members
      * 
      * @return list of members
@@ -85,12 +106,27 @@ public class Club implements Comparable<Club> {
         return memberHandler.getMembers();
     }
 
+    public LinkedList<Event> getEvents() {
+        return eventManager.getEvents();
+    }
+
     /**
      * Find a student in the list of members provided its student id
      * 
+     * @param studentId - the student id of the student
      * @return the student found, null otherwise
      */
-    public Student findMember(int studentId) {
-        return memberHandler.findMember(studentId);
+    public Student getMember(int studentId) {
+        return memberHandler.getMember(studentId);
+    }
+
+    /**
+     * Find an event in the list of events provided its sequence number
+     * 
+     * @param eventSeqNum - the sequence number of the event
+     * @return
+     */
+    public Event getEvent(int eventSeqNum) {
+        return eventManager.getEvent(eventSeqNum);
     }
 }

@@ -3,7 +3,6 @@ package UCHelper.entity;
 import UCHelper.adt.*;
 
 public class MemberHandler {
-    // TODO: Change to own implementation of List
     private final LinkedList<Student> members = new LinkedList<Student>();
     private final LinkedList<Student> committees = new LinkedList<Student>();
     private Student clubLead;
@@ -85,7 +84,7 @@ public class MemberHandler {
      * @param studentId - ID of the student
      * @return the found student, null otherwise
      */
-    public Student findMember(int studentId) {
+    public Student getMember(int studentId) {
         int found = members.findIndex(new Student("", studentId));
 
         if (found == -1)

@@ -14,6 +14,9 @@ public class ClubManager {
     this.clubs = clubs;
   }
 
+  /**
+   * Getter method for clubs
+   */
   public BinarySearchTree<Club> getClubs() {
     return clubs;
   }
@@ -49,11 +52,11 @@ public class ClubManager {
   /**
    * Remove an existing club.
    * 
-   * @param club - the club to be removed from the manager.
+   * @param clubId - the clubId of the club to be removed from the manager.
    * @return true if successfully removed, false otherwise.
    */
   public boolean removeClub(int clubId) {
-    return false;
+    return clubs.remove(new Club(clubId));
   }
 
   /**

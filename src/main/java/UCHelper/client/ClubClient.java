@@ -1,9 +1,9 @@
 package UCHelper.client;
 
-import java.text.SimpleDateFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import UCHelper.entity.Event;
 import UCHelper.entity.Student;
 
 public class ClubClient {
@@ -11,7 +11,6 @@ public class ClubClient {
   public final static String SHORT_SEPARATOR = String.format("%31s", " ").replace(' ', '-');
   public static Scanner scanner;
   public static char inputPrefix;
-  private SimpleDateFormat dateFormat;
 
   public enum MainScreenSelection {
     RegisterClub, RemoveClub, DisplayAllClubs, ManageClub
@@ -26,16 +25,15 @@ public class ClubClient {
   }
 
   public enum EventScreenSelection {
-    DisplayEvents, OrganizeEvent, CancelEvent, EditEvent, GoBack
+    DisplayEvents, OrganizeEvent, CancelEvent, GoBack
   }
 
   public ClubClient(Scanner scanner) {
-    this('>', new SimpleDateFormat("HH:mm:ss - dd/MM/yyyy(E)"), scanner);
+    this('>', scanner);
   }
 
-  public ClubClient(char prefix, SimpleDateFormat dateFormat, Scanner scanner) {
+  public ClubClient(char prefix, Scanner scanner) {
     ClubClient.inputPrefix = prefix;
-    this.dateFormat = dateFormat;
     ClubClient.scanner = scanner;
   }
 
@@ -58,8 +56,8 @@ public class ClubClient {
 
   public int mainScreen() {
     String instruction = "\nWhat do you want to do?\n";
-    String selection = "1. Register a new club\n" + "2. Remove an existing club\n" + "3. Display all clubs\n"
-        + "4. Manage a club\n";
+    String selection = "[1] Register a new club\n" + "[2] Remove an existing club\n" + "[3] Display all clubs\n"
+        + "[4] Manage a club\n";
     String mainScreen = instruction + selection + SEPARATOR + inputPrefix;
     int userSelection = 0;
     boolean continuePrompt = true;
@@ -190,7 +188,7 @@ public class ClubClient {
 
   public int manageScreen() {
     String instruction = "\nWhich aspect of the club that you want to manage?\n";
-    String selection = "1. Member 👦\n" + "2. Event 📆\n" + "3. Go back ⏪\n";
+    String selection = "[1] Member 👦\n" + "[2] Event 📆\n" + "[3] Go back ⏪\n";
     String manageScreen = instruction + selection + SEPARATOR + inputPrefix;
 
     int userSelection = 0;
@@ -226,8 +224,8 @@ public class ClubClient {
 
   public int memberScreen() {
     String instruction = "\nWhat actions do you want to perform?\n";
-    String selection = "1. Register a new member 👦\n" + "2. Remove an existing member ❌\n"
-        + "3. Display all members \n" + "4. Go back ⏪\n";
+    String selection = "[1] Register a new member 👦\n" + "[2] Remove an existing member ❌\n"
+        + "[3] Display all members \n" + "[4] Go back ⏪\n";
     String memberScreen = instruction + selection + SEPARATOR + inputPrefix;
 
     int userSelection = 0;
@@ -350,8 +348,8 @@ public class ClubClient {
 
   public int eventScreen() {
     String instruction = "\nWhat actions do you want to perform?\n";
-    String selection = "1. Display the list of events 📋\n" + "2. Organize a new event ➕\n" + "3. Cancel an event ❌\n"
-        + "4. Edit an event 📝\n" + "5. Go back ⏪\n";
+    String selection = "[1] Display the list of events 📋\n" + "[2] Organize a new event ➕\n"
+        + "[3] Cancel an event ❌\n" + "[4] Go back ⏪\n";
     String eventScreen = instruction + selection + SEPARATOR + inputPrefix;
 
     int userSelection = 0;
@@ -383,6 +381,153 @@ public class ClubClient {
     } while (continueInput);
 
     return userSelection;
+  }
+
+  public Event organizeEventScreen() {
+    String instruction = "\nEnter the event details below:\n";
+    String eventIdPrompt = "ID: ";
+    String eventTitlePrompt = "Title: ";
+    String eventVenuePrompt = "Venue: ";
+    String eventDetailsPrompt = "Details: ";
+    String eventDatePrompt = "Date(dd/mm/yy): ";
+    String eventDurationInDayPrompt = "Duration In Day: ";
+    int eventId = 0;
+    String eventTitle = "";
+    String eventVenue = "";
+    String eventDetails = "";
+    String eventDate = "";
+    int eventDurationInDay = 0;
+    boolean continuePrompt = true;
+
+    do {
+      try {
+        System.out.print(instruction + eventIdPrompt);
+
+        while (scanner.hasNext()) {
+          if (scanner.hasNextInt()) {
+            eventId = scanner.nextInt();
+            break;
+          } else
+            scanner.next(); // Discard other values in the stream
+        }
+
+        while (!verifyStudentId(eventId)) {
+          // Prompt the user for event id
+          Main.clearScreen();
+          System.out.println("\nPlease enter a valid event id (must be a positive integer), try again.\n");
+          System.out.print(eventIdPrompt);
+
+          // Take input from user
+          eventId = scanner.nextInt();
+        }
+
+        System.out.print(eventTitlePrompt);
+
+        scanner.nextLine(); // Just to clean the stream
+        eventTitle = scanner.nextLine();
+
+        while (eventTitle.equals("")) {
+          // Prompt the user for event title
+          Main.clearScreen();
+          System.out.println("\nPlease enter a valid event title, try again.\n");
+          System.out.print(instruction + eventTitlePrompt);
+
+          // Take input from user
+          eventTitle = scanner.nextLine();
+        }
+
+        System.out.print(eventVenuePrompt);
+
+        eventVenue = scanner.nextLine();
+
+        while (eventVenue.equals("")) {
+          // Prompt the user for event title
+          Main.clearScreen();
+          System.out.println("\nPlease enter a valid event venue, try again.\n");
+          System.out.print(instruction + eventVenuePrompt);
+
+          // Take input from user
+          eventVenue = scanner.nextLine();
+        }
+
+        System.out.print(eventDetailsPrompt);
+
+        eventDetails = scanner.nextLine();
+
+        while (eventDetails.equals("")) {
+          // Prompt the user for event details
+          Main.clearScreen();
+          System.out.println("\nPlease enter a valid event details, try again.\n");
+          System.out.print(instruction + eventDetailsPrompt);
+
+          // Take input from user
+          eventDetails = scanner.nextLine();
+        }
+
+        System.out.print(eventDatePrompt);
+
+        eventDate = scanner.nextLine();
+
+        while (eventDate.equals("")) {
+          // Prompt the user for event details
+          Main.clearScreen();
+          System.out.println("\nPlease enter a valid event date, try again.\n");
+          System.out.print(instruction + eventDatePrompt);
+
+          // Take input from user
+          eventDate = scanner.nextLine();
+        }
+
+        System.out.print(eventDurationInDayPrompt);
+
+        while (scanner.hasNext()) {
+          if (scanner.hasNextInt()) {
+            eventDurationInDay = scanner.nextInt();
+            break;
+          } else
+            scanner.next(); // Discard other values in the stream
+        }
+
+        continuePrompt = false;
+      } catch (InputMismatchException ex) {
+        System.out.println(this.errorMessage(ex) + '\n');
+        scanner.nextLine();
+      }
+    } while (continuePrompt);
+
+    return new Event(eventId, eventTitle, eventVenue, eventDetails, eventDate, eventDurationInDay);
+  }
+
+  public int cancelEventScreen() {
+    String instruction = "\nEnter the event's sequence number that you would like to remove: \n";
+    String cancelEventScreen = instruction + SEPARATOR + inputPrefix;
+    int eventSeqNum = 0;
+    boolean continuePrompt = true;
+
+    do {
+      try {
+        System.out.print(cancelEventScreen);
+
+        eventSeqNum = scanner.nextInt();
+
+        while (!verifyStudentId(eventSeqNum)) {
+          // Prompt the user for event sequence number
+          Main.clearScreen();
+          System.out.println("\nPlease enter a valid event sequence number (must be a positive integer), try again.\n");
+          System.out.print(cancelEventScreen);
+
+          // Take input from user
+          eventSeqNum = scanner.nextInt();
+        }
+
+        continuePrompt = false;
+      } catch (InputMismatchException ex) {
+        System.out.println(this.errorMessage(ex) + '\n');
+        scanner.nextLine();
+      }
+    } while (continuePrompt);
+
+    return eventSeqNum;
   }
 
   private void printGoBackMessage(int milliseconds) {

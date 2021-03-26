@@ -16,7 +16,7 @@ public class ClubHandler {
 
   private enum ScreenState {
     Welcome, Main, RegisterClub, RemoveClub, DisplayAllClubs, ManageClub, Club, Member, Event, RegisterNewMember,
-    RemoveExistingMember, DisplayAllMembers, DisplayEvents, OrganizeEvent, CancelEvent, EditEvent
+    RemoveExistingMember, DisplayAllMembers, DisplayEvents, OrganizeEvent, CancelEvent
   }
 
   private static void welcomeHandler() {
@@ -61,7 +61,6 @@ public class ClubHandler {
     // Get the clubId from user
     int clubId = clubClient.removeScreen();
 
-    // TODO: This doesn't work yet, BST not support remove
     // Remove a club
     clubManager.removeClub(clubId);
 
@@ -134,7 +133,7 @@ public class ClubHandler {
 
   private static void removeExistingMemberHandler() {
     int studentId = clubClient.removeExistingMemberScreen();
-    Student studentRemoved = clubManager.getClub(clubId).findMember(studentId);
+    Student studentRemoved = clubManager.getClub(clubId).getMember(studentId);
 
     if (studentRemoved == null)
       System.out.println("\n❌ Student with studentId [" + studentId + "] is not found");
@@ -170,22 +169,59 @@ public class ClubHandler {
     state = (userSelection - 1) == ClubClient.EventScreenSelection.DisplayEvents.ordinal() ? ScreenState.DisplayEvents
         : (userSelection - 1) == ClubClient.EventScreenSelection.OrganizeEvent.ordinal() ? ScreenState.OrganizeEvent
             : (userSelection - 1) == ClubClient.EventScreenSelection.CancelEvent.ordinal() ? ScreenState.CancelEvent
-                : (userSelection - 1) == ClubClient.EventScreenSelection.EditEvent.ordinal() ? ScreenState.EditEvent
-                    : ScreenState.ManageClub;
+                : ScreenState.ManageClub;
   }
 
   private static void displayEventsHandler() {
+    Club club = clubManager.getClub(clubId);
+    Iterator<Event> itr = club.getEvents().iterator();
+    int index = 1;
+
+    while (itr.hasNext()) {
+      Event event = itr.next();
+      System.out.printf("%d. [Event ID: %s, Title: %s, Venue: %s, Details: %s, Date: %s, DurationInDay: %d]\n", index,
+          event.getEventID(), event.getEventTitle(), event.getEventVenue(), event.getEventDetails(),
+          event.getEventDate(), event.getDurationInDay());
+      index++;
+    }
 
     state = ScreenState.Event;
   }
 
   private static void organizeEventHandler() {
+    Event newEvent = clubClient.organizeEventScreen();
+
+    clubManager.getClub(clubId).registerEvent(newEvent);
+
+    System.out.println("\n✅ A new event is registered with [eventId: " + newEvent.getEventID() + "] [eventTitle: "
+        + newEvent.getEventTitle() + "] [eventVenue: " + newEvent.getEventVenue() + "] [eventDetails: "
+        + newEvent.getEventDetails() + "] [eventDate: " + newEvent.getEventDate() + "] [eventDurationInDay: "
+        + newEvent.getDurationInDay() + "]");
+
+    clubClient.goBack(sleepTime);
+
+    // Redirect back to Event screen
+    state = ScreenState.Event;
   }
 
   private static void cancelEventHandler() {
-  }
+    int eventSeqNum = clubClient.cancelEventScreen();
+    Event eventRemoved = clubManager.getClub(clubId).getEvent(eventSeqNum);
 
-  private static void editEventHandler() {
+    if (eventRemoved == null)
+      System.out.println("\n❌ Event with sequence number [" + eventSeqNum + "] is not found");
+    else {
+      clubManager.getClub(clubId).removeEvent(eventSeqNum);
+      System.out.println("\n✅ An event is canceled with [eventId: " + eventRemoved.getEventID() + "] [eventTitle: "
+          + eventRemoved.getEventTitle() + "] [eventVenue: " + eventRemoved.getEventVenue() + "] [eventDetails: "
+          + eventRemoved.getEventDetails() + "] [eventDate: " + eventRemoved.getEventDate() + "] [eventDurationInDay: "
+          + eventRemoved.getDurationInDay() + "]");
+    }
+
+    clubClient.goBack(sleepTime);
+
+    // Redirect back to Event screen
+    state = ScreenState.Event;
   }
 
   /**
@@ -247,26 +283,11 @@ public class ClubHandler {
       case CancelEvent:
         ClubHandler.cancelEventHandler();
         break;
-      case EditEvent:
-        ClubHandler.editEventHandler();
-        break;
       default:
         System.err.println("\nInvalid State [" + state + "]");
         exit = true;
         break;
       }
-
-      // // Render the club screen (to know which)
-      // userSelection = clubClient.clubScreen();
-
-      // // Check which category does user select
-      // if ((userSelection - 1) == ClubClient.ManageScreenSelection.Member.ordinal())
-      // {
-      // userSelection = clubClient.memberScreen();
-      // ClubHandler.memberHandler(clubId, userSelection);
-      // } else {
-      // userSelection = clubClient.eventScreen();
-      // }
     }
 
     return exit;

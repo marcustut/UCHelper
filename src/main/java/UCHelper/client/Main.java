@@ -1,7 +1,5 @@
 package UCHelper.client;
 
-import static UCHelper.client.EventManager.EventUI;
-
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -30,7 +28,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         int selection = 0;
         do {
             System.out.println("------- UC Helper -------");
@@ -40,35 +38,32 @@ public class Main {
             System.out.println("[4] Student Queue");
             System.out.println("[5] Exit");
             System.out.println("Select [1/2/3/4/5]");
-            while (!in.hasNextInt()) {
-                in.next();
+            while (!scanner.hasNextInt()) {
+                scanner.next();
                 System.out.print("\nSelect [1/2/3/4/5]");
             }
-            selection = in.nextInt();
+            selection = scanner.nextInt();
             System.out.println("");
             switch (selection) {
             case 1:
                 break;
             case 2:
-                // TODO code application logic here
-                // BinarySearchTree<Club> clubs = new BinarySearchTree<>();
-                // ClubManager clubManager = new ClubManager(clubs);
-                // clubs.add(2);
-                // clubs.add(1);
-                // clubs.add(3);
-                // clubs.add(5);
+                ClubHandler.runClubManager(scanner);
                 break;
             case 3:
-                EventUI();
+                EventHandler.EventUI();
                 break;
             case 4:
                 StudentQueue squ = new StudentQueue();
                 squ.studentMainPage();
                 break;
             default:
+                System.out.println("\nYou can only enter selection from '1 - 4', try again.\n");
                 break;
             }
             System.out.println("");
         } while (selection >= 1 && selection <= 4);
+
+        scanner.close();
     }
 }
