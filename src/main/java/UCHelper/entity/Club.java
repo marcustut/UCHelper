@@ -3,11 +3,12 @@ package UCHelper.entity;
 import java.util.Date;
 
 import UCHelper.adt.*;
+import UCHelper.client.*;
 
 public class Club implements Comparable<Club> {
     private int id;
     private String name;
-    private EventManager eventManager = new EventManager();
+    private EventHandler eventHandler = new EventHandler();
     private MemberHandler memberHandler = new MemberHandler();
     private Range<Date> weeklyActivityTime; // TODO: Consider deleting this field
     public static int index = 1;
@@ -83,7 +84,7 @@ public class Club implements Comparable<Club> {
      * @return true if event is added, false otherwise
      */
     public boolean registerEvent(Event event) {
-        return eventManager.registerEvent(event);
+        return eventHandler.registerEvent(event);
     }
 
     /**
@@ -93,7 +94,7 @@ public class Club implements Comparable<Club> {
      * @return true if event is removed, false otherwise
      */
     public boolean removeEvent(int eventSeqNum) {
-        Event result = eventManager.removeEvent(eventSeqNum);
+        Event result = eventHandler.removeEvent(eventSeqNum);
         return result != null;
     }
 
@@ -106,8 +107,8 @@ public class Club implements Comparable<Club> {
         return memberHandler.getMembers();
     }
 
-    public LinkedList<Event> getEvents() {
-        return eventManager.getEvents();
+    public ComparableList<Event> getEvents() {
+        return eventHandler.getEvents();
     }
 
     /**
@@ -127,6 +128,6 @@ public class Club implements Comparable<Club> {
      * @return
      */
     public Event getEvent(int eventSeqNum) {
-        return eventManager.getEvent(eventSeqNum);
+        return eventHandler.getEvent(eventSeqNum);
     }
 }
