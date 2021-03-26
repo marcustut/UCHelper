@@ -1,18 +1,10 @@
 package UCHelper.entity;
 
-import UCHelper.adt.ArrayList;
-import UCHelper.client.EventHandler;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import UCHelper.adt.ComparableList;
 /**
  * Event.java An entity class that stored a proposed event of a club.
- * 
- * @author Dennis
- * @version 2.0
+ * @author Dennis Lau Yik Ann RSFY2S2, dennislauyikann@gmail.com
+ * @version 3.0
  */
 public class Event implements Comparable<Event> {
 
@@ -23,9 +15,8 @@ public class Event implements Comparable<Event> {
     private String eventVenue;
     private String eventDate;
     private int durationInDay;
-    private Club organisor;
-    private ArrayList<Student> attendeeList = new ArrayList<Student>();
-    private ArrayList<Student> crewList = new ArrayList<>();
+    private String organisor;
+    private ComparableList<String> attendeeList = new ComparableList<String>();
 
     // constructor
     public Event() {
@@ -94,6 +85,22 @@ public class Event implements Comparable<Event> {
         this.durationInDay = durationInDay;
     }
 
+    public String getOrganisor() {
+        return organisor;
+    }
+
+    public void setOrganisor(String ClubID) {
+        this.organisor = ClubID;
+    }
+    
+    public ComparableList<String> getAttendeeList() {
+        return attendeeList;
+    }
+    
+    public void setAttendeeList(String StudentID) {
+        this.attendeeList.add(StudentID);
+    }
+    
     @Override
     public String toString() {
         return String.format("%-8s %-10s %-10s %-15s %-8d %-35s", eventID, eventTitle, eventVenue, eventDate,
