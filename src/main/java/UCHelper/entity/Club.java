@@ -7,7 +7,7 @@ import UCHelper.adt.*;
 public class Club implements Comparable<Club> {
     private int id;
     private String name;
-    private EventManager eventManager;
+    // private EventManager eventManager;
     private MemberHandler memberHandler = new MemberHandler();
     private Range<Date> weeklyActivityTime; // TODO: Consider deleting this field
     public static int index = 1;
