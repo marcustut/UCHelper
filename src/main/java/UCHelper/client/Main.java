@@ -1,5 +1,6 @@
 package UCHelper.client;
 
+import static UCHelper.client.EventHandler.dummyData;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -29,6 +30,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        dummyData();
         int selection = 0;
         do {
             System.out.println("------- UC Helper -------");

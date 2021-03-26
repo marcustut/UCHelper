@@ -1,6 +1,7 @@
 package UCHelper.entity;
 
 import UCHelper.adt.ComparableList;
+import UCHelper.adt.CountableNumList;
 /**
  * Event.java An entity class that stored a proposed event of a club.
  * @author Dennis Lau Yik Ann RSFY2S2, dennislauyikann@gmail.com
@@ -17,7 +18,9 @@ public class Event implements Comparable<Event> {
     private int durationInDay;
     private String organisor;
     private ComparableList<String> attendeeList = new ComparableList<String>();
-
+    private ComparableList<String> attendeePosition = new ComparableList<String>();
+    private CountableNumList<String> attendeeCocuMarks = new CountableNumList<String>();
+    
     // constructor
     public Event() {
     }
@@ -92,18 +95,39 @@ public class Event implements Comparable<Event> {
     public void setOrganisor(String ClubID) {
         this.organisor = ClubID;
     }
-    
-    public ComparableList<String> getAttendeeList() {
-        return attendeeList;
+
+    public int getAttendeeListSize() {
+        return attendeeList.getSize();
+    }
+        
+    public String getAttendeeList(int index) {
+        return attendeeList.getElement(index);
+    }
+
+    public String getAttendeePosition(int index) {
+        return attendeePosition.getElement(index);
+    }
+
+    public int getAttendeeCocuMarks(int index) {
+        return attendeeCocuMarks.getNum(index);
     }
     
-    public void setAttendeeList(String StudentID) {
-        this.attendeeList.add(StudentID);
+    public void setAttendeeList(String studentID) {
+        this.attendeeList.add(studentID);
+    }
+    
+    public void setAttendeePosition(String position) {
+        this.attendeePosition.add(position);
+    }
+    
+    public void setAttendeeCocuMarks(int cocu_Mark) {
+        this.attendeeCocuMarks.add(cocu_Mark);
     }
     
     @Override
     public String toString() {
-        return String.format("%-8s %-10s %-10s %-15s %-8d %-35s", eventID, eventTitle, eventVenue, eventDate,
+        return String.format("%-8s %-10s %-10s %-15s %-8d %-35s", 
+                eventID, eventTitle, eventVenue, eventDate,
                 durationInDay, eventDetails);
     }
 
