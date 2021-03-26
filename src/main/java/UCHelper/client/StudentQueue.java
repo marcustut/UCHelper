@@ -17,7 +17,7 @@ import UCHelper.entity.*;
  * @author Cecelia Lim Jie Shi RSFY2S2
  */
 public class StudentQueue {
-    static FlexibleQueueInterface<Student> student = new FlexibleQueue<Student>();
+    private FlexibleQueueInterface<Student> student = new FlexibleQueue<Student>();
     static Scanner input = new Scanner(System.in); //create a scanner input object
 
  
@@ -125,6 +125,7 @@ public class StudentQueue {
         if(!student.isEmpty()){
         System.out.println("---- Student Entering ----");
         System.out.println("Name\t|\tID");
+        
         System.out.println("--------------------------");
         student.display();
         System.out.println("--------------------------");
