@@ -15,8 +15,8 @@ public class ClubHandler {
   private static ScreenState state;
 
   private enum ScreenState {
-    Welcome, Main, RegisterClub, RemoveClub, DisplayAllClubs, ManageClub, Club, Member, Event, RegisterNewMember,
-    RemoveExistingMember, DisplayAllMembers, DisplayEvents, OrganizeEvent, CancelEvent
+    Welcome, Main, RegisterClub, RemoveClub, DisplayAllClubs, ManageClub, BackToMainMenu, Club, Member, Event,
+    RegisterNewMember, RemoveExistingMember, DisplayAllMembers, DisplayEvents, OrganizeEvent, CancelEvent
   }
 
   private static void welcomeHandler() {
@@ -35,7 +35,9 @@ public class ClubHandler {
         : (userSelection - 1) == ClubClient.MainScreenSelection.RemoveClub.ordinal() ? ScreenState.RemoveClub
             : (userSelection - 1) == ClubClient.MainScreenSelection.DisplayAllClubs.ordinal()
                 ? ScreenState.DisplayAllClubs
-                : ScreenState.Club;
+                : (userSelection - 1) == ClubClient.MainScreenSelection.BackToMainMenu.ordinal()
+                    ? ScreenState.BackToMainMenu
+                    : ScreenState.Club;
   }
 
   private static void registerClubHandler() {
@@ -283,6 +285,10 @@ public class ClubHandler {
       case CancelEvent:
         ClubHandler.cancelEventHandler();
         break;
+      case BackToMainMenu:
+        Main.clearScreen();
+        exit = true;
+        continue;
       default:
         System.err.println("\nInvalid State [" + state + "]");
         exit = true;

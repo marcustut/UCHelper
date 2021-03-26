@@ -46,6 +46,7 @@ public class Main {
             System.out.println("");
             switch (selection) {
             case 1:
+                ManageLecturer.display();
                 break;
             case 2:
                 ClubHandler.runClubManager(scanner);
@@ -58,7 +59,7 @@ public class Main {
                 squ.studentMainPage();
                 break;
             default:
-                System.out.println("\nYou can only enter selection from '1 - 4', try again.\n");
+                System.out.println("\nBye, Have a Good Time! 👋\n");
                 break;
             }
             System.out.println("");

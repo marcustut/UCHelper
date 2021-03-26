@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entity;
+package UCHelper.entity;
 
 import java.util.Objects;
-import java.util.Scanner;
-
 
 public class Lecturer {
     private String firstName;
@@ -20,7 +18,8 @@ public class Lecturer {
     public Lecturer() {
     }
 
-    public Lecturer(String firstName,String lastName, String userName, String password, String emailId, String phoneNo) {
+    public Lecturer(String firstName, String lastName, String userName, String password, String emailId,
+            String phoneNo) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
@@ -28,46 +27,59 @@ public class Lecturer {
         this.emailId = emailId;
         this.phoneNo = phoneNo;
     }
-    
+
     public String firstName() {
         return firstName;
     }
+
     public String getfirstName() {
         return firstName;
     }
+
     public void setfirstName(String firstName) {
         this.firstName = firstName;
     }
-   public String getlastName() {
+
+    public String getlastName() {
         return lastName;
     }
+
     public void setlastName(String lastName) {
         this.lastName = lastName;
     }
+
     public String getUserName() {
         return userName;
     }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
+
     public String getEmailId() {
         return emailId;
     }
+
     public void setEmailId(String emailId) {
         this.emailId = emailId;
     }
+
     public String getPhoneNo() {
         return phoneNo;
     }
+
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
     }
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -80,7 +92,6 @@ public class Lecturer {
         return hash;
     }
 
-    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -114,10 +125,10 @@ public class Lecturer {
         return true;
     }
 
-   @Override
+    @Override
     public String toString() {
-        return "Register [firstName=" + firstName + ", lastName=" + lastName +", userName=" + userName + ", password=" +
-            password + ", emailId=" + emailId + ", phoneNo=" + phoneNo + "]";
+        return "Register [firstName=" + firstName + ", lastName=" + lastName + ", userName=" + userName + ", password="
+                + password + ", emailId=" + emailId + ", phoneNo=" + phoneNo + "]";
     }
-  
-}   
+
+}

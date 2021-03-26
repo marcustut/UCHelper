@@ -13,7 +13,7 @@ public class ClubClient {
   public static char inputPrefix;
 
   public enum MainScreenSelection {
-    RegisterClub, RemoveClub, DisplayAllClubs, ManageClub
+    RegisterClub, RemoveClub, DisplayAllClubs, ManageClub, BackToMainMenu
   }
 
   public enum ManageScreenSelection {
@@ -56,8 +56,8 @@ public class ClubClient {
 
   public int mainScreen() {
     String instruction = "\nWhat do you want to do?\n";
-    String selection = "[1] Register a new club\n" + "[2] Remove an existing club\n" + "[3] Display all clubs\n"
-        + "[4] Manage a club\n";
+    String selection = "[1] Register a new club 📝\n" + "[2] Remove an existing club ❌\n" + "[3] Display all clubs 📋\n"
+        + "[4] Manage a club 💻\n" + "[5] Back to Main Menu ⏪\n";
     String mainScreen = instruction + selection + SEPARATOR + inputPrefix;
     int userSelection = 0;
     boolean continuePrompt = true;
@@ -69,10 +69,10 @@ public class ClubClient {
 
         userSelection = scanner.nextInt();
 
-        while (userSelection < 1 || userSelection > 4) {
+        while (userSelection < 1 || userSelection > 5) {
           // Prompt the user for selection
           Main.clearScreen();
-          System.out.println("\nYou can only enter selection from '1 - 4', try again.\n");
+          System.out.println("\nYou can only enter selection from '1 - 5', try again.\n");
           System.out.print(mainScreen);
 
           // Take input from user
@@ -90,7 +90,7 @@ public class ClubClient {
   }
 
   public String registerScreen() {
-    String instruction = "\nEnter the club name that you want to register\n";
+    String instruction = "\nEnter the club name that you want to register 👇\n";
     String registerScreen = instruction + inputPrefix;
     String input = "";
     boolean continuePrompt = true;
@@ -120,7 +120,7 @@ public class ClubClient {
   }
 
   public int removeScreen() {
-    String instruction = "\nEnter the Club ID that you want to remove\n";
+    String instruction = "\nEnter the Club ID that you want to remove ⌨\n";
     String removeScreen = instruction + inputPrefix;
     int input = 0;
     boolean continuePrompt = true;
@@ -225,7 +225,7 @@ public class ClubClient {
   public int memberScreen() {
     String instruction = "\nWhat actions do you want to perform?\n";
     String selection = "[1] Register a new member 👦\n" + "[2] Remove an existing member ❌\n"
-        + "[3] Display all members \n" + "[4] Go back ⏪\n";
+        + "[3] Display all members 📋\n" + "[4] Go back ⏪\n";
     String memberScreen = instruction + selection + SEPARATOR + inputPrefix;
 
     int userSelection = 0;
@@ -553,9 +553,9 @@ public class ClubClient {
     String errorMsg = null;
 
     if (ex.toString().contains("InputMismatchException")) {
-      errorMsg = "\nYou're not inputting an integer, try again.";
+      errorMsg = "\n⚠ You're not inputting an integer, try again.";
     } else {
-      errorMsg = "\nYour input is incorrect. Try again.";
+      errorMsg = "\n⚠ Your input is incorrect. Try again.";
     }
 
     return errorMsg;

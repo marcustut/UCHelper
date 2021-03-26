@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package adt;
+package UCHelper.adt;
 
 import java.util.Iterator;
 
@@ -11,16 +11,21 @@ import java.util.Iterator;
  *
  * @author muhamadalarif
  */
-public interface SetInterface <T> {
-boolean add(T newElement);
-boolean remove(T anElement) ;
-boolean checkSubset(SetInterface anotherSet); 
-void union(SetInterface anotherSet);
-SetInterface intersection(SetInterface anotherSet);
-boolean isEmpty();
-Iterator<T> getIterator();
+public interface SetInterface<T> {
+    boolean add(T newElement);
 
-    //public void toArray();
+    boolean remove(T anElement);
 
+    boolean checkSubset(SetInterface anotherSet);
+
+    void union(SetInterface anotherSet);
+
+    SetInterface intersection(SetInterface anotherSet);
+
+    boolean isEmpty();
+
+    Iterator<T> getIterator();
+
+    // public void toArray();
 
 }
