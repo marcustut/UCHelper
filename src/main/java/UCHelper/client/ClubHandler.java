@@ -175,6 +175,8 @@ public class ClubHandler {
   }
 
   private static void displayEventsHandler() {
+
+    state = ScreenState.Event;
   }
 
   private static void organizeEventHandler() {

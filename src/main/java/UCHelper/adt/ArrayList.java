@@ -1,5 +1,6 @@
 package UCHelper.adt;
 
+import UCHelper.entity.Event;
 import java.io.Serializable;
 import java.util.Iterator;
 
@@ -8,6 +9,7 @@ public class ArrayList<T> implements ListInterface<T>, Serializable {
   private T[] array;
   private int length;
   private static final int DEFAULT_CAPACITY = 5;
+    private Node<T> head = null;
 
   public ArrayList() {
     array = (T[]) new Object[DEFAULT_CAPACITY];
@@ -161,6 +163,20 @@ public class ArrayList<T> implements ListInterface<T>, Serializable {
     @Override
     public Iterator<T> getIterator() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    private static class Node<T> {
+        private T data;
+        private Node<T> next;
+
+        public Node(T data, Node<T> next) {
+            this.data = data;
+            this.next = next;
+        }
+    }
+    
+    public Iterator<Event> iterator() {
+      return null;
+
     }
 
 }
