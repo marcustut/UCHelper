@@ -20,8 +20,9 @@ public class ClubHandler {
   }
 
   private static void welcomeHandler() {
-    // Display the Welcome Screen
+    // Clear the console before displaying
     Main.clearScreen();
+    // Display the Welcome Screen
     clubClient.welcomeScreen();
     // Redirect to MainScreen
     state = ScreenState.Main;
@@ -70,6 +71,8 @@ public class ClubHandler {
       state = ScreenState.Main;
       return;
     }
+
+    System.out.println("\n✅ The club with [id: " + clubId + "] is successfully removed");
 
     // Remove a club
     clubManager.removeClub(clubId);
@@ -170,6 +173,8 @@ public class ClubHandler {
     Iterator<Student> itr = club.getMembers().iterator();
     int index = 1;
 
+    System.out.print("\nList of members 📋\n" + ClubClient.SEPARATOR);
+
     while (itr.hasNext()) {
       System.out.println(index + ". [" + itr.next() + "]");
       index++;
@@ -192,6 +197,8 @@ public class ClubHandler {
     Club club = clubManager.getClub(clubId);
     Iterator<Event> itr = club.getEvents().iterator();
     int index = 1;
+
+    System.out.print("\nList of events 📋\n" + ClubClient.SEPARATOR);
 
     while (itr.hasNext()) {
       Event event = itr.next();
