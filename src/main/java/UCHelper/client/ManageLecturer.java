@@ -6,8 +6,8 @@
  */
 package UCHelper.client;
 
-import UCHelper.entity.Lecturer;
 import UCHelper.adt.*;
+import UCHelper.entity.*;
 import java.util.Scanner;
 
 public class ManageLecturer {
@@ -17,10 +17,8 @@ public class ManageLecturer {
     static Lecturer l = new Lecturer();
 
     public static void main(String[] args) {
-        SetInterface<String> lecturer = new Set<>() {
-        };
-        SetInterface<String> lectChck = new Set<>() {
-        };
+        SetInterface<String> lecturer = new Set<>();
+        SetInterface<String> lectChck = new Set<>();
         // system out print choose
         display();
 

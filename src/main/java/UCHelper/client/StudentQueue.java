@@ -105,11 +105,11 @@ public class StudentQueue {
 
     public void findLastStudent() {
         //display last student enter
-        System.out.println("The Last Student Check-In : " + student.last());
+        System.out.println("The Last Student Check-In : \n" + student.last());
     }
 
     public void findFirstStudent() {
-        System.out.println("The First Student Check-In : " + student.first());
+        System.out.println("The First Student Check-In : \n" + student.first());
     }
 
     public void removeStudent() {
