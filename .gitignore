@@ -2,6 +2,7 @@
 /bin/
 /.settings/
 /.gradle/
+.gradle/*
 /.vscode/
 /.idea/
 .project
