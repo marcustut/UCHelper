@@ -3,8 +3,8 @@ package UCHelper.entity;
 import UCHelper.adt.*;
 
 public class MemberHandler {
-    private final LinkedListStack<Student> members = new LinkedListStack<Student>();
-    private final LinkedListStack<Student> committees = new LinkedListStack<Student>();
+    private final IterableCustomStack<Student> members = new IterableCustomStack<Student>();
+    private final IterableCustomStack<Student> committees = new IterableCustomStack<Student>();
     private Student clubLead;
 
     public MemberHandler() {
@@ -19,7 +19,7 @@ public class MemberHandler {
      * 
      * @return list of members
      */
-    public LinkedListStack<Student> getMembers() {
+    public IterableCustomStack<Student> getMembers() {
         return members;
     }
 
@@ -28,7 +28,7 @@ public class MemberHandler {
      * 
      * @return list of committees
      */
-    public LinkedListStack<Student> getCommittees() {
+    public IterableCustomStack<Student> getCommittees() {
         return committees;
     }
 

@@ -11,9 +11,6 @@ This is a project for BACS2063 Data Structures and Algorithm.
 # run the unit tests
 ./gradlew test
 
-# run the project
-./gradlew run
-
 # run the project with input using `System.in`
 ./gradlew --console plain run
 ```
@@ -42,9 +39,136 @@ Please make sure to update tests as appropriate.
 
 ## Lecturer
 
+### Responsibilities 📝
+
+#### 1. Manage a set of lecturer information
+
+    - Register a new lecturer
+    - Delete an existing lecturer
+    - View lecturer information
+    - check lecturer existence in system
+
+### ADT (Abstract Data Type)🧩
+
+    - SetArray(SetInterface.java, Set.java)
+
+### Clients 💻
+
+    -  ManageLecturer.java
+
+### How-to's 📝
+
+#### a. Add lecturer
+
+1. press '1' and click 'Enter'.
+2. keyed in the information.
+3. enter 'y' to continue add lecturer or 'n' to main lecturer menu.
+
+#### b. display lecturer
+
+1. press '2' and click 'Enter'.
+2. enter 'y' to continue display lecturer or 'n' to main lecturer menu.
+
+#### c. remove lecturer
+
+1. press '3' and click 'Enter'.
+2. keyed in the information intended to remove.
+3. enter 'y' to continue remove lecturer or 'n' to main lecturer menu.
+
+#### d. check lecturer
+
+1. press '4' and click 'Enter'.
+2. keyed in the information intended to check.
+3. enter 'y' to continue check lecturer or 'n' to main lecturer menu.
+
 ## Event
 
-Created a eventHandler UI and event entity for event module, successfully implement comparableList.java, countableNumList.java and their interface for storing numerous events and events'attendees.
+### Responsibilities 📝
+
+#### 1. To manage a collection of events
+
+- Basic create,retrieve,update,delete (CRUD) features of managing an event.
+- View the list of existing events.
+
+#### 2. To manage the attendee list of an event
+
+- Adding student details into attendee list of an event.
+- View the list of attendees of an event.
+- Adding attendee position into attendeePositionList.
+- Adding attendee cocu_Mark into attendeeCocuMarks.
+
+### ADT (Abstract Data Type) 🧩
+
+1. ComparableList (ComparableList.java, ComparableListInterface.java)
+2. CountableNumList (CountableNumList.java, CountableNumListInterface.java)
+
+ComparableList is Abstract Data Type for objects while CountableNumList is Abstract Data Type for integer which are extremely useful in producing report usage datas.
+
+### Unit Tests 🧰
+
+There's a unit test under Event module for testing the ADT methods. User may enter '0' in eventUI phase which will direct user to ComparableList and CountableNumList ADTs' methods. All the basic override methods can be test under this section as shown in the following image.
+
+![image](https://user-images.githubusercontent.com/61375431/112712073-fd2c1600-8f07-11eb-91a9-087ce76d405f.png)
+
+### Clients 💻
+
+1. EventHandler.java
+
+`EventHandler.java` handles the user requests and program operations for each operations in event module. Therefore, all needed program logics are written here.
+
+### How-to's 📝
+
+#### 1. To manage a collection of events
+
+##### a. Create an event
+
+![image](https://user-images.githubusercontent.com/61375431/112711460-81c86580-8f03-11eb-863c-49636d231fd9.png)
+
+Simply enter `2` at this screen and you will be prompted to enter the event details
+
+##### b. Browse event
+
+![image](https://user-images.githubusercontent.com/61375431/112711492-c6ec9780-8f03-11eb-92da-47a102424168.png)
+
+Enter `1` at this screen and you will be prompted to enter the event ID/Title
+
+##### c. Edit an existing event
+
+![image](https://user-images.githubusercontent.com/61375431/112711873-b0940b00-8f06-11eb-8437-9e91e13135a1.png)
+
+Enter `3` at this screen and you will be prompted to enter the event ID/Title and followed by event info
+
+##### d. Delete an existing event
+
+![image](https://user-images.githubusercontent.com/61375431/112711901-e46f3080-8f06-11eb-961a-2da8b4f5645a.png)
+
+Enter `4` at this screen and you will be prompted to enter the event ID/Title and the selected event will be deleted
+
+##### e. Display current event list
+
+![image](https://user-images.githubusercontent.com/61375431/112711942-27c99f00-8f07-11eb-838c-ba90053f7a6d.png)
+
+Enter `5` at this screen and the current event list will be displayed
+
+##### f. Delete current event list
+
+Enter `6` at eventUI screen and the current event list will be deleted
+
+##### g. Display all past event before today
+
+Enter `7` at eventUI screen and all past event before today will be displayed
+
+#### 2. To manage the attendee list of an event
+
+##### a. Register a student to an event's attendee list
+
+![image](https://user-images.githubusercontent.com/61375431/112711579-73c71480-8f04-11eb-9975-b9e849708020.png)
+
+Enter student info at this screen and student will be registered to the event, it is able to add more if needed
+
+![image](https://user-images.githubusercontent.com/61375431/112711685-30b97100-8f05-11eb-8c82-a5566bee0e8c.png)
+
+After the student is registered, the program will automatically generate his cocumarks into the attendeeCocuMarks, the results can be viewed by entering '8' in eventUI phase
 
 ## Club
 
@@ -52,41 +176,41 @@ Created a eventHandler UI and event entity for event module, successfully implem
 
 #### 1. To manage a collection of clubs
 
+```
 - Registering a new club
 - Deleting an existing club
 - View the list of active clubs
+```
 
 #### 2. To manage students in a Club
 
+```
 - Adding a new student to a club
 - Removing an existing student from a club
 - Display all the students in a club
+```
 
 #### 3. To manage events of a Club
 
+```
 - Schedule a new event for a club
 - Deleting a scheduled event for a club
 - Display all the scheduled events of a club
+```
 
 ### ADT (Abstract Data Type) 🧩
 
+```
 1. BinarySearchTree (BinarySearchTree.java, Tree.java)
-2. LinkedListStack (LinkedListStack.java)
+2. LinkedListStack (IterableCustomStack.java)
+```
 
-A special use case here for **LinkedListStack** here is that it is used for constructing an iterator of the traversal of BST (BinarySearchTree)
+A special use case here for **IterableCustomStack** here is that it is used for constructing an iterator of the traversal of BST (BinarySearchTree)
 
 ### Unit Tests 🧰
 
-The unit tests for ADT used are specified in `src/test/UCHelper/adt`. The purpose of writing unit tests is to make sure ADTs are working correctly before using them in the entity class. Else, it might cause unobvious errors which are hard to debug.
+The unit tests for ADT used are specified in `src/test/UCHelper/adt`. The purpose of writing unit tests is to make sure ADTs are working correctly before using them in the entity / client class. Else, it might cause unobvious errors which are hard to debug.
 
-### Clients 💻
-
-1. ClubHandler.java
-2. ClubClient.java
-
-`ClubHandler.java` handles the application's state and registering respective handlers for each states. Therefore, redirection is handled here.
-
-=======
 ### How-to's 📝
 
 #### 1. To manage a collection of clubs
@@ -143,7 +267,7 @@ Enter the student's details accordingly and he/she will be added to the club
 
 ![image](https://user-images.githubusercontent.com/59773847/112702151-8114dc80-8ecd-11eb-898b-71ba8c647e58.png)
 
-Enter `3` here to see all members in the club 
+Enter `3` here to see all members in the club
 
 ![image](https://user-images.githubusercontent.com/59773847/112702320-0f895e00-8ece-11eb-9d0c-50c7b75ccb7c.png)
 
@@ -189,21 +313,12 @@ This shows that the event is canceled and is redirecting you back to the previou
 
 Enter `1` and the list of registred events will be shown
 
-### ADT (Abstract Data Type) 🧩
-
-1. BinarySearchTree (BinarySearchTree.java, Tree.java)
-2. LinkedListStack (LinkedListStack.java)
-
-A special use case here for **LinkedListStack** here is that it is used for constructing an iterator of the traversal of BST (BinarySearchTree)
-
-### Unit Tests 🧰
-
-The unit tests for ADT used are specified in `src/test/UCHelper/adt`. The purpose of writing unit tests is to make sure ADTs are working correctly before using them in the entity class. Else, it might cause unobvious errors which are hard to debug.
-
 ### Clients 💻
 
+```
 1. ClubHandler.java
 2. ClubClient.java
+```
 
 `ClubHandler.java` handles the application's state and registering respective handlers for each states. Therefore, redirection is handled here.
 
@@ -358,4 +473,73 @@ To redirect another state, it is very simple, just assign the `state` variable w
   ...
 ```
 
-## Student
+## Student Queue
+
+### Responsibilities 📝
+
+#### 1. Manage the student queuing for entering the event.
+
+    - Check in Student enter the event
+    - Display all student in the queue
+    - Display first check-in student
+    - Display last check-in student
+    - Remove the first student from the queue
+    - Check the queue is empty
+    - Shift the first student to the last position in the queue
+    - Clear all the check-in student details
+
+### ADT (Abstract Data Type)🧩
+
+    - Flexible Queue(FlexibleQueueInterface.java, FlexibleQueue.java)
+
+### Clients 💻
+
+    -  StudentQueue.java
+
+### How-to's 📝
+
+#### To enter the Student Queue, please choose “ 4 ”, then “ Enter ”
+
+#### a. Check In Student
+
+1. Press '1' and click 'Enter'.
+2. Key in the request information
+3. Enter 'y/Y' to return the Student Queue main page
+
+#### b. Generate All Student
+
+1. Press '2' and click 'Enter'.
+2. System will display the details of the student with the current date and time.
+3. Enter 'y/Y' to return the Student Queue main page
+
+#### c. Find the first check-in Student
+
+1. Press '3' and click 'Enter'.
+2. System will display the details of the first student.
+3. Enter 'y/Y' to return the Student Queue main page
+
+#### d. Find the last check-in Student
+
+1. Press '4'' and click 'Enter'.
+2. System will display the details of the last student.
+3. Enter 'y/Y' to return the Student Queue main page
+
+#### e. Remove the Student
+
+1. Press '5' and click 'Enter'.
+2. Enter 'y/Y' to return the Student Queue main page
+
+#### f. Check Student Queue Empty
+
+1. Press '6' and click 'Enter'.
+2. Enter 'y/Y' to return the Student Queue main page
+
+#### g. Shift First Student to Last Position
+
+1. Press '7' and click 'Enter'.
+2. Enter 'y/Y' to return the Student Queue main page
+
+#### h. Clear All
+
+1. Press '8' and click 'Enter'.
+2. Enter 'y/Y' to return the Student Queue main page

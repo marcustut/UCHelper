@@ -4,12 +4,12 @@
  * Course: RSF2G1
  * Date: May 2021
  */
-package adt;
+package UCHelper.adt;
 
+public interface SetInterface<T> {
+  boolean add(T newElement);
 
+  boolean remove(T anElement);
 
-public interface SetInterface <T> {
-boolean add(T newElement);
-boolean remove(T anElement) ;
-boolean checkSubset(SetInterface anotherSet); 
+  boolean checkSubset(SetInterface anotherSet);
 }

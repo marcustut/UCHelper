@@ -1,7 +1,6 @@
 package UCHelper.entity;
 
 import UCHelper.adt.ComparableList;
-import java.util.Date;
 
 import UCHelper.adt.*;
 import UCHelper.client.*;
@@ -96,7 +95,7 @@ public class Club implements Comparable<Club> {
      * 
      * @return list of members
      */
-    public LinkedListStack<Student> getMembers() {
+    public IterableCustomStack<Student> getMembers() {
         return memberHandler.getMembers();
     }
 
