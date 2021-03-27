@@ -4,7 +4,7 @@
  * Course: RSF2G1
  * Date: May 2021
  */
-package entity;
+package UCHelper.entity;
 
 import java.util.Objects;
 
