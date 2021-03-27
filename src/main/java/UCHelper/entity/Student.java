@@ -11,9 +11,9 @@ public class Student implements Comparable<Student> {
     public Student() {
     }
 
-    public Student(String name, int studID) {
+    public Student(String name, int studId) {
         this.name = name;
-        this.studId = studID;
+        this.studId = studId;
     }
 
     public String getName() {
@@ -28,8 +28,8 @@ public class Student implements Comparable<Student> {
         return studId;
     }
 
-    public void setStudID(int studID) {
-        this.studId = studID;
+    public void setStudID(int studId) {
+        this.studId = studId;
     }
 
     @Override
