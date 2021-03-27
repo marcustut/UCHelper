@@ -12,7 +12,7 @@ public class LinkedListStackTest {
 
     @Test
     public void testIsEmpty() {
-        LinkedListStack<Integer> list = new LinkedListStack<>();
+        IterableCustomStack<Integer> list = new IterableCustomStack<>();
 
         assertTrue(list.isEmpty());
 
@@ -23,7 +23,7 @@ public class LinkedListStackTest {
 
     @Test
     public void testSize() {
-        LinkedListStack<Integer> list = new LinkedListStack<>();
+        IterableCustomStack<Integer> list = new IterableCustomStack<>();
 
         assertEquals(0, list.size());
 
@@ -38,7 +38,7 @@ public class LinkedListStackTest {
 
     @Test
     public void testAdd() {
-        LinkedListStack<Integer> list = new LinkedListStack<>();
+        IterableCustomStack<Integer> list = new IterableCustomStack<>();
 
         // Test adding same element
         assertTrue(list.add(1));
@@ -50,7 +50,7 @@ public class LinkedListStackTest {
 
     @Test
     public void testPop() {
-        LinkedListStack<Integer> list = new LinkedListStack<>();
+        IterableCustomStack<Integer> list = new IterableCustomStack<>();
 
         // Test when list is empty
         assertNull(list.pop());
@@ -71,7 +71,7 @@ public class LinkedListStackTest {
 
     @Test
     public void testPeek() {
-        LinkedListStack<Integer> list = new LinkedListStack<>();
+        IterableCustomStack<Integer> list = new IterableCustomStack<>();
 
         // When list is empty
         assertNull(list.peek());
@@ -85,7 +85,7 @@ public class LinkedListStackTest {
 
     @Test
     public void testRemove() {
-        LinkedListStack<Integer> list = new LinkedListStack<>();
+        IterableCustomStack<Integer> list = new IterableCustomStack<>();
 
         assertTrue(list.add(1));
         assertTrue(list.add(2));
@@ -113,7 +113,7 @@ public class LinkedListStackTest {
 
     @Test
     public void testReplace() {
-        LinkedListStack<Integer> list = new LinkedListStack<>();
+        IterableCustomStack<Integer> list = new IterableCustomStack<>();
 
         assertTrue(list.add(1));
         assertTrue(list.add(2));
@@ -128,7 +128,7 @@ public class LinkedListStackTest {
 
     @Test
     public void testGet() {
-        LinkedListStack<Integer> list = new LinkedListStack<>();
+        IterableCustomStack<Integer> list = new IterableCustomStack<>();
 
         assertTrue(list.add(1));
         assertTrue(list.add(2));
@@ -141,7 +141,7 @@ public class LinkedListStackTest {
 
     @Test
     public void testContains() {
-        LinkedListStack<Integer> list = new LinkedListStack<>();
+        IterableCustomStack<Integer> list = new IterableCustomStack<>();
 
         assertTrue(list.add(2));
         assertTrue(list.add(3));
@@ -157,7 +157,7 @@ public class LinkedListStackTest {
 
     @Test
     public void testFindIndex() {
-        LinkedListStack<Integer> list = new LinkedListStack<>();
+        IterableCustomStack<Integer> list = new IterableCustomStack<>();
 
         assertTrue(list.add(1));
         assertTrue(list.add(2));
@@ -170,7 +170,7 @@ public class LinkedListStackTest {
 
     @Test
     public void testIterator() {
-        LinkedListStack<Integer> list = new LinkedListStack<>();
+        IterableCustomStack<Integer> list = new IterableCustomStack<>();
         StringBuilder sb = new StringBuilder();
 
         list.add(100);
