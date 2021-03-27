@@ -10,23 +10,23 @@ import java.util.Date;
 import UCHelper.adt.ComparableList;
 import UCHelper.adt.CountableNumList;
 import UCHelper.entity.*;
+import UCHelper.entity.EventManager;
+import static UCHelper.entity.EventManager.eventList;
+import static UCHelper.entity.EventManager.eventSeqNum;
 import java.util.concurrent.TimeUnit;
 /**
- * EventManager.java is an client class that contain all the needed methods of an event interface.
+ * EventHandler.java is an client class that contain all the needed methods of an event interface.
  * @author Dennis Lau Yik Ann RSFY2S2, dennislauyikann@gmail.com
  * @version 4.0
  */
 public class EventHandler{
-    static ComparableList<Event> eventList = new ComparableList<Event>();
     static Scanner in = new Scanner(System.in);
-    static int eventSeqNum = 100;    
     private static final String DEFAULT_POSITION = "Member  ";
     private static final int DEFAULT_COCU_MARK_FOR_MEMBER = 80;
     private static final int DEFAULT_COCU_MARK_FOR_COMMITTEE = 90;
     private static final int DEFAULT_COCU_MARK_FOR_PRESIDENT = 95;
     private static final int DEFAULT_PROCESSING_TIME = 1;
-    
-    //For others to use, public/accessible by others
+
     public static boolean dummyData() {
         //---addEvent(...)
         Event e1 = new Event(eventSeqNum++, "event1", "Wangsa", "a fund raising event", "08/02/2020", 4);
@@ -63,43 +63,6 @@ public class EventHandler{
         eventList.add((Event) e2);
         eventList.add((Event) e3);
         return false;
-    }
-    
-    public boolean registerEvent(Event event) {
-        eventList.add(event);
-        return true;
-    }
-
-    public Event removeEvent(int eventSeqNum) {
-        String ID = "E-" + eventSeqNum;
-        Event removedEvent = new Event();
-        ComparableList<Event> tem = new ComparableList<Event>();
-        for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
-            Event e = it.next();
-            if (!e.getEventID().equals(ID)) {
-                tem.add(e);
-            }
-        }
-        eventList = tem;
-        System.out.println("");
-        return removedEvent;
-    }
-
-    public ComparableList<Event> getEvents() {
-        return eventList;
-    }
-
-    public Event getEvent(int eventSeqNum) {
-        String ID = "E-" + eventSeqNum;
-        Event event = new Event();
-        for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
-            Event e = it.next();
-            if (!e.getEventID().equals(ID)) {
-                event = e;
-            }
-        }
-        System.out.println("");
-        return event;
     }
     
     public static void EventUI(){
@@ -168,7 +131,6 @@ public class EventHandler{
         } while (userChoice >= 0 && userChoice <= 8);
     }
     
-    //For internal usage, contain main method logics and program flows
     private static void adtShowcase() {
         int userChoice = 0;
         do {

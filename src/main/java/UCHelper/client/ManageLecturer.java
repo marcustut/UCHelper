@@ -4,7 +4,7 @@
  * Course: RSF2G1
  * Date: May 2021
  */
-package client;
+package UCHelper.client;
 
 import entity.Lecturer;
 import java.util.Scanner;

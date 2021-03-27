@@ -9,7 +9,7 @@ import UCHelper.client.*;
 public class Club implements Comparable<Club> {
     private int id;
     private String name;
-    private EventHandler eventHandler = new EventHandler();
+    private EventManager eventManager = new EventManager();
     private MemberHandler memberHandler = new MemberHandler();
     public static int index = 1;
 
@@ -77,7 +77,7 @@ public class Club implements Comparable<Club> {
      * @return true if event is added, false otherwise
      */
     public boolean registerEvent(Event event) {
-        return eventHandler.registerEvent(event);
+        return eventManager.registerEvent(event);
     }
 
     /**
@@ -87,7 +87,7 @@ public class Club implements Comparable<Club> {
      * @return true if event is removed, false otherwise
      */
     public boolean removeEvent(int eventSeqNum) {
-        Event result = eventHandler.removeEvent(eventSeqNum);
+        Event result = eventManager.removeEvent(eventSeqNum);
         return result != null;
     }
 
@@ -101,7 +101,7 @@ public class Club implements Comparable<Club> {
     }
 
     public ComparableList<Event> getEvents() {
-        return eventHandler.getEvents();
+        return eventManager.getEvents();
     }
 
     /**
@@ -121,6 +121,6 @@ public class Club implements Comparable<Club> {
      * @return
      */
     public Event getEvent(int eventSeqNum) {
-        return eventHandler.getEvent(eventSeqNum);
+        return eventManager.getEvent(eventSeqNum);
     }
 }
