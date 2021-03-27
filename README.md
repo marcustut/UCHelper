@@ -41,6 +41,36 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Lecturer
+### Responsibilities 📝
+#### 1. Manage a set of lecturer information
+
+    - Register a new lecturer
+    - Delete an existing lecturer
+    - View lecturer information
+    - check lecturer existence in system
+### ADT (Abstract Data Type)🧩
+    - SetArray(SetInterface.java, Set.java)
+
+### Clients 💻
+    -  ManageLecturer.java
+
+### How-to's 📝 
+#### a. Add lecturer
+1. press '1' and click 'Enter'.
+2. keyed in the information.
+3. enter 'y' to continue add lecturer or 'n' to main lecturer menu. 
+#### a. display lecturer
+1. press '2' and click 'Enter'.
+2. enter 'y' to continue display lecturer or 'n' to main lecturer menu. 
+#### a. remove lecturer
+1. press '3' and click 'Enter'.
+2. keyed in the information intended to remove.
+3. enter 'y' to continue remove lecturer or 'n' to main lecturer menu. 
+#### a. check lecturer
+1. press '4' and click 'Enter'.
+2. keyed in the information intended to check.
+3. enter 'y' to continue check lecturer or 'n' to main lecturer menu. 
+
 
 ## Event
 
