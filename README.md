@@ -52,41 +52,28 @@ Created a eventHandler UI and event entity for event module, successfully implem
 
 #### 1. To manage a collection of clubs
 
+```
 - Registering a new club
 - Deleting an existing club
 - View the list of active clubs
+```
 
 #### 2. To manage students in a Club
 
+```
 - Adding a new student to a club
 - Removing an existing student from a club
 - Display all the students in a club
+```
 
 #### 3. To manage events of a Club
 
+```
 - Schedule a new event for a club
 - Deleting a scheduled event for a club
 - Display all the scheduled events of a club
+```
 
-### ADT (Abstract Data Type) 🧩
-
-1. BinarySearchTree (BinarySearchTree.java, Tree.java)
-2. LinkedListStack (LinkedListStack.java)
-
-A special use case here for **LinkedListStack** here is that it is used for constructing an iterator of the traversal of BST (BinarySearchTree)
-
-### Unit Tests 🧰
-
-The unit tests for ADT used are specified in `src/test/UCHelper/adt`. The purpose of writing unit tests is to make sure ADTs are working correctly before using them in the entity class. Else, it might cause unobvious errors which are hard to debug.
-
-### Clients 💻
-
-1. ClubHandler.java
-2. ClubClient.java
-
-`ClubHandler.java` handles the application's state and registering respective handlers for each states. Therefore, redirection is handled here.
-
-=======
 ### How-to's 📝
 
 #### 1. To manage a collection of clubs
@@ -143,7 +130,7 @@ Enter the student's details accordingly and he/she will be added to the club
 
 ![image](https://user-images.githubusercontent.com/59773847/112702151-8114dc80-8ecd-11eb-898b-71ba8c647e58.png)
 
-Enter `3` here to see all members in the club 
+Enter `3` here to see all members in the club
 
 ![image](https://user-images.githubusercontent.com/59773847/112702320-0f895e00-8ece-11eb-9d0c-50c7b75ccb7c.png)
 
@@ -192,9 +179,9 @@ Enter `1` and the list of registred events will be shown
 ### ADT (Abstract Data Type) 🧩
 
 1. BinarySearchTree (BinarySearchTree.java, Tree.java)
-2. LinkedListStack (LinkedListStack.java)
+2. LinkedListStack (IterableCustomStack.java)
 
-A special use case here for **LinkedListStack** here is that it is used for constructing an iterator of the traversal of BST (BinarySearchTree)
+A special use case here for **IterableCustomStack** here is that it is used for constructing an iterator of the traversal of BST (BinarySearchTree)
 
 ### Unit Tests 🧰
 
