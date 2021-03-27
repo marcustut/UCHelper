@@ -5,11 +5,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
+import java.util.logging.Logger;
 
-public class LinkedListTest {
+public class LinkedListStackTest {
+    private final static Logger log = Logger.getLogger(LinkedListStackTest.class.getName());
+
     @Test
     public void testIsEmpty() {
-        LinkedList<Integer> list = new LinkedList<>();
+        LinkedListStack<Integer> list = new LinkedListStack<>();
 
         assertTrue(list.isEmpty());
 
@@ -20,7 +23,7 @@ public class LinkedListTest {
 
     @Test
     public void testSize() {
-        LinkedList<Integer> list = new LinkedList<>();
+        LinkedListStack<Integer> list = new LinkedListStack<>();
 
         assertEquals(0, list.size());
 
@@ -35,7 +38,7 @@ public class LinkedListTest {
 
     @Test
     public void testAdd() {
-        LinkedList<Integer> list = new LinkedList<>();
+        LinkedListStack<Integer> list = new LinkedListStack<>();
 
         // Test adding same element
         assertTrue(list.add(1));
@@ -46,8 +49,43 @@ public class LinkedListTest {
     }
 
     @Test
+    public void testPop() {
+        LinkedListStack<Integer> list = new LinkedListStack<>();
+
+        // Test when list is empty
+        assertNull(list.pop());
+
+        list.add(1);
+
+        assertEquals(new Integer(1), list.pop());
+        assertEquals(0, list.size());
+
+        assertTrue(list.add(1));
+        assertTrue(list.add(2));
+        assertTrue(list.add(3));
+
+        assertEquals(new Integer(3), list.pop());
+        assertEquals(2, list.size());
+        assertEquals(new Integer(2), list.peek());
+    }
+
+    @Test
+    public void testPeek() {
+        LinkedListStack<Integer> list = new LinkedListStack<>();
+
+        // When list is empty
+        assertNull(list.peek());
+
+        list.add(1);
+
+        assertEquals(new Integer(1), list.peek());
+        assertEquals(1, list.size());
+        assertEquals(new Integer(1), list.peek());
+    }
+
+    @Test
     public void testRemove() {
-        LinkedList<Integer> list = new LinkedList<>();
+        LinkedListStack<Integer> list = new LinkedListStack<>();
 
         assertTrue(list.add(1));
         assertTrue(list.add(2));
@@ -62,11 +100,20 @@ public class LinkedListTest {
 
         assertEquals("2 ", list.toString());
         assertEquals(1, list.size());
+
+        assertTrue(list.add(4));
+        assertTrue(list.add(5));
+
+        list.remove(2);
+
+        assertEquals("2 4 ", list.toString());
+        assertEquals(2, list.size());
+        assertEquals(new Integer(4), list.peek());
     }
 
     @Test
     public void testReplace() {
-        LinkedList<Integer> list = new LinkedList<>();
+        LinkedListStack<Integer> list = new LinkedListStack<>();
 
         assertTrue(list.add(1));
         assertTrue(list.add(2));
@@ -81,7 +128,7 @@ public class LinkedListTest {
 
     @Test
     public void testGet() {
-        LinkedList<Integer> list = new LinkedList<>();
+        LinkedListStack<Integer> list = new LinkedListStack<>();
 
         assertTrue(list.add(1));
         assertTrue(list.add(2));
@@ -94,7 +141,7 @@ public class LinkedListTest {
 
     @Test
     public void testContains() {
-        LinkedList<Integer> list = new LinkedList<>();
+        LinkedListStack<Integer> list = new LinkedListStack<>();
 
         assertTrue(list.add(2));
         assertTrue(list.add(3));
@@ -110,7 +157,7 @@ public class LinkedListTest {
 
     @Test
     public void testFindIndex() {
-        LinkedList<Integer> list = new LinkedList<>();
+        LinkedListStack<Integer> list = new LinkedListStack<>();
 
         assertTrue(list.add(1));
         assertTrue(list.add(2));
@@ -123,21 +170,24 @@ public class LinkedListTest {
 
     @Test
     public void testIterator() {
-        LinkedList<Integer> list = new LinkedList<>();
+        LinkedListStack<Integer> list = new LinkedListStack<>();
         StringBuilder sb = new StringBuilder();
 
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(1);
+        list.add(100);
+        list.add(20);
+        list.add(10);
+        list.add(30);
+        list.add(200);
+        list.add(150);
+        list.add(300);
 
         Iterator<Integer> itr = list.iterator();
 
         while (itr.hasNext()) {
             Integer elem = itr.next();
-            sb.append(elem);
+            sb.append(elem + ", ");
         }
 
-        assertEquals("1231", sb.toString());
+        assertEquals("100, 20, 10, 30, 200, 150, 300, ", sb.toString());
     }
 }

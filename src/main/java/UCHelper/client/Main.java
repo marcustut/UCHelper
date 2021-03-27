@@ -61,7 +61,7 @@ public class Main {
                 squ.studentMainPage();
                 break;
             default:
-                System.out.println("\nBye, Have a Good Time! 👋\n");
+                System.out.println("\nBye, Have a Great Time! 👋\n");
                 break;
             }
             System.out.println("");

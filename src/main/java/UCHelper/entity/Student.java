@@ -5,15 +5,15 @@ package UCHelper.entity;
  * @author Cecelia Lim Jie Shi RSFY2S2
  */
 public class Student implements Comparable<Student> {
-    String name;
-    int studID;
+    private String name;
+    private int studId;
 
     public Student() {
     }
 
-    public Student(String name, int studID) {
+    public Student(String name, int studId) {
         this.name = name;
-        this.studID = studID;
+        this.studId = studId;
     }
 
     public String getName() {
@@ -25,20 +25,20 @@ public class Student implements Comparable<Student> {
     }
 
     public int getStudID() {
-        return studID;
+        return studId;
     }
 
-    public void setStudID(int studID) {
-        this.studID = studID;
+    public void setStudID(int studId) {
+        this.studId = studId;
     }
 
     @Override
     public String toString() {
-        return String.format("Student ID: %d, Student Name: %s", this.studID, this.name);
+        return String.format("ID: %d, Name: %s", this.studId, this.name);
     }
 
     @Override
     public int compareTo(Student anotherStudent) {
-        return studID - anotherStudent.getStudID();
+        return studId - anotherStudent.getStudID();
     }
 }

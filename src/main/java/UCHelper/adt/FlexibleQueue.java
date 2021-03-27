@@ -20,8 +20,8 @@ public class FlexibleQueue <E extends Comparable<E>> implements FlexibleQueueInt
         private E element;   //reference to the element stored at this node
         private Node<E> next;  //reference to the subsequent node in the list
         
-        public Node(E e,Node<E> n){  //Ini adalah constructor??
-            element = e;  //E e macam String name?
+        public Node(E e,Node<E> n){ 
+            element = e; 
             next = n;
         }
         
@@ -40,7 +40,7 @@ public class FlexibleQueue <E extends Comparable<E>> implements FlexibleQueueInt
     
     //End of the nested Node class
     
-    //instance variables of the CircularlyLinkedList
+    //instance variables 
     private Node<E> tail = null;  // we store tail (but not head)
     private int size = 0;   //number of nodes in the list
     

@@ -3,13 +3,11 @@ package UCHelper.entity;
 import UCHelper.adt.*;
 
 public class MemberHandler {
-    private final LinkedList<Student> members = new LinkedList<Student>();
-    private final LinkedList<Student> committees = new LinkedList<Student>();
+    private final LinkedListStack<Student> members = new LinkedListStack<Student>();
+    private final LinkedListStack<Student> committees = new LinkedListStack<Student>();
     private Student clubLead;
 
     public MemberHandler() {
-        // TODO: Probably remove this
-        this.clubLead = new Student();
     }
 
     public MemberHandler(Student clubLead) {
@@ -21,7 +19,7 @@ public class MemberHandler {
      * 
      * @return list of members
      */
-    public LinkedList<Student> getMembers() {
+    public LinkedListStack<Student> getMembers() {
         return members;
     }
 
@@ -30,7 +28,7 @@ public class MemberHandler {
      * 
      * @return list of committees
      */
-    public LinkedList<Student> getCommittees() {
+    public LinkedListStack<Student> getCommittees() {
         return committees;
     }
 

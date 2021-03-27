@@ -55,10 +55,7 @@ public class StudentQueue {
                     break;
                 case 2:
                     displayStudent();
-                    //getting current date and time using Date class
-                    DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
-                    Date dateobj = new Date();
-                    System.out.println(df.format(dateobj));
+                    displayCurrentTime();
                     break;
                 case 3:
                     findFirstStudent();
@@ -98,14 +95,20 @@ public class StudentQueue {
         }
     }
 
+    public void displayCurrentTime() {
+        //getting current date and time using Date class
+        DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+        Date dateobj = new Date();
+        System.out.println(df.format(dateobj));
+        System.out.println("");
+    }
+
     public void findLastStudent() {
         //display last student enter
-        System.out.println("                            " + "name\tID");
         System.out.println("The Last Student Check-In : " + student.last());
     }
 
     public void findFirstStudent() {
-        System.out.println("                            " + "name\tID");
         System.out.println("The First Student Check-In : " + student.first());
     }
 
@@ -118,16 +121,14 @@ public class StudentQueue {
     }
 
     public void checkEmpty() {
-        System.out.println("List is Empty : " + student.isEmpty());
+        System.out.println("Queue is Empty : " + student.isEmpty());
     }
 
     public void displayStudent() {
         if(!student.isEmpty()){
-        System.out.println("---- Student Entering ----");
-        System.out.println("Name\t|\tID");
-        System.out.println("--------------------------");
+        System.out.println("\n[Student Entering]");
+        
         student.display();
-        System.out.println("--------------------------");
         System.out.println("Total Number of Student : "+ student.size()+"\n");
        
         }else{

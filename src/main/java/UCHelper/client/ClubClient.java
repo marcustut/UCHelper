@@ -131,11 +131,10 @@ public class ClubClient {
 
         input = scanner.nextInt();
 
-        // TODO: Validate whether club with clubId exist
-        while (input < 1 || input > 49) {
+        while (input < 1) {
           // Prompt the user for clubId
           Main.clearScreen();
-          System.out.println("\nClub ID is only valid from '1 - 49', try again.\n");
+          System.out.println("\nClub ID is only valid for positive integers, try again.\n");
           System.out.print(removeScreen);
 
           // Take input from user
@@ -165,11 +164,10 @@ public class ClubClient {
 
         input = scanner.nextInt();
 
-        // TODO: Validate whether club with clubId exist
-        while (input < 1 || input > 49) {
+        while (input < 1) {
           // Prompt the user for clubId
           Main.clearScreen();
-          System.out.println("\nClub ID is only valid from '1 - 49', try again.\n");
+          System.out.println("\nClub ID is only valid for positive integers, try again.\n");
           System.out.print(clubScreen);
 
           // Take input from user

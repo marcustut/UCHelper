@@ -3,8 +3,11 @@ package UCHelper.adt;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import java.util.Iterator;
+import java.util.logging.Logger;
 
 class BinarySearchTreeTest {
+  private final static Logger log = Logger.getLogger(BinarySearchTreeTest.class.getName());
 
   @Test
   public void testIsEmpty() {
@@ -94,4 +97,38 @@ class BinarySearchTreeTest {
     assertEquals(bst.size(), 0);
   }
 
+  @Test
+  public void testTraverse() {
+    BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+    StringBuilder sb = new StringBuilder();
+
+    bst.add(100);
+    bst.add(20);
+    bst.add(10);
+    bst.add(30);
+    bst.add(200);
+    bst.add(150);
+    bst.add(300);
+
+    // Testing for InOrderTraversal
+    Iterator<Integer> itr = bst.traverse(BinarySearchTree.TreeTraversalOrder.InOrderTraversal);
+
+    while (itr.hasNext()) {
+      Integer i = itr.next();
+      sb.append(i + ", ");
+    }
+
+    assertEquals("10, 20, 30, 100, 150, 200, 300, ", sb.toString());
+
+    // Testing for PreOrderTraversal
+    Iterator<Integer> itr2 = bst.traverse(BinarySearchTree.TreeTraversalOrder.PreOrderTraversal);
+    StringBuilder sb2 = new StringBuilder();
+
+    while (itr2.hasNext()) {
+      Integer i = itr2.next();
+      sb2.append(i + ", ");
+    }
+
+    assertEquals("100, 20, 10, 30, 200, 150, 300, ", sb2.toString());
+  }
 }
