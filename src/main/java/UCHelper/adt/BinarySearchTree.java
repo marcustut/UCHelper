@@ -295,7 +295,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
    */
   private Iterator<T> inOrderTraversal() {
     // A stack to keep track of node traversed
-    final LinkedListStack<Node> stack = new LinkedListStack<>();
+    final IterableCustomStack<Node> stack = new IterableCustomStack<>();
     stack.add(root);
 
     return new Iterator<T>() {
@@ -337,7 +337,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
    */
   private Iterator<T> preOrderTraversal() {
     // A stack to keep track of node traversed
-    final LinkedListStack<Node> stack = new LinkedListStack<Node>();
+    final IterableCustomStack<Node> stack = new IterableCustomStack<Node>();
 
     // The root is the starting point (first node to traverse)
     stack.add(root);

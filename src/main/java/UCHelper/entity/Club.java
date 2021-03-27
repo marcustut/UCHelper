@@ -95,7 +95,7 @@ public class Club implements Comparable<Club> {
      * 
      * @return list of members
      */
-    public LinkedListStack<Student> getMembers() {
+    public IterableCustomStack<Student> getMembers() {
         return memberHandler.getMembers();
     }
 

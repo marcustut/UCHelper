@@ -11,7 +11,7 @@ import java.util.Iterator;
  * @author Lee Kai Yang RSFY2S2
  * @param <T> - Generic Type (can be any object types but not primitive types)
  */
-public class LinkedListStack<T extends Comparable<T>> implements Iterable<T> {
+public class IterableCustomStack<T extends Comparable<T>> implements Iterable<T> {
     private int size = 0;
     private Node<T> head = null;
 
