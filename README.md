@@ -41,6 +41,36 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Lecturer
+### Responsibilities 📝
+#### 1. Manage a set of lecturer information
+
+    - Register a new lecturer
+    - Delete an existing lecturer
+    - View lecturer information
+    - check lecturer existence in system
+### ADT (Abstract Data Type)🧩
+    - SetArray(SetInterface.java, Set.java)
+
+### Clients 💻
+    -  ManageLecturer.java
+
+### How-to's 📝 
+#### a. Add lecturer
+1. press '1' and click 'Enter'.
+2. keyed in the information.
+3. enter 'y' to continue add lecturer or 'n' to main lecturer menu. 
+#### b. display lecturer
+1. press '2' and click 'Enter'.
+2. enter 'y' to continue display lecturer or 'n' to main lecturer menu. 
+#### c. remove lecturer
+1. press '3' and click 'Enter'.
+2. keyed in the information intended to remove.
+3. enter 'y' to continue remove lecturer or 'n' to main lecturer menu. 
+#### d. check lecturer
+1. press '4' and click 'Enter'.
+2. keyed in the information intended to check.
+3. enter 'y' to continue check lecturer or 'n' to main lecturer menu. 
+
 
 ## Event
 
@@ -345,4 +375,63 @@ To redirect another state, it is very simple, just assign the `state` variable w
   ...
 ```
 
-## Student
+## Student Queue
+### Responsibilities 📝
+#### 1. Manage the student queuing for entering the event.
+    - Check in Student enter the event
+    - Display all student in the queue 
+    - Display first check-in student
+    - Display last check-in student
+    - Remove the first student from the queue
+    - Check the queue is empty
+    - Shift the first student to the last position in the queue
+    - Clear all the check-in student details
+
+### ADT (Abstract Data Type)🧩
+    - Flexible Queue(FlexibleQueueInterface.java, FlexibleQueue.java)
+
+### Clients 💻
+    -  StudentQueue.java
+
+### How-to's 📝 
+
+#### To enter the Student Queue, please choose “ 4 ”, then “ Enter ”
+
+#### a. Check In Student 
+1. Press '1' and click 'Enter'.
+2. Key in the request information
+3. Enter 'y/Y' to return the Student Queue main page  
+
+#### b. Generate All Student
+1. Press '2' and click 'Enter'.
+2. System will display the details of the student with the current date and time. 
+3. Enter 'y/Y' to return the Student Queue main page  
+
+#### c. Find the first check-in Student
+1. Press '3' and click 'Enter'.
+2. System will display the details of the first student.
+3. Enter 'y/Y' to return the Student Queue main page  
+
+#### d. Find the last check-in Student
+1. Press '4'' and click 'Enter'.
+2. System will display the details of the last student.
+3. Enter 'y/Y' to return the Student Queue main page  
+
+#### e. Remove the Student
+1. Press '5' and click 'Enter'.
+2. Enter 'y/Y' to return the Student Queue main page  
+
+#### f. Check Student Queue Empty
+1. Press '6' and click 'Enter'.
+2. Enter 'y/Y' to return the Student Queue main page  
+
+#### g. Shift First Student to Last Position
+1. Press '7' and click 'Enter'.
+2. Enter 'y/Y' to return the Student Queue main page  
+
+#### h. Clear All
+1. Press '8' and click 'Enter'.
+2. Enter 'y/Y' to return the Student Queue main page  
+
+
+

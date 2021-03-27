@@ -6,8 +6,8 @@
  */
 package UCHelper.client;
 
-import UCHelper.entity.Lecturer;
 import UCHelper.adt.*;
+import UCHelper.entity.*;
 import java.util.Scanner;
 
 public class ManageLecturer {
@@ -17,10 +17,8 @@ public class ManageLecturer {
     static Lecturer l = new Lecturer();
 
     public static void main(String[] args) {
-        SetInterface<String> lecturer = new Set<>() {
-        };
-        SetInterface<String> lectChck = new Set<>() {
-        };
+        SetInterface<String> lecturer = new Set<>();
+        SetInterface<String> lectChck = new Set<>();
         // system out print choose
         display();
 
@@ -91,14 +89,18 @@ public class ManageLecturer {
 
             System.out.println("Enter your contact:");
             String phoneNo = myObj.next();
+		
+		System.out.println("Enter your responsible club:");
+             String respClub = myObj.next(); 
 
-            lecturer.add(new Lecturer(firstName, lastName, username, password, emailId, phoneNo));
+            lecturer.add(new Lecturer(firstName, lastName, username, password, emailId, phoneNo,respClub));
             l.setfirstName(firstName);
             l.setlastName(lastName);
             l.setUserName(username);
             l.setPassword(password);
             l.setEmailId(emailId);
             l.setPhoneNo(phoneNo);
+		l.setrespClub(respClub);
 
             System.out.println("if you wish to continue add lecturer enter 'y'");
             System.out.println("if want going back to menu enter 'n'");
@@ -145,7 +147,10 @@ public class ManageLecturer {
             System.out.println("Lecturer  phoneNo: ");
             String delphoneNo = myObj.next();
 
-            lecturer.remove(new Lecturer(delfirstName, dellastName, delusername, delpassword, delemailId, delphoneNo));
+		System.out.println("Lecturer  responsible club: ");
+            String delrespClub = myObj.next();
+
+            lecturer.remove(new Lecturer(delfirstName, dellastName, delusername, delpassword, delemailId, delphoneNo, delrespClub));
 
             System.out.println("if you wish to continue remove lecturer enter 'y'");
             System.out.println("if want going back to menu enter 'n'");
@@ -177,14 +182,18 @@ public class ManageLecturer {
 
             System.out.println("Enter your contact:");
             String phoneNo = myObj.next();
+			
+		System.out.println("Enter your responsible club:");
+            String respClub = myObj.next(); 
 
-            lectChck.add(new Lecturer(firstName, lastName, username, password, emailId, phoneNo));
+            lectChck.add(new Lecturer(firstName, lastName, username, password, emailId, phoneNo,respClub));
             l.setfirstName(firstName);
             l.setlastName(lastName);
             l.setUserName(username);
             l.setPassword(password);
             l.setEmailId(emailId);
             l.setPhoneNo(phoneNo);
+		l.setrespClub(respClub);
 
             if (lecturer.checkSubset(lectChck) == true) {
                 System.out.println("Lecturer had already registered.");
