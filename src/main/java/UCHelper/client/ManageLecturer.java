@@ -56,7 +56,7 @@ public class ManageLecturer {
                 break;
             // go to check lecturer
             case 4:
-                CheckLecturer();
+                checkLecturer();
                 break;
             // exit to main menu
             case 5:
@@ -163,7 +163,7 @@ public class ManageLecturer {
 
     }
 
-    static void CheckLecturer() {
+    static void checkLecturer() {
         char pick;
         do {
 
