@@ -6,14 +6,14 @@ package UCHelper.entity;
  */
 public class Student implements Comparable<Student> {
     private String name;
-    private int studID;
+    private int studId;
 
     public Student() {
     }
 
     public Student(String name, int studID) {
         this.name = name;
-        this.studID = studID;
+        this.studId = studID;
     }
 
     public String getName() {
@@ -25,20 +25,20 @@ public class Student implements Comparable<Student> {
     }
 
     public int getStudID() {
-        return studID;
+        return studId;
     }
 
     public void setStudID(int studID) {
-        this.studID = studID;
+        this.studId = studID;
     }
 
     @Override
     public String toString() {
-        return String.format("ID: %d, Name: %s", this.studID, this.name);
+        return String.format("ID: %d, Name: %s", this.studId, this.name);
     }
 
     @Override
     public int compareTo(Student anotherStudent) {
-        return studID - anotherStudent.getStudID();
+        return studId - anotherStudent.getStudID();
     }
 }
