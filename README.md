@@ -71,10 +71,96 @@ Please make sure to update tests as appropriate.
 2. keyed in the information intended to check.
 3. enter 'y' to continue check lecturer or 'n' to main lecturer menu. 
 
-
 ## Event
 
-Created a eventHandler UI and event entity for event module, successfully implement comparableList.java, countableNumList.java and their interface for storing numerous events and events'attendees.
+### Responsibilities 📝
+
+#### 1. To manage a collection of events
+
+- Basic create,retrieve,update,delete (CRUD) features of managing an event.
+- View the list of existing events.
+
+#### 2. To manage the attendee list of an event
+
+- Adding student details into attendee list of an event.
+- View the list of attendees of an event.
+- Adding attendee position into attendeePositionList.
+- Adding attendee cocu_Mark into attendeeCocuMarks.
+
+### ADT (Abstract Data Type) 🧩
+
+1. ComparableList (ComparableList.java, ComparableListInterface.java)
+2. CountableNumList (CountableNumList.java, CountableNumListInterface.java)
+
+ComparableList is Abstract Data Type for objects while CountableNumList is Abstract Data Type for integer which are extremely useful in producing report usage datas.
+
+### Unit Tests 🧰
+
+There's a unit test under Event module for testing the ADT methods. User may enter '0' in eventUI phase which will direct user to ComparableList and CountableNumList ADTs' methods. All the basic override methods can be test under this section as shown in the following image.
+
+![image](https://user-images.githubusercontent.com/61375431/112712073-fd2c1600-8f07-11eb-91a9-087ce76d405f.png)
+
+
+### Clients 💻
+
+1. EventHandler.java
+
+`EventHandler.java` handles the user requests and program operations for each operations in event module. Therefore, all needed program logics are written here.
+
+=======
+### How-to's 📝
+
+#### 1. To manage a collection of events
+
+##### a. Create an event
+
+![image](https://user-images.githubusercontent.com/61375431/112711460-81c86580-8f03-11eb-863c-49636d231fd9.png)
+
+Simply enter `2` at this screen and you will be prompted to enter the event details
+
+##### b. Browse event
+
+![image](https://user-images.githubusercontent.com/61375431/112711492-c6ec9780-8f03-11eb-92da-47a102424168.png)
+
+Enter `1` at this screen and you will be prompted to enter the event ID/Title
+
+##### c. Edit an existing event
+
+![image](https://user-images.githubusercontent.com/61375431/112711873-b0940b00-8f06-11eb-8437-9e91e13135a1.png)
+
+Enter `3` at this screen and you will be prompted to enter the event ID/Title and followed by event info
+
+##### d. Delete an existing event
+
+![image](https://user-images.githubusercontent.com/61375431/112711901-e46f3080-8f06-11eb-961a-2da8b4f5645a.png)
+
+Enter `4` at this screen and you will be prompted to enter the event ID/Title and the selected event will be deleted
+
+##### e. Display current event list
+
+![image](https://user-images.githubusercontent.com/61375431/112711942-27c99f00-8f07-11eb-838c-ba90053f7a6d.png)
+
+Enter `5` at this screen and the current event list will be displayed 
+
+##### f. Delete current event list
+
+Enter `6` at eventUI screen and the current event list will be deleted 
+
+##### g. Display all past event before today  
+
+Enter `7` at eventUI screen and all past event before today will be displayed 
+
+#### 2. To manage the attendee list of an event
+
+##### a. Register a student to an event's attendee list
+
+![image](https://user-images.githubusercontent.com/61375431/112711579-73c71480-8f04-11eb-9975-b9e849708020.png)
+
+Enter student info at this screen and student will be registered to the event, it is able to add more if needed 
+
+![image](https://user-images.githubusercontent.com/61375431/112711685-30b97100-8f05-11eb-8c82-a5566bee0e8c.png)
+
+After the student is registered, the program will automatically generate his cocumarks into the attendeeCocuMarks, the results can be viewed by entering '8' in eventUI phase
 
 ## Club
 
