@@ -31,42 +31,42 @@ public class ManageLecturer {
 
         // Loop forever until user exists
         while (!exit) {
+            System.out.println("\nWelcome to admin console");
+            System.out.println("\nPlease choose: ");
+            System.out.println("\nAdd lecturer  :[1]");
+            System.out.println("\nDisplay lecturer:[2]");
+            System.out.println("\nRemove lecturer  :[3]");
+            System.out.println("\nCheck lecturer  :[4]");
+            System.out.println("\nExit to Main Menu  :[5]");
 
-        }
-        System.out.println("\nWelcome to admin console");
-        System.out.println("\nPlease choose: ");
-        System.out.println("\nAdd lecturer  :[1]");
-        System.out.println("\nDisplay lecturer:[2]");
-        System.out.println("\nRemove lecturer  :[3]");
-        System.out.println("\nCheck lecturer  :[4]");
-        System.out.println("\nExit to Main Menu  :[5]");
+            int choose = myObj.nextInt(); // Read user input
 
-        int choose = myObj.nextInt(); // Read user input
-
-        switch (choose) {
-        // go to add Lecturer
-        case 1:
-            addLecturer();
-            break;
-        // go to display lecturer
-        case 2:
-            displayLecture();
-            break;
-        // go to remove lecturer
-        case 3:
-            removeLecturer();
-            break;
-        // go to check lecturer
-        case 4:
-            CheckLecturer();
-            break;
-        // exit to main menu
-        case 5:
-            exit = true;
-            break;
-        default:
-            System.out.println("Only accept input from '1 - 5', Try again.");
-            break;
+            switch (choose) {
+            // go to add Lecturer
+            case 1:
+                addLecturer();
+                break;
+            // go to display lecturer
+            case 2:
+                displayLecture();
+                break;
+            // go to remove lecturer
+            case 3:
+                removeLecturer();
+                break;
+            // go to check lecturer
+            case 4:
+                CheckLecturer();
+                break;
+            // exit to main menu
+            case 5:
+                Main.clearScreen();
+                exit = true;
+                break;
+            default:
+                System.out.println("Only accept input from '1 - 5', Try again.");
+                break;
+            }
         }
     }
 
