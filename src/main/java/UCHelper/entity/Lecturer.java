@@ -1,12 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Name: Amirul Imran bin Ahmad Azam
+ * Student ID: 19WMR12634
+ * Course: RSF2G1
+ * Date: May 2021
  */
 package entity;
 
 import java.util.Objects;
-import java.util.Scanner;
 
 
 public class Lecturer {

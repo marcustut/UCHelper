@@ -1,9 +1,14 @@
+/*
+ * Name: Amirul Imran bin Ahmad Azam
+ * Student ID: 19WMR12634
+ * Course: RSF2G1
+ * Date: May 2021
+ */
 package client;
 
 import entity.Lecturer;
 import java.util.Scanner;
 import adt.*;
-import java.util.Iterator;
 
 
 public class ManageLecturer { 
@@ -54,12 +59,6 @@ static void display(){
                 break;
                 // go to check lecturer
         
-        /*}System.out.println("Do you wish to continue view lecturer? :");
-            System.out.println("if yes enter 'y'");
-            System.out.println("if want going back to menu enter 'y'");
-            pick = myObj.next().charAt(0);
-                
-            }while(pick == 'n'); */
 }
 }
 static void addLecturer( ){
@@ -91,6 +90,7 @@ static void addLecturer( ){
             l.setPassword(password);
             l.setEmailId(emailId);
             l.setPhoneNo(phoneNo);
+            
             System.out.println("if you wish to continue add lecturer enter 'y'");
             System.out.println("if want going back to menu enter 'n'");
             pick = myObj.next().charAt(0);
@@ -136,8 +136,8 @@ static void removeLecturer(){
             String delphoneNo = myObj.next();
             
             lecturer.remove(new Lecturer(delfirstName,dellastName,delusername,delpassword,delemailId,delphoneNo));
-            
-            System.out.println("if you wish to continue add lecturer enter 'y'");
+  
+            System.out.println("if you wish to continue remove lecturer enter 'y'");
             System.out.println("if want going back to menu enter 'n'");
             pick = myObj.next().charAt(0);
               if (pick == 'n')
@@ -166,9 +166,9 @@ static void CheckLecturer(){
             String emailId = myObj.next();            
             
             System.out.println("Enter your contact:");
-            String phoneNo = myObj.next();            
+            String phoneNo = myObj.next();   
+            
             lectChck.add(new Lecturer(firstName,lastName,username,password,emailId,phoneNo));
-            //lectChck.add(new Lecturer(firstName,lastName,username,password,emailId,phoneNo);
             l.setfirstName(firstName);
             l.setlastName(lastName);
             l.setUserName(username);
@@ -176,11 +176,11 @@ static void CheckLecturer(){
             l.setEmailId(emailId);
             l.setPhoneNo(phoneNo);
             
-            
-            System.out.println(lecturer);
-            System.out.println(lectChck);
-            
-            System.out.println("setA.checkSubset(setB): "+ lecturer.checkSubset(lectChck));
+            if (lecturer.checkSubset(lectChck) == true) {
+                System.out.println("Lecturer had already registered.");}
+            else if (lecturer.checkSubset(lectChck) != true) {
+                System.out.println("Lecturer does not exist.");
+            }
             System.out.println("if you wish to continue check lecturer enter 'y'");
             System.out.println("if want going back to menu enter 'n'");
             pick = myObj.next().charAt(0);
@@ -188,51 +188,5 @@ static void CheckLecturer(){
                   display();
             }while(pick == 'y'); 
 }
-static void CheckLecturer2(){
-     /*char pick;
-        do{
-        //SetInterface<String> lectChck = new Set<>() {};
-        System.out.println("Enter your first name:");
-            String firstName = myObj.next();  
-            
-        System.out.println("Enter your last name:");
-            String lastName = myObj.next();
-                                   
-            System.out.println("Enter your username:");
-            String username = myObj.next();            
-                
-            System.out.println("Enter your email:");
-            String emailId = myObj.next();            
-            
-            System.out.println("Enter your contact:");
-            String phoneNo = myObj.next();   
-            
-            //for(Lecturer in your lecturer set){compare the lecturer ID}
-            for (int i = 0; i < 10; i++) {
-                lecturer.getfirstname;
-                
-            }
-      System.out.println("Does the Set contains 'Geeks'? " + lecturer.contains(firstName));
-  
-        // Check for "4" in the set
-        System.out.println("Does the Set contains '4'? "
-           + lecturer.contains(lastName));
-  
-        // Check if the Set contains "No"
-        System.out.println("Does the Set contains 'No'? "
-            + lecturer.contains(username));
-        // Check if the Set contains "No"
-        System.out.println("Does the Set contains 'No'? "
-            + lecturer.contains(emailId));
-        // Check if the Set contains "No"
-        System.out.println("Does the Set contains 'No'? "
-            + lecturer.contains(phoneNo));
-        
-            System.out.println("if you wish to continue check lecturer enter 'y'");
-            System.out.println("if want going back to menu enter 'n'");
-            pick = myObj.next().charAt(0);
-              if (pick == 'n')
-                  display();
-            }while(pick == 'y'); 
-**/}
+
 }
