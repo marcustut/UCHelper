@@ -59,14 +59,14 @@ Please make sure to update tests as appropriate.
 1. press '1' and click 'Enter'.
 2. keyed in the information.
 3. enter 'y' to continue add lecturer or 'n' to main lecturer menu. 
-#### a. display lecturer
+#### b. display lecturer
 1. press '2' and click 'Enter'.
 2. enter 'y' to continue display lecturer or 'n' to main lecturer menu. 
-#### a. remove lecturer
+#### c. remove lecturer
 1. press '3' and click 'Enter'.
 2. keyed in the information intended to remove.
 3. enter 'y' to continue remove lecturer or 'n' to main lecturer menu. 
-#### a. check lecturer
+#### d. check lecturer
 1. press '4' and click 'Enter'.
 2. keyed in the information intended to check.
 3. enter 'y' to continue check lecturer or 'n' to main lecturer menu. 
