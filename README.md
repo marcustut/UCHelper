@@ -358,4 +358,11 @@ To redirect another state, it is very simple, just assign the `state` variable w
   ...
 ```
 
-## Student
+## Student Queue
+### Responsibilities 📝
+#### Manage student enter to the event.
+- able the student to check in event
+- able to generate all student enter list
+- able to retrieve the first check in student
+- able to retrieve the last check 
+
