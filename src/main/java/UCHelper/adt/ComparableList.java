@@ -5,6 +5,7 @@ import java.util.Iterator;
  * ComparableList.java is an ADT collection that contain almost all the needed methods of an list to have.
  * @author Dennis Lau Yik Ann RSFY2S2, dennislauyikann@gmail.com
  * @version 4.0
+ * @param <L>
  */
 public class ComparableList<L> implements ComparableListInterface<L> {
     private L[] list;
@@ -34,25 +35,12 @@ public class ComparableList<L> implements ComparableListInterface<L> {
     
     @Override
     public boolean compare(L firstElement, L secondElement) {
-        boolean similar = false;
-        if (firstElement.equals(secondElement)) {
-            similar = true;
-        }
-        else{
-            similar = false;
-        }  
-        return similar;
+        return firstElement.equals(secondElement);
     }
     
     @Override
     public boolean compareList(L[] toCompare) {
-        boolean similar = false;
-        if (list.equals(toCompare)) {
-            similar = true;
-        } else {
-            similar = false;
-        }
-        return similar;
+        return list == toCompare;
     }
 
     @Override

@@ -128,34 +128,16 @@ public class EventHandler{
             }
             userChoice = in.nextInt();
             switch (userChoice) {
-                case 0:
-                    adtShowcase();
-                    break;
-                case 1:
-                    browseEvent();
-                    break;
-                case 2:
-                    createEvent();
-                    break;
-                case 3:
-                    editEvent();
-                    break;
-                case 4:
-                    deleteEvent();
-                    break;
-                case 5:
-                    displayEventList();
-                    break;
-                case 6:
-                    deleteEventList();
-                    break;
-                case 7:
-                    displayPastEvent();
-                    break;
-                case 8:
-                    displayEventListWithAttendeeList();
-                    break;
-                default:
+                case 0 -> adtShowcase();
+                case 1 -> browseEvent();
+                case 2 -> createEvent();
+                case 3 -> editEvent();
+                case 4 -> deleteEvent();
+                case 5 -> displayEventList();
+                case 6 -> deleteEventList();
+                case 7 -> displayPastEvent();
+                case 8 -> displayEventListWithAttendeeList();
+                default -> {
                     System.out.println("");
                     System.out.println("exiting eventUI...");
                     try {
@@ -163,7 +145,7 @@ public class EventHandler{
                     } catch (InterruptedException ex) {
                         Logger.getLogger(EventHandler.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    break;
+                }
             }
         } while (userChoice >= 0 && userChoice <= 8);
     }
@@ -183,14 +165,10 @@ public class EventHandler{
             }
             userChoice = in.nextInt();
             switch (userChoice) {
-                case 1:
-                    comparableList();
-                    break;
-                case 2:
-                    countableNumList();
-                    break;
-                default:
-                    break;
+                case 1 -> comparableList();
+                case 2 -> countableNumList();
+                default -> {
+                }
             }
         } while (userChoice >= 1 && userChoice <= 2);
     }
@@ -232,61 +210,45 @@ public class EventHandler{
             }
             userChoice = in.nextInt();
             switch (userChoice) {
-                case 1:
+                case 1 -> {
                     System.out.println("Before clear : " + b);
                     b.clear();
                     System.out.println("After clear  : " + b);
-                    break;
-                case 2:
-                    System.out.println("a.contains(\"a\") :" + a.contains("a"));
-                    break;
-                case 3:
-                    System.out.println("a.compare(\"a\",\"a\") :" + a.compare("a","a"));
-                    break;
-                case 4:
-                    System.out.println("a.isListFull() :" + a.isListFull());
-                    break;
-                case 5:
+                }
+                case 2 -> System.out.println("a.contains(\"a\") :" + a.contains("a"));
+                case 3 -> System.out.println("a.compare(\"a\",\"a\") :" + a.compare("a","a"));
+                case 4 -> System.out.println("a.isListFull() :" + a.isListFull());
+                case 5 -> {
                     a.add("z");
                     System.out.println("a.add(\"z\") :" + a);
-                    break;
-                case 6:
+                }
+                case 6 -> {
                     a.addWithin(2,"v");
                     System.out.println("a.addWithin(2,\"v\") :" + a);
-                    break;
-                case 7:
+                }
+                case 7 -> {
                     a.remove("z");
                     System.out.println("a.remove(\"z\") :" + a);
-                    break;
-                case 8:
-                    System.out.println("a.indexOf(\"a\") :" + a.indexOf("a"));
-                    break;
-                case 9:
+                }
+                case 8 -> System.out.println("a.indexOf(\"a\") :" + a.indexOf("a"));
+                case 9 -> {
                     a.replace("a","k");
                     System.out.println("a.replace(\"a\",\"k\") :" + a);
-                    break;
-                case 10:
+                }
+                case 10 -> {
                     a.replaceAt(2,"k");
                     System.out.println("a.replace(2,\"k\") :" + a);
-                    break;
-                case 11:
+                }
+                case 11 -> {
                     a.swap("c","b");
                     System.out.println("a.swap(\"c\",\"b\") :" + a);
-                    break;
-                case 12:
-                    System.out.println("a.isEmpty() :" + a.isEmpty());
-                    break;
-                case 13:
-                    System.out.println("a.getSize() :" + a.getSize());
-                    break;
-                case 14:
-                    System.out.println("a.getElement() :" + a.getElement(3));
-                    break;
-                case 15:
-                    System.out.println("a.toString() :" + a.toString());
-                    break;
-                default:
-                    break;
+                }
+                case 12 -> System.out.println("a.isEmpty() :" + a.isEmpty());
+                case 13 -> System.out.println("a.getSize() :" + a.getSize());
+                case 14 -> System.out.println("a.getElement() :" + a.getElement(3));
+                case 15 -> System.out.println("a.toString() :" + a.toString());
+                default -> {
+                }
             }
             System.out.println("");
         } while (userChoice >= 1 && userChoice <= 15);
@@ -327,52 +289,34 @@ public class EventHandler{
             }
             userChoice = in.nextInt();
             switch (userChoice) {
-                case 1:
+                case 1 -> {
                     System.out.println("Before clear : " + b);
                     b.clear();
                     System.out.println("After clear  : " + b);
-                    break;
-                case 2:
-                    System.out.println("a.isListFull():" + a.isListFull());
-                    break;
-                case 3:
+                }
+                case 2 -> System.out.println("a.isListFull():" + a.isListFull());
+                case 3 -> {
                     a.add(9);
                     System.out.println("a.add(9) :" + a);
-                    break;
-                case 4:
+                }
+                case 4 -> {
                     a.remove(4);
                     System.out.print("a.remove(4) :" + a);
-                    break;
-                case 5:
+                }
+                case 5 -> {
                     a.replace(1,6);
                     System.out.println("a.replace(1,6) :" + a);
-                    break;
-                case 6:
-                    System.out.println("a.isEmpty() :" + a.isEmpty());
-                    break;
-                case 7:
-                    System.out.println("a.getSize() :" + a.getSize());
-                    break;
-                case 8:
-                    System.out.println("a.getNum(3) :" + a.getNum(3));
-                    break;
-                case 9:
-                    System.out.println("a.getMax() :" + a.getMax());
-                    break;
-                case 10:
-                    System.out.println("a.getMin() :" + a.getMin());
-                    break;
-                case 11:
-                    System.out.println("a.getSum() :" + a.getSum());
-                    break;
-                case 12:
-                    System.out.println("a.getMean() :" + a.getMean());
-                    break;
-                case 13:
-                    System.out.println("a.getMode() :" + a.getMode());
-                    break;
-                default:
-                    break;
+                }
+                case 6 -> System.out.println("a.isEmpty() :" + a.isEmpty());
+                case 7 -> System.out.println("a.getSize() :" + a.getSize());
+                case 8 -> System.out.println("a.getNum(3) :" + a.getNum(3));
+                case 9 -> System.out.println("a.getMax() :" + a.getMax());
+                case 10 -> System.out.println("a.getMin() :" + a.getMin());
+                case 11 -> System.out.println("a.getSum() :" + a.getSum());
+                case 12 -> System.out.println("a.getMean() :" + a.getMean());
+                case 13 -> System.out.println("a.getMode() :" + a.getMode());
+                default -> {
+                }
             }
             System.out.println("");
         } while (userChoice >= 1 && userChoice <= 13);
@@ -390,7 +334,7 @@ public class EventHandler{
             System.out.println("Please pick one:");
             identifier = inputInt();
             switch (identifier) {
-                case 1:
+                case 1 -> {
                     System.out.println("");
                     System.out.println("Target Event ID:");
                     compare = inputString();
@@ -410,8 +354,8 @@ public class EventHandler{
                         }
                     }
                     status = true;
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     System.out.println("");
                     System.out.println("Target Event Title:");
                     compare = inputString();
@@ -430,11 +374,11 @@ public class EventHandler{
                         }
                     }
                     status = true;
-                    break;
-                default:
+                }
+                default -> {
                     System.out.println("No such event found");
                     status = true;
-                    break;
+                }
             }
         }
         System.out.println("");
@@ -456,14 +400,10 @@ public class EventHandler{
                 if (e.getEventID().equals(identifier) || e.getEventTitle().equals(identifier)) {
                     e.setAttendeeList(ID);
                     e.setAttendeePosition(Position);
-                    if(Position.equals("Committee")){
-                        e.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_COMMITTEE);
-                    }
-                    else if(Position.equals("President")){
-                        e.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_PRESIDENT);
-                    }
-                    else{
-                        e.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_MEMBER);
+                    switch (Position) {
+                        case "Committee" -> e.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_COMMITTEE);
+                        case "President" -> e.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_PRESIDENT);
+                        default -> e.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_MEMBER);
                     }
                 }
             }
@@ -541,7 +481,7 @@ public class EventHandler{
             System.out.println("Please pick one:");
             identifier = inputInt();
             switch (identifier) {
-                case 1:
+                case 1 -> {
                     System.out.println("");
                     System.out.println("Target Event ID:");
                     compare = inputString();
@@ -567,8 +507,8 @@ public class EventHandler{
                         }
                     }
                     status = true;
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     System.out.println("");
                     System.out.println("Target Event Title:");
                     compare = inputString();
@@ -594,9 +534,9 @@ public class EventHandler{
                         }
                     }
                     status = true;
-                    break;
-                default:
-                    break;
+                }
+                default -> {
+                }
             }
         }
         System.out.println("");
@@ -623,7 +563,7 @@ public class EventHandler{
             System.out.println("Please pick one:");
             identifier = inputInt();
             switch (identifier) {
-                case 1:
+                case 1 -> {
                     System.out.println("");
                     System.out.println("Target Event ID:");
                     compare = inputString();
@@ -635,8 +575,8 @@ public class EventHandler{
                     }
                     eventList = tem;
                     status = true;
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     System.out.println("");
                     System.out.println("Target Event Title:");
                     compare = inputString();
@@ -648,9 +588,9 @@ public class EventHandler{
                     }
                     eventList = tem;
                     status = true;
-                    break;
-                default:
-                    break;
+                }
+                default -> {
+                }
             }
         }
         System.out.println("");
@@ -735,18 +675,18 @@ public class EventHandler{
     }
     
     private static String inputString(){
-        Scanner in = new Scanner(System.in);
-        String result = in.nextLine();
+        Scanner scanner = new Scanner(System.in);
+        String result = scanner.nextLine();
         return result;
     }
         
     private static int inputInt(){
-        Scanner in = new Scanner(System.in);
-        while (!in.hasNextInt()) {
-            in.next();
+        Scanner scanner = new Scanner(System.in);
+        while (!scanner.hasNextInt()) {
+            scanner.next();
             System.out.println("invalid, enter agian");
         }
-        int result = in.nextInt();
+        int result = scanner.nextInt();
         return result;
     }
     
@@ -772,11 +712,7 @@ public class EventHandler{
         } catch (ParseException e) {
             return false;
         }
-        if (!df.format(testDate).equals(date)) {
-            return false;
-        } else {
-            return true;
-        }
+        return df.format(testDate).equals(date);
     }
     
     private static String repeat(String str, int times) {

@@ -5,6 +5,7 @@ import java.util.Iterator;
  * ComparableListInterface.java is an ADT collection interface that contain all the methods declaration.
  * @author Dennis Lau Yik Ann RSFY2S2, dennislauyikann@gmail.com
  * @version 2.0
+ * @param <L>
  */
 public interface ComparableListInterface<L> {
     public void clear();

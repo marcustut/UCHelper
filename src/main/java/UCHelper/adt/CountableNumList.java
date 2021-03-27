@@ -1,13 +1,12 @@
 package UCHelper.adt;
 
-import java.util.Iterator;
-
 /**
  * CountableNumList.java is an ADT collection that contain almost all the needed
  methods of an NumList to have.
  *
  * @author Dennis Lau Yik Ann RSFY2S2, dennislauyikann@gmail.com
  * @version 4.0
+ * @param <Num>
  */
 public class CountableNumList<Num> implements CountableNumListInterface<Num> {
     private int[] numList;
@@ -29,20 +28,11 @@ public class CountableNumList<Num> implements CountableNumListInterface<Num> {
         return DEFAULT_SIZE == numList.length;
     }
 
-    @Override
-    public int[] copyList(int[] toCopy) {
-        int[] resultList = (int[]) new int[DEFAULT_SIZE];
-        for (int i = 0; i < size; i++) {
-            toCopy[i] = resultList[i];
-        }
-        return resultList;
-    }
-
-    public void doubleList() {
-        int[] oldList = copyList(numList);
+    public void tripleList() {
+        int[] oldList = numList;
         int oldSize = oldList.length;
-        numList = (int[]) new int[2 * oldSize];
-        for (int index = 0; index < oldSize; index++) {
+        numList = (int[]) new int[3 * oldSize];
+        for (int index = 0; index < size; index++) {
             numList[index] = oldList[index];
         }
     }
@@ -50,9 +40,10 @@ public class CountableNumList<Num> implements CountableNumListInterface<Num> {
     @Override
     public void add(int newNum) {
         if (isListFull()) {
-            doubleList();
+            tripleList();
         }
-        numList[size++] = newNum;
+        numList[size] = newNum;
+        size++;
     }
 
     @Override
