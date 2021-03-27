@@ -1,5 +1,6 @@
 package UCHelper.entity;
 
+import UCHelper.adt.ComparableList;
 import java.util.Date;
 
 import UCHelper.adt.*;
