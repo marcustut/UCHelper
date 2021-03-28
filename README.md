@@ -498,7 +498,11 @@ To redirect another state, it is very simple, just assign the `state` variable w
 
 ### How-to's 📝
 
-#### To enter the Student Queue, please choose “ 4 ”, then “ Enter ”
+#### Please choose “ 4 ”, then “ Enter ”
+
+#### Before enter Student Queue Main Page, check in On-duty is needed.
+1. Press'1' and click 'Enter'
+2. Key in the request information
 
 #### a. Check In Student
 

@@ -54,7 +54,7 @@ public class ManageLecturer {
                 break;
             // go to check lecturer
             case 4:
-                CheckLecturer();
+                checkLecturer();
                 break;
             // exit to main menu
             case 5:
@@ -113,7 +113,7 @@ public class ManageLecturer {
     static void displayLecture() {
         char pick;
         do {
-
+  
             System.out.println(lecturer);
             System.out.println("if you wish to continue view lecturer enter 'y'");
             System.out.println("if want going back to menu enter 'n'");
@@ -161,7 +161,7 @@ public class ManageLecturer {
 
     }
 
-    static void CheckLecturer() {
+    static void checkLecturer() {
         char pick;
         do {
 

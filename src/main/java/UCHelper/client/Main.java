@@ -8,9 +8,10 @@ import java.util.Scanner;
  * @description this was a simple java program that help clubs to manage their
  *              community.
  * @author Marcus Lee Kai Yang RSFY2S2, marcustutorial@hotmail.com
- * @author Cecelia Lim Jie Shi RSFY2S2, cecelialjs-wm19@student.tarc.edu.my�
+ * @author Cecelia Lim Jie Shi RSFY2S2, cecelialjs-wm19@student.tarc.edu.my
  * @author Dennis Lau Yik Ann RSFY2S2, dennislauyikann@gmail.com
- * @author
+ * @author Amirul Imran bin Ahmad Azam, amirulibaa-wm19@student.tarc.edu.my
+ * 
  */
 public class Main {
     public static void clearScreen() {
@@ -58,7 +59,7 @@ public class Main {
                 break;
             case 4:
                 StudentQueue squ = new StudentQueue();
-                squ.studentMainPage();
+                squ.StudentQueue();
                 break;
             default:
                 System.out.println("\nBye, Have a Great Time! 👋\n");
