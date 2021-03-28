@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.Date;
 import UCHelper.adt.ComparableList;
 import UCHelper.adt.CountableNumList;
+import static UCHelper.client.Main.clearScreen;
 import UCHelper.entity.*;
 import static UCHelper.entity.EventManager.eventList;
 import static UCHelper.entity.EventManager.eventSeqNum;
@@ -80,7 +81,7 @@ public class EventHandler{
             System.out.println("[5] Display current event list");
             System.out.println("[6] Delete all event in the list");
             System.out.println("[7] Display all the past event before today");
-            System.out.println("[8] Display event list with their number of attendees");
+            System.out.println("[8] Display event list with their attendee list");
             System.out.println("[9] Back to main menu");
             System.out.println("[0] Features for testing ADT");
             System.out.println("What you wish to do? ");
@@ -128,6 +129,7 @@ public class EventHandler{
                     break;
             }
         } while (userChoice >= 0 && userChoice <= 8);
+        clearScreen();
     }
     
     private static void adtShowcase() {
@@ -136,11 +138,12 @@ public class EventHandler{
             System.out.println("------- ADT Show House -------");
             System.out.println("[1] ComparableList.java");
             System.out.println("[2] CountableNumList.java");
-            System.out.println("[3] Back to event module");
+            System.out.println("[3] Generate Event Module Summary Report (used and applied most ADT methods at once)");
+            System.out.println("[4] Back to event module");
             System.out.println("Please pick one... ");
             while (!in.hasNextInt()) {
                 in.next();
-                System.out.print("\nSelect [1/2/3]");
+                System.out.print("\nSelect [1/2/3/4]");
             }
             userChoice = in.nextInt();
             switch (userChoice) {
@@ -150,10 +153,14 @@ public class EventHandler{
                 case 2:
                     countableNumList();
                     break;
+                case 3:
+                    generateReport();
+                    break;
                 default:
                     break;
             }
-        } while (userChoice >= 1 && userChoice <= 2);
+        } while (userChoice >= 1 && userChoice <= 3);
+        clearScreen();
     }
     
     private static void comparableList() {
@@ -337,6 +344,105 @@ public class EventHandler{
             }
             System.out.println("");
         } while (userChoice >= 1 && userChoice <= 13);
+    }
+    
+    private static void reportTemplate(String reportTitle, String[] contents, String[] footer) {
+        clearScreen();
+        boolean end = false;
+        int titleLineSize = reportTitle.length();
+        int contentLineCount = contents.length; 
+        int footerLineCount = footer.length; 
+        int contentLineSize = 0;
+        for (int i = 0; i < contentLineCount && !end; i++){
+            if (contents == null) {
+                end = true;
+            }
+            if(contents[i].length() > contentLineSize){
+                contentLineSize = contents[i].length();
+            }
+        }
+        System.out.println("Generating Report...");
+        try {
+            TimeUnit.SECONDS.sleep(DEFAULT_PROCESSING_TIME + 1);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(EventHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("");
+        System.out.println("=".repeat(titleLineSize));
+        System.out.println(reportTitle);
+        System.out.println("=".repeat(titleLineSize));
+        System.out.println("-".repeat(contentLineSize));
+        System.out.println(contents[0]);
+        System.out.println("-".repeat(contentLineSize));
+        for (int i = 1; i < contentLineCount && !end; i++){
+            if (contents == null) {
+                end = true;
+            }
+            System.out.println(contents[i]);
+        }
+        System.out.println("-".repeat(50));
+        for (int i = 0; i < footerLineCount && !end; i++) {
+            if (footer == null) {
+                end = true;
+            }
+            System.out.println(footer[i]);
+        }
+        System.out.println("-".repeat(50));
+        System.out.println("-".repeat(contentLineSize));
+        System.out.println("Enter any key to continue... ");
+        String anykey = inputString();
+    }
+        
+    private static void generateReport() {
+        //This was a event module operation report which shows the summary of among all events created
+        clearScreen();
+        int contentSize = eventList.getSize() + 1;
+        int footerSize = 6;
+        String title = "Event Module Summary Report";
+        String[] contents = new String[contentSize];
+        String[] footer =   new String[footerSize];
+        CountableNumList<String> eventAttendees = new CountableNumList<String>();
+        String eventWithMaxAttendees = "";
+        String eventWithMinAttendees = "";
+        int leastAttendees = 999;
+        int mostAttendees = 0;
+        int mean = 0;
+        int mode = 0;
+        int sum = 0;
+        int i = 1;
+        //Given eventList, attendeeList and attendeePosition were using comparableList, 
+        //now we are converting their datas into output String
+        //attendeeCocuMarks was in countableNumList
+        contents[0] = String.format("%-8s %-10s %-15s %-10s %-35s", 
+                                    "ID", "Name", "Date", "Attendee", "Event Details");
+        for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
+            Event e = it.next();
+            contents[i++] = String.format("%-8s %-10s %-15s %-10d %-35s",
+                            e.getEventID(),
+                            e.getEventTitle(),
+                            e.getEventDate(),
+                            e.getAttendeeListSize(),
+                            e.getEventDetails());
+            if (e.getAttendeeListSize() > mostAttendees) {
+                eventWithMaxAttendees = e.getEventID();
+            }
+            if (e.getAttendeeListSize() < leastAttendees) {
+                eventWithMinAttendees = e.getEventID();
+            }
+            eventAttendees.add(e.getAttendeeListSize());
+        }
+        leastAttendees = eventAttendees.getMin();
+        mostAttendees = eventAttendees.getMax();
+        mean = eventAttendees.getMean();
+        mode = eventAttendees.getMode();
+        sum = eventAttendees.getSum();
+        footer[0] = String.format("The event with the most  attendees  : " + eventWithMaxAttendees + " (" + mostAttendees + "ppl)");
+        footer[1] = String.format("The event with the least attendees  : " + eventWithMinAttendees + " (" + leastAttendees + "ppl)");
+        footer[2] = String.format("The mean of attendees of all events : " + mean);
+        footer[3] = String.format("The mode of attendees of all events : " + mode);
+        footer[4] = String.format("The sum  of attendees of all events : " + sum);
+        footer[5] = String.format("The total number of events is " + eventAttendees.getSize());
+        reportTemplate(title, contents, footer);
     }
     
     private static void browseEvent(){

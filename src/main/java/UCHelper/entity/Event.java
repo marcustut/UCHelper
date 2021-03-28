@@ -99,7 +99,7 @@ public class Event implements Comparable<Event> {
     public int getAttendeeListSize() {
         return attendeeList.getSize();
     }
-        
+    
     public String getAttendeeList(int index) {
         return attendeeList.getElement(index);
     }
