@@ -46,7 +46,7 @@ public class StudentQueue {
                  s.studentMainPage();
                  break;
              case 2 :
-                 s.displaycheckinDuty();
+                 s.displayCheckInDuty();
                  break;
              case 3 :
                 Main.clearScreen();
@@ -89,7 +89,7 @@ public class StudentQueue {
         d.dutyStud.add(new Student(student,id));
     }
     
-    public void displaycheckinDuty(){
+    public void displayCheckInDuty(){
         System.out.println("This check-in duty is recorded ...");
         
         System.out.println("[Lecturer Record]");
