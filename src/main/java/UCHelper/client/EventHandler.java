@@ -65,8 +65,43 @@ public class EventHandler{
         return false;
     }
     
+    private static void displayDelay(){
+        try {
+            TimeUnit.MILLISECONDS.sleep(500);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(EventHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private static void openingCG(){
+        displayDelay();
+        System.out.println("  ______               _     __  __                                     ");  
+        displayDelay();                           
+        System.out.println(" |  ____|             | |   |  \\/  |                                    "); 
+        displayDelay();
+        System.out.println(" | |____   _____ _ __ | |_  | \\  / | __ _ _ __   __ _  __ _  ___ _ __   "); 
+        displayDelay();
+        System.out.println(" |  __\\ \\ / / _ \\ '_ \\| __| | |\\/| |/ _` | '_ \\ / _` |/ _` |/ _ \\ '__|  "); 
+        displayDelay();
+        System.out.println(" | |___\\ V /  __/ | | | |_  | |  | | (_| | | | | (_| | (_| |  __/ |     "); 
+        displayDelay();
+        System.out.println(" |______\\_/ \\___|_| |_|\\__| |_|  |_|\\__,_|_| |_|\\__,_|\\__, |\\___|_|     "); 
+        displayDelay();
+        System.out.println("                                                       __/ |            "); 
+        displayDelay();
+        System.out.println("Starting the module..."); 
+        displayDelay();
+        System.out.println("Almost done..."); 
+        displayDelay();
+        System.out.println("Ready"); 
+        displayDelay();
+        clearScreen();
+    }
+    
+    
     public static void EventUI(){
         int userChoice = 0;
+        openingCG();
         System.out.println(eventHeading());
         for (Iterator<Event> it = eventList.iterator(); it.hasNext();) {
             Event e = it.next();

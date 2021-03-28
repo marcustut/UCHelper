@@ -21,9 +21,4 @@ public interface CountableNumListInterface<Num> {
     public int getSum();
     public int getMean();
     public int getMode();
-    public int leastMostDifferent();
-    public int addition(int firstNum, int secondNum);
-    public int substration(int firstNum, int secondNum);
-    public int division(int firstNum, int secondNum);
-    public int multiplication(int firstNum, int secondNum);
 }
