@@ -7,10 +7,14 @@ package UCHelper.entity;
 public class Student implements Comparable<Student> {
     private String name;
     private int studId;
-
+    
     public Student() {
     }
 
+    public Student(String name) {
+        this.name = name;
+    }
+ 
     public Student(String name, int studId) {
         this.name = name;
         this.studId = studId;
@@ -36,7 +40,7 @@ public class Student implements Comparable<Student> {
     public String toString() {
         return String.format("ID: %d, Name: %s", this.studId, this.name);
     }
-
+    
     @Override
     public int compareTo(Student anotherStudent) {
         return studId - anotherStudent.getStudID();

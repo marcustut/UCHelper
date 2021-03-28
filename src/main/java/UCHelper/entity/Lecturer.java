@@ -17,10 +17,20 @@ public class Lecturer {
     private String emailId;
     private String phoneNo;
     private String respClub;
-
+    int no;
+    
     public Lecturer() {
     }
 
+    public Lecturer(String userName, String phoneNo, String respClub) {
+        this.userName = userName;
+        this.phoneNo = phoneNo;
+        this.respClub = respClub;
+        no =1;
+    }
+    
+    
+    
     public Lecturer(String firstName,String lastName, String userName, String password, String emailId, String phoneNo, String respClub) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -76,6 +86,8 @@ public class Lecturer {
     public void setrespClub(String respClub) {
         this.respClub = respClub;
     }
+    
+    
     @Override
     public int hashCode() {
         int hash = 3;
@@ -128,6 +140,9 @@ public class Lecturer {
 
    @Override
     public String toString() {
+        if(no == 1){
+            return String.format("\nLecturer Name: %s , Phone No: %s , Responsible Club: %s ",this.userName,this.phoneNo,this.respClub);
+        }
         return "Register [firstName=" + firstName + ", lastName=" + lastName +", userName=" + userName + ", password=" +
             password + ", emailId=" + emailId + ", phoneNo=" + phoneNo +", responsibleClub=" + respClub + "]";
     }

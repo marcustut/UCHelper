@@ -113,7 +113,7 @@ public class ManageLecturer {
     static void displayLecture() {
         char pick;
         do {
-
+  
             System.out.println(lecturer);
             System.out.println("if you wish to continue view lecturer enter 'y'");
             System.out.println("if want going back to menu enter 'n'");
