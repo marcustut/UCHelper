@@ -29,12 +29,14 @@ public class EventHandler{
 
     public static boolean dummyData() {
         //---addEvent(...)
-        Event e1 = new Event(eventSeqNum++, "event1", "Wangsa", "a fund raising event", "08/02/2020", 4);
-        Event e2 = new Event(eventSeqNum++, "event2", "Aeon", "a fund raising event", "07/05/2021", 5);
+        Event e1 = new Event(eventSeqNum++, "event1", "Wangsa", "a treasure hunt event", "08/02/2020", 4);
+        Event e2 = new Event(eventSeqNum++, "event2", "Aeon", "a station game event", "07/05/2021", 5);
         Event e3 = new Event(eventSeqNum++, "event3", "TAR UC", "a fund raising event", "05/03/2021", 5);
+        Event e4 = new Event(eventSeqNum++, "event4", "Zoom", "an online seminar", "29/03/2021", 1);
         e1.setOrganisor("C-100");
         e2.setOrganisor("C-121");
         e3.setOrganisor("C-154");
+        e4.setOrganisor("C-132");
 
         e1.setAttendeeList("19WMR11944");
         e1.setAttendeePosition("Committee");
@@ -59,9 +61,24 @@ public class EventHandler{
         e2.setAttendeePosition(DEFAULT_POSITION);
         e2.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_MEMBER);
 
+        e3.setAttendeeList("18WMR11912");
+        e3.setAttendeePosition(DEFAULT_POSITION);
+        e3.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_MEMBER);
+        e3.setAttendeeList("18WMR11921");
+        e3.setAttendeePosition(DEFAULT_POSITION);
+        e3.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_MEMBER);
+
+        e4.setAttendeeList("18WMR11916");
+        e4.setAttendeePosition(DEFAULT_POSITION);
+        e4.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_MEMBER);
+        e4.setAttendeeList("18WMR11942");
+        e4.setAttendeePosition(DEFAULT_POSITION);
+        e4.setAttendeeCocuMarks(DEFAULT_COCU_MARK_FOR_MEMBER);
+        
         eventList.add((Event) e1);
         eventList.add((Event) e2);
         eventList.add((Event) e3);
+        eventList.add((Event) e4);
         return false;
     }
     
@@ -125,6 +142,7 @@ public class EventHandler{
                 System.out.print("\nSelect [1/2/3/4/5/6/7/8/9]");
             }
             userChoice = in.nextInt();
+            clearScreen();
             switch (userChoice) {
                 case 0:
                     adtShowcase();
@@ -459,9 +477,11 @@ public class EventHandler{
                             e.getAttendeeListSize(),
                             e.getEventDetails());
             if (e.getAttendeeListSize() > mostAttendees) {
+                mostAttendees = e.getAttendeeListSize();
                 eventWithMaxAttendees = e.getEventID();
             }
             if (e.getAttendeeListSize() < leastAttendees) {
+                leastAttendees = e.getAttendeeListSize();
                 eventWithMinAttendees = e.getEventID();
             }
             eventAttendees.add(e.getAttendeeListSize());
